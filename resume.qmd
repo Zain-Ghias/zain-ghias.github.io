@@ -1,0 +1,73 @@
+---
+title: "Resume"
+description: "Zain Ghias's Resume"
+date: 2025-09-07
+format: html
+---
+
+<style>
+#title-block-header .description {
+    display: none;
+}
+.embed-container {
+    position: relative;
+    padding-bottom: 129%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-top: 2rem;
+}
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+.resume-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.resume-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+    .resume-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
+
+::: {.resume-header}
+# Zain Ghias
+
+Applied Statistics | Computer Science | Machine Learning
+:::
+
+::: {.resume-actions}
+[Download PDF](resume/MainResume.pdf){.btn .btn-primary .btn-lg target="_blank"} [Contact Me](mailto:zain.ghias@mail.utoronto.ca){.btn .btn-outline-primary .btn-lg}
+:::
+
+::: {.alert .alert-info}
+**Preview:** View the full resume below or download the PDF for the best experience.
+:::
+
+<div class="embed-container">
+  <iframe src="resume/MainResume.pdf" style="border: 0.5px"></iframe>
+</div>
+
+<div class="mt-4 text-center">
+  <p class="text-muted">
+    <small>Last updated: September 2025</small>
+  </p>
+</div> 

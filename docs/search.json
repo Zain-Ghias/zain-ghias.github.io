@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Zain Ghias\nApplied Statistics | Computer Science | Machine Learning\n\n\nDownload PDF Contact Me\n\n\nPreview: View the full resume below or download the PDF for the best experience.\n\n\n\n\n\n\nLast updated: September 2025"
+  },
+  {
+    "objectID": "projects/citybike/index.html",
+    "href": "projects/citybike/index.html",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "",
+    "text": "Question. For a quick, scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024, and when/where are the peaks most pronounced?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to expose hourly/weekday patterns without boiling the ocean. I’ll scale the scope later.\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
+  },
+  {
+    "objectID": "projects/citybike/index.html#summary",
+    "href": "projects/citybike/index.html#summary",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "",
+    "text": "Question. For a quick, scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024, and when/where are the peaks most pronounced?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to expose hourly/weekday patterns without boiling the ocean. I’ll scale the scope later.\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
+  },
+  {
+    "objectID": "projects/citybike/index.html#data-scope",
+    "href": "projects/citybike/index.html#data-scope",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "Data & Scope",
+    "text": "Data & Scope\n\nSource: Bike Share Toronto open data (Trips for Mar 2023 and Mar 2024)\nCore fields: start time/end time, station names/IDs, trip duration, member type\nScope choice: one month per year to keep season similar yet volume high\n\n\nPlanned extension: add adjacent months to test before/after effects of downtown e-scooter restrictions (with citation)."
+  },
+  {
+    "objectID": "projects/citybike/index.html#cleaning-workflow-excel",
+    "href": "projects/citybike/index.html#cleaning-workflow-excel",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "Cleaning Workflow (Excel)",
+    "text": "Cleaning Workflow (Excel)\nGoals: fix types, remove duplicates, handle nulls, and create analysis-ready columns.\nSteps I took 1. Type fixes: coerced timestamps to datetime; durations to numeric minutes\n2. Null handling: filtered rows with missing station IDs/time; documented counts\n3. De-duplication: removed duplicates by (start_time, end_time, bike_id)\n4. Derived columns: hour_of_day, weekday, is_member\n5. Data issues log: tracked anomalies (e.g., negative durations, midnight spikes)\n\n\nDecision note: trips &lt; 2 minutes flagged (unlock/relocate). Included in totals but excluded in some visuals."
+  },
+  {
+    "objectID": "projects/citybike/index.html#dashboard-snapshot",
+    "href": "projects/citybike/index.html#dashboard-snapshot",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "Dashboard Snapshot 📸",
+    "text": "Dashboard Snapshot 📸\n\n\n\nPrefer the interactive version? View it on Tableau Public."
+  },
+  {
+    "objectID": "projects/citybike/index.html#findings-so-far",
+    "href": "projects/citybike/index.html#findings-so-far",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "Findings (So Far)",
+    "text": "Findings (So Far)\n\nPeak hours: weekday 17:00–18:00 strongest; 7–9 AM morning commute visible\n\nMember mix: change in annual member % year-over-year (quantify after KPI lock)\n\nHotspots: downtown core stations dominate activity\n\n2023 → 2024: peak intensity appears higher in 2024 (confirm with final totals)\n\n\nLimits: single month per year; weather unaccounted; no promo/fare context"
+  },
+  {
+    "objectID": "projects/citybike/index.html#whats-next",
+    "href": "projects/citybike/index.html#whats-next",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "What’s Next",
+    "text": "What’s Next\n\nComparison dashboard (Mar 2023 vs Mar 2024 KPIs side-by-side)\n\nE-scooter policy check with surrounding months (before/after) + citation\n\nPython/SQL pipeline for reproducible cleaning & station-hour aggregations\n\nPredictive baseline: simple hourly demand regression for top 10 stations"
+  },
+  {
+    "objectID": "projects/citybike/index.html#repro-notes",
+    "href": "projects/citybike/index.html#repro-notes",
+    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "section": "Repro Notes",
+    "text": "Repro Notes\n\nAssumptions: local timezone; station names normalized by ID where possible\n\nFiles referenced: data_issues.xlsx (in this project folder), screenshots under /images/\n\nContact: Feedback welcome—this will expand into a broader 2024 view + policy checks"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Coming soon."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Zain Ghias",
+    "section": "",
+    "text": "Hi, I’m Zain,\na third-year student at the University of Toronto Mississauga, majoring in Applied Statistics with minors in Computer Science and Math.\nI’m currently working as a Software Developer Intern at a startup, but I’m shifting my focus toward Data Analytics, Data Science, and exploring areas like AI and Machine Learning. I’m planning to take more ML and stats courses next year, and I’m open to getting involved in research if it’s in something exciting or meaningful.\nI like volleyball, table tennis, and basketball, and I try to balance screen time with touching grass and going on long walks, partly for my sanity.\nThanks for stopping by. Excited to see where this journey goes.\nGet in touch: zain.ghias@mail.utoronto.ca"
+  },
+  {
+    "objectID": "index.html#featured-project-citybike-analysis",
+    "href": "index.html#featured-project-citybike-analysis",
+    "title": "Zain Ghias",
+    "section": "Featured Project: CityBike Analysis 🚴‍♂️",
+    "text": "Featured Project: CityBike Analysis 🚴‍♂️\n\n\n\n\n\n\nCityBike: Toronto Bike Share Analysis (2023–2024)\n\n\n\n\nExploring Bike Share Toronto with interactive dashboards and forecasting insights.\nStack: Excel · Tableau · Python (planned)\nQuestion: Are Bike Share assets being used efficiently, or are some stations/times underutilized?\nView Project"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Short highlights from what I’m building and learning. Each project represents a step forward in my data science and analytics journey.\n\n\n Click on any project card to explore the full analysis, methodology, and results."
+  },
+  {
+    "objectID": "projects.html#section",
+    "href": "projects.html#section",
+    "title": "Projects",
+    "section": "",
+    "text": "Short highlights from what I’m building and learning. Each project represents a step forward in my data science and analytics journey.\n\n\n Click on any project card to explore the full analysis, methodology, and results."
+  }
+]

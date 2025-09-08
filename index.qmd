@@ -1,0 +1,48 @@
+---
+title: "Zain Ghias"
+about:
+  id: main-content
+  template: trestles
+  image: images/Zain Ghias.jpg
+  image-shape: round
+  links:
+    - icon: envelope
+      href: mailto:zain.ghias@mail.utoronto.ca
+    - icon: github
+      href: https://github.com/Zain-Ghias
+    - icon: linkedin
+      href: https://www.linkedin.com/in/zain-ghias/
+format:
+  html:
+    toc: false
+---
+
+Hi, I'm **Zain**,  
+
+a third-year student at the **University of Toronto Mississauga**, majoring in **Applied Statistics** with minors in **Computer Science** and **Math**.  
+
+I'm currently working as a **Software Developer Intern** at a startup, but I'm shifting my focus toward **Data Analytics**, **Data Science**, and exploring areas like **AI** and **Machine Learning**. I'm planning to take more ML and stats courses next year, and I'm open to getting involved in research if it's in something exciting or meaningful.  
+
+I like **volleyball**, **table tennis**, and **basketball**, and I try to balance screen time with touching grass and going on long walks, partly for my sanity.  
+
+Thanks for stopping by. Excited to see where this journey goes.
+
+**Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
+
+---
+
+## Featured Project: CityBike Analysis 🚴‍♂️
+
+::: {.callout-note style="max-width: 430px;"}
+### CityBike: Toronto Bike Share Analysis (2023–2024)
+
+![](projects/citybike/images/Bike_Share_Toronto_logo.png){width="200px" .center}
+
+Exploring Bike Share Toronto with interactive dashboards and forecasting insights.
+
+**Stack:** Excel · Tableau · Python (planned)
+
+**Question:** Are Bike Share assets being used efficiently, or are some stations/times underutilized?
+
+[View Project](projects/citybike/index.qmd){.btn .btn-primary .me-2}
+:::

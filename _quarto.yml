@@ -1,0 +1,48 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - images/**
+    - projects/**/images/**
+    - resume/**
+    - assets/**
+
+website:
+  title: "Zain A. Ghias"
+  site-url: "https://zain-ghias.github.io/zain-website/"
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "Zain Ghias, University of Toronto @ 2025"
+  navbar:
+    right:
+      - href: index.qmd
+        text: About
+      - text: "CV"
+        href: resume.qmd
+      - href: projects.qmd
+        text: Projects
+      - href: blog.qmd
+        text: Blog
+      - icon: github
+        href: https://github.com/Zain-Ghias
+      - icon: linkedin
+        href: https://www.linkedin.com/in/zain-ghias/
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    toc: true
+    page-layout: full
+
+editor: visual
+
+execute:
+  freeze: auto
+
+engine: knitr
+
+
+

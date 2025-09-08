@@ -1,0 +1,98 @@
+---
+title: "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)"
+date: 2025-09-05
+image: images/Bike_Share_Toronto_logo.png
+description: "Two-month snapshot comparing March 2023 and March 2024; cleaned in Excel and visualized in Tableau."
+toc: true
+---
+
+## Summary
+
+**Question.** For a quick, scoped snapshot: *How did Bike Share Toronto usage differ between **March 2023** and **March 2024**, and when/where are the peaks most pronounced?*
+
+**Why these months?** March alone already has **~500k+ trips** across the two years—enough to expose hourly/weekday patterns without boiling the ocean. I’ll scale the scope later.
+
+**Stack.** Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)
+
+---
+
+## Data & Scope
+
+- **Source:** Bike Share Toronto open data (Trips for **Mar 2023** and **Mar 2024**)
+- **Core fields:** start time/end time, station names/IDs, trip duration, member type
+- **Scope choice:** one month per year to keep season similar yet volume high
+
+> *Planned extension:* add adjacent months to test before/after effects of downtown **e-scooter restrictions** (with citation).
+
+---
+
+## Cleaning Workflow (Excel)
+
+**Goals:** fix types, remove duplicates, handle nulls, and create analysis-ready columns.
+
+**Steps I took**
+1. **Type fixes:** coerced timestamps to datetime; durations to numeric minutes  
+2. **Null handling:** filtered rows with missing station IDs/time; documented counts  
+3. **De-duplication:** removed duplicates by `(start_time, end_time, bike_id)`  
+4. **Derived columns:** `hour_of_day`, `weekday`, `is_member`  
+5. **Data issues log:** tracked anomalies (e.g., negative durations, midnight spikes)
+
+<!--
+### Cleaning screenshots (add later)
+![](images/excel-cleaning-overview.png){fig-cap="Excel cleaning overview: types, null filters, duplicates"}
+![](images/excel-data-issues-tab.png){fig-cap="Data_issues tab: anomalies & decisions"}
+-->
+
+> **Decision note:** trips < 2 minutes flagged (unlock/relocate). Included in totals but excluded in some visuals.
+
+---
+
+## Dashboard Snapshot 📸
+
+![](images/StaticOverview.png){fig-cap="Overview — ridership, peaks, and station map (March 2024)"}
+
+<div class="mt-3">
+  <p class="text-muted">
+    Prefer the interactive version? View it on
+    <a href="https://public.tableau.com/views/Book2_17570616406970/Overview" target="_blank" rel="noopener">Tableau Public</a>.
+  </p>
+</div>
+
+<!--
+### (Optional) Additional static previews (add later)
+![](images/dashboard-1.png){fig-cap="Ridership by hour"}
+![](images/dashboard-2.png){fig-cap="Station activity focus"}
+-->
+
+---
+
+## Findings (So Far)
+
+- **Peak hours:** weekday **17:00–18:00** strongest; **7–9 AM** morning commute visible  
+- **Member mix:** change in **annual member %** year-over-year (quantify after KPI lock)  
+- **Hotspots:** downtown core stations dominate activity  
+- **2023 → 2024:** peak intensity appears higher in 2024 (confirm with final totals)
+
+> **Limits:** single month per year; weather unaccounted; no promo/fare context
+
+---
+
+## What’s Next
+
+1. **Comparison dashboard** (Mar 2023 vs Mar 2024 KPIs side-by-side)  
+2. **E-scooter policy check** with surrounding months (before/after) + citation  
+3. **Python/SQL pipeline** for reproducible cleaning & station-hour aggregations  
+4. **Predictive baseline:** simple hourly demand regression for top 10 stations
+
+<!--
+### Code / Notebooks (later)
+Link notebooks or repo paths here when ready.
+-->
+
+---
+
+## Repro Notes
+
+- **Assumptions:** local timezone; station names normalized by ID where possible  
+- **Files referenced:** `data_issues.xlsx` (in this project folder), screenshots under `/images/`  
+- **Contact:** Feedback welcome—this will expand into a broader 2024 view + policy checks

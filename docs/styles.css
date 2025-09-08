@@ -1,0 +1,338 @@
+/* Navbar background */
+.navbar {
+  background-color: #23272f !important; /* Charcoal */
+}
+
+/* Navbar link text color */
+.navbar .navbar-brand,
+.navbar-nav .nav-link {
+  color: #f5f5f5 !important;
+  transition: color 0.5s, border-color 0.5s;
+}
+
+/* Navbar link hover color (default) */
+.navbar-nav .nav-link:hover {
+  color: #ffd54f !important; /* gold, or pick another accent */
+}
+
+/* LinkedIn icon hover: original LinkedIn blue */
+.navbar-nav .nav-link[href*="linkedin"]:hover i,
+.about-link[href*="linkedin"]:hover i {
+  color: #0A66C2 !important;
+}
+
+/* GitHub icon hover: orange */
+.navbar-nav .nav-link[href*="github"]:hover i,
+.about-link[href*="github"]:hover i {
+  color: #ff9800 !important;
+}
+
+/* Dark mode navbar */
+html[data-theme='dark'] .navbar {
+  background-color: #181818 !important;
+}
+
+/* Dark mode navbar text */
+html[data-theme='dark'] .navbar .navbar-brand,
+html[data-theme='dark'] .navbar-nav .nav-link {
+  color: #e0e0e0 !important;
+}
+
+/* Remove default green outline on social icon hover/focus */
+.about-link:focus, .about-link:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: white !important; /* Default to white border */
+}
+
+/* LinkedIn: blue border and icon on hover */
+.about-link[href*="linkedin"]:hover, .about-link[href*="linkedin"]:focus {
+  border-color: #0A66C2 !important;
+}
+.about-link[href*="linkedin"]:hover i, .about-link[href*="linkedin"]:focus i {
+  color: #0A66C2 !important;
+}
+
+/* GitHub: orange border and icon on hover */
+.about-link[href*="github"]:hover, .about-link[href*="github"]:focus {
+  border-color: #ff9800 !important;
+}
+.about-link[href*="github"]:hover i, .about-link[href*="github"]:focus i {
+  color: #ff9800 !important;
+}
+
+/* Email: white border and icon on hover */
+.about-link[href^="mailto"]:hover, .about-link[href^="mailto"]:focus {
+  border-color: #2ecc40 !important;
+}
+.about-link[href^="mailto"]:hover i, .about-link[href^="mailto"]:focus i {
+  color: #2ecc40 !important;
+}
+
+/* Smooth color and border transitions for about links and icons */
+.about-link,
+.about-link i {
+  transition: color 0.5s, border-color 0.5s;
+}
+
+/* Responsive profile image sizing */
+@media (max-width: 768px) {
+  .about-image {
+    width: 190px !important;
+    height: 190px !important;
+    margin-top: 2rem !important;
+  }
+  
+  /* Make social icons horizontal on mobile */
+  .about-links {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+    flex-direction: row !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-image {
+    width: 160px !important;
+    height: 160px !important;
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Adjust spacing for smaller screens */
+  .about-links {
+    gap: 1rem !important;
+  }
+}
+
+/* Project cards grid tuning */
+.quarto-listing .card,
+.quarto-grid-item .card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-radius: 10px;
+}
+
+.quarto-listing .card:hover,
+.quarto-grid-item .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* Ensure listing images have consistent aspect and cover */
+/* Smaller project thumbnail */
+/* Project thumbnail height follows listing setting; keep only padding */
+.quarto-listing .card img,
+.quarto-grid-item .card img {
+  width: 100%;
+  object-fit: contain;
+  padding: 2px 12px 0 12px;
+  background: #ffffff;
+  transform: scale(0.9);
+  transform-origin: center;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Compact card body */
+.quarto-listing .card-body,
+.quarto-grid-item .card-body {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+/* Tighten title and excerpt spacing */
+.quarto-listing .card-title,
+.quarto-grid-item .card-title { margin-bottom: 0.35rem; }
+.quarto-listing .card-text,
+.quarto-grid-item .card-text { color: #555; }
+
+/* Featured Project Card Styling */
+.featured-project-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  border: 1px solid #dee2e6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+.featured-project-card h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.featured-project-card .lead {
+  color: #495057;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.featured-project-card img {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.featured-project-card img:hover {
+  transform: scale(1.02);
+}
+
+/* Enhanced Button Styling */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-width: 2px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+  border-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,123,255,0.4);
+}
+
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: #007bff;
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,123,255,0.3);
+}
+
+/* Card Enhancements */
+.card {
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  border-color: #007bff;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+/* Dark mode adjustments */
+html[data-theme='dark'] .featured-project-card {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+}
+
+html[data-theme='dark'] .featured-project-card h3 {
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .featured-project-card .lead {
+  color: #cbd5e0;
+}
+
+html[data-theme='dark'] .card {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+html[data-theme='dark'] .card-title {
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .card-text {
+  color: #a0aec0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .featured-project-card {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .featured-project-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* ========================================================
+   Fixed Left Sidebar for Trestles Template
+   ======================================================== */
+
+/* Make the left sidebar (about-entity) sticky */
+.about-entity {
+  position: sticky !important;
+  top: 120px !important;
+  height: fit-content;
+  z-index: 10;
+}
+
+/* Ensure the right content area can scroll independently */
+.about-contents {
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* Responsive: disable sticky on mobile */
+@media (max-width: 768px) {
+  .about-entity {
+    position: static !important;
+    top: auto !important;
+  }
+}
+
+/* --- Trestles mobile/stacking fixes --- */
+
+/* 1) Desktop: allow sticky, but keep z-index low so it doesn't layer over footer */
+@media (min-width: 993px) {
+  .about-entity {
+    position: sticky !important;
+    top: 96px !important;     /* a bit tighter than 120px */
+    z-index: 1 !important;    /* keep it beneath content/footer layers */
+  }
+}
+
+/* 2) Tablet + mobile: turn OFF sticky completely so stacking is clean */
+@media (max-width: 992px) {
+  .about-entity {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+  }
+}
+

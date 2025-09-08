@@ -1,0 +1,21 @@
+---
+title: "Projects"
+listing:
+  contents: projects/*/index.qmd
+  sort: "date desc"
+  type: grid
+  grid-columns: 3
+  fields: [image, title, description, date]
+  image-height: 250px
+---
+
+## 
+
+Short highlights from what I'm building and learning. Each project represents a step forward in my data science and analytics journey.
+
+<div class="mt-4">
+  <p class="text-muted">
+    <i class="bi bi-info-circle"></i> 
+    Click on any project card to explore the full analysis, methodology, and results.
+  </p>
+</div>
