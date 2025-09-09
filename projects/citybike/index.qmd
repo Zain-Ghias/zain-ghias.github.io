@@ -8,29 +8,31 @@ toc: true
 
 ## Summary
 
-**Question.** For a scoped snapshot: *How did Bike Share Toronto usage differ between **March 2023** and **March 2024**, and when/where are the peaks most pronounced?*  
+**Question.** For a scoped snapshot: *How did Bike Share Toronto usage differ between **March 2023** and **March 2024**—by hour and weekday/weekend—and what changed in the member/casual mix?*
 
-**Why these months?** March alone already has **~500k+ trips** across the two years—enough to expose hourly/weekday patterns without drowning in volume. I’ll scale later.  
+**Why these months?** March alone already has ~**500k+** trips across the two years—enough to reveal strong hourly patterns without boiling the ocean. I’ll scale the scope later.
 
-**Stack.** Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)  
+**Why I’m doing this.** I’ve been seeing micromobility (bikes/scooters) all over Mississauga—often parked, sometimes deserted—and got curious about **real usage** and adoption. This project is my way to quantify it: start tight (two months), then expand into comparisons, models, and policy context (e-scooter restrictions).
+
+**Stack.** Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)
 
 ---
 
 ## Data & Scope
 
-- **Source:** Bike Share Toronto open data (Trips for **Mar 2023** and **Mar 2024**)  
+- **Source:** Bike Share Toronto open data (Trips for **Mar 2023** and **Mar 2024**)
 - **Core fields:** Trip Id, duration, start/end times, station IDs/names, bike ID, user type  
-- **Scope choice:** one month per year to keep season similar yet volume high  
+- **Scope choice:** one month per year to keep season similar yet volume high
 
 > *Planned extension:* add adjacent months to test before/after effects of downtown **e-scooter restrictions** (with citation).
 
 ---
 
-## Cleaning Workflow (Excel)
+## Excel Cleaning & Validation
 
-I used Excel to validate and clean both months systematically, with a reproducible **Data_issues log**.  
+I validated and cleaned both months with a reproducible **Data_issues** log rather than ad-hoc fixes.
 
-**Goals:** fix types, remove duplicates, handle nulls, create analysis-ready columns.  
+**Goals:** fix types, remove duplicates, handle nulls, and create analysis-ready columns.
 
 ### Steps I took
 1. **Type fixes:** coerced timestamps to datetime; durations to numeric minutes  
@@ -38,8 +40,6 @@ I used Excel to validate and clean both months systematically, with a reproducib
 3. **De-duplication:** removed duplicates by `(start_time, end_time, bike_id)`  
 4. **Derived columns:** `Trip Duration (min)`, `Start Date`, `Start Hour`, `Day of Week`, `Same Station?`, `Mappable`  
 5. **Data issues log:** tracked anomalies (e.g., negative durations, unmapped station IDs)
-
----
 
 ### Schema Notes (2023 vs 2024)
 
@@ -54,52 +54,57 @@ I used Excel to validate and clean both months systematically, with a reproducib
 | **Model** (bike type)                | — | **✓** | **New in 2024** |
 | Derived: Duration (min), Start Date, Start Hour, Day of Week, Same Station?, Mappable | ✓ | ✓ | created during cleaning |
 
-> **Stations reference:** I found an **older stations file** with lat/longs. Many new station IDs (2023/2024) weren’t in it, so I flagged them as **Unmapped** instead of dropping valid trips.
-
----
+> **Stations reference:** I found an **older stations file** with lat/longs. Newer station IDs (2023/2024) weren’t all present, so I flagged those trips as **Unmapped** (kept for totals, excluded from maps as needed).
 
 ### Derived Columns
 
-| Column              | Type     | How it’s computed                                | Why it matters |
+| Column                 | Type     | How it’s computed                      | Why it matters |
 |---|---|---|---|
-| `Trip Duration (min)` | numeric  | `duration_sec / 60` (rounded)                    | consistent comparisons |
-| `Start Date`        | date     | `date(Start Time)`                                | daily grouping |
-| `Start Hour`        | integer  | `hour(Start Time)`                                | peak-hour analysis |
-| `Day of Week`       | text     | `weekday(Start Time)`                             | weekday vs weekend |
-| `Same Station?`     | boolean  | `Start Station Id == End Station Id`              | short loops / returns |
-| `Mappable`          | boolean  | station ID present in reference file              | map readiness |
-
----
+| `Trip Duration (min)`  | numeric  | `duration_sec / 60` (rounded)          | consistent comparisons |
+| `Start Date`           | date     | `date(Start Time)`                      | daily grouping |
+| `Start Hour`           | integer  | `hour(Start Time)`                      | peak-hour analysis |
+| `Day of Week`          | text     | `weekday(Start Time)`                   | weekday vs weekend |
+| `Same Station?`        | boolean  | `Start Station Id == End Station Id`    | loops/returns |
+| `Mappable`             | boolean  | station ID present in reference file    | map readiness |
 
 ### Data Issues (logged)
 
-Each issue was counted, decisioned, and either fixed or flagged. I repeated the pass for **Mar 2024** (with the extra `Model` field).
+Counted, decisioned, then fixed/flagged; repeated for **Mar 2024** (with the extra `Model` field).
 
-| Issue                                   | Fix / Decision                                 | Kept? | Count (example) |
+| Issue                                   | Fix / Decision                               | Kept? | Count (example) |
 |---|---|:---:|---:|
-| `End Station = NULL`                    | drop rows (incomplete)                          | ✗ | 80 |
-| Trip duration `< 1 min`                 | drop (unlock/return test)                       | ✗ | 417 |
-| Trip duration `> 24 hr`                 | drop (logging error)                            | ✗ | 43 |
-| Start station = End station             | keep, flagged in `Same Station?`                | ✓ | 6,835 |
-| Duplicate Trip Ids                      | keep first, remove duplicates                    | ✓ | 0 |
-| Inconsistent station names (ID present) | standardize name via ID                         | ✓ | 15,942 |
-| Station ID not in reference (new IDs)   | keep trip, mark as Unmapped                     | ✓ | 22,000 |
+| `End Station = NULL`                    | drop rows (incomplete)                        | ✗ | 80 |
+| Trip duration `< 1 min`                 | drop (unlock/return test)                     | ✗ | 417 |
+| Trip duration `> 24 hr`                 | drop (logging error)                          | ✗ | 43 |
+| Start station = End station             | keep, flagged in `Same Station?`              | ✓ | 6,835 |
+| Duplicate Trip Ids                      | keep first, remove duplicates                  | ✓ | 0 |
+| Inconsistent station names (ID present) | standardize name via ID                       | ✓ | 15,942 |
+| Station ID not in reference (new IDs)   | keep trip, mark as **Unmapped**               | ✓ | 22,000 |
+
+### Screenshots
+<!-- Uncomment when ready -->
+![](images/excel-raw-sample.png){fig-cap="Raw March 2023 sample — note NULL end stations and inconsistent formats"}
+![](images/excel-data-issues.png){fig-cap="Data_issues log: issue, cause, fix, and counts"}
+![](images/excel-cleaned.png){fig-cap="Cleaned schema with derived fields (duration, hour, weekday, mappable); 2024 adds 'Model'"}
+![](images/stations-reference.png){fig-cap="Stations reference (older file). New station IDs flagged as Unmapped."}
 
 ---
 
-### Screenshots
+## From Excel → Tableau (Data Model)
 
-<!-- Uncomment when ready -->
-![](images/excel-raw-sample.png){fig-cap="Raw March 2023 sample — note NULL end stations and inconsistent formats"}
-![](images/excel-data-issues.png){fig-cap="Data_issues log: issue, cause, and fix decisions"}
-![](images/excel-cleaned.png){fig-cap="Cleaned schema with derived fields (duration, hour, weekday, mappable); 2024 adds 'Model'"}
-![](images/stations-reference.png){fig-cap="Reference stations file (older, missing new IDs); unmapped trips flagged"}
+After cleaning, I imported both months into **Tableau**.
+
+- **Union:** Mar-2023 and Mar-2024 trip tables combined; added metadata (Year, Month).  
+- **Join:** Station reference (ID → lat/long/name) for mapping; rows with missing reference flagged as **Unmapped**.  
+- **Fields used:** duration (min), hour, weekday, member type, station IDs/names, `Model` (2024 only).  
+- **Visuals built:** overview KPIs, Trips-by-Hour, weekday heatmap, and station map.  
+- **Next build:** a **comparison dashboard** (side-by-side 2023 vs 2024).
 
 ---
 
 ## Dashboard Snapshot
 
-![](images/StaticOverview.png){fig-cap="Overview dashboard — ridership peaks and station map (March 2024)"}
+![](images/StaticOverview.png){fig-cap="Overview dashboard — trips, peaks, and station map (March 2024)"}
 
 <div class="mt-3">
   <p class="text-muted">
@@ -112,26 +117,30 @@ Each issue was counted, decisioned, and either fixed or flagged. I repeated the 
 
 ## Findings (So Far)
 
-- **Peak hours:** weekday **17:00–18:00** strongest; **7–9 AM** morning commute visible  
-- **Member mix:** Annual vs Casual share shifts year-to-year  
-- **Hotspots:** downtown core stations dominate activity  
-- **2023 → 2024:** peak intensity appears higher in 2024 (needs KPI confirmation)  
+- **Peak hours (weekdays):** clear commute peaks at **8–9 AM** and **5–7 PM**.  
+- **Weekends:** usage is broader and more distributed (**~11 AM–7 PM**), with no sharp single peak.  
+- **Member mix:** overall across the two months ≈ **21.5% members**; the **YoY change is small** (≈≤ **2 percentage points** from Mar-2023 → Mar-2024).  
+- **Ridership growth:** total rides are **higher in 2024**, so general usage is up.  
+- **Routes:** many **round trips** appear among top routes—likely loops/non-commute behavior (e.g., short errands, deliveries).
 
-> **Limits:** single month per year; weather unaccounted; no promo/fare context
+> **Limits:** single month per year; weather not controlled; station reference partially outdated; promotions/policy context not yet incorporated.
 
 ---
 
 ## What’s Next
 
-1. **Comparison dashboard** (Mar 2023 vs Mar 2024 KPIs side-by-side)  
-2. **E-scooter policy check** with surrounding months (before/after) + citation  
-3. **Python/SQL pipeline** for reproducible cleaning & station-hour aggregations  
-4. **Predictive baseline:** simple hourly demand regression for top 10 stations  
+1. **Comparison dashboard:** KPIs and distributions (Mar-2023 vs Mar-2024) side-by-side.  
+2. **2024 model usage:** which **bike model** is most used, and by when/where?  
+3. **Top routes (commute focus):** analyze flows **excluding round trips** to better isolate commuting.  
+4. **Policy check:** add months around the **e-scooter restriction** date to test for a measurable **before/after** effect.  
+5. **Python/SQL pipeline:** reproducible cleaning and station-hour aggregations.  
+6. **Predictive baseline:** simple hourly demand model for top stations (limitations documented).
 
 ---
 
 ## Repro Notes
 
-- **Assumptions:** local timezone; station names normalized by ID where possible  
-- **Files referenced:** `data_issues.xlsx` (in this project folder), screenshots under `/images/`  
-- **Contact:** Feedback welcome—this will expand into a broader 2024 view + policy checks  
+- **Assumptions:** local timezone; station names normalized by ID when possible.  
+- **Files referenced:** `data_issues.xlsx` (this project), screenshots under `/images/`.  
+- **Notes on mapping:** trips with unknown/new station IDs are kept but flagged **Unmapped** to avoid dropping real rides.
+
