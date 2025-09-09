@@ -302,7 +302,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#data-scope" id="toc-data-scope" class="nav-link" data-scroll-target="#data-scope">Data &amp; Scope</a></li>
-  <li><a href="#cleaning-workflow-excel" id="toc-cleaning-workflow-excel" class="nav-link" data-scroll-target="#cleaning-workflow-excel">Cleaning Workflow (Excel)</a>
+  <li><a href="#excel-cleaning-validation" id="toc-excel-cleaning-validation" class="nav-link" data-scroll-target="#excel-cleaning-validation">Excel Cleaning &amp; Validation</a>
   <ul class="collapse">
   <li><a href="#steps-i-took" id="toc-steps-i-took" class="nav-link" data-scroll-target="#steps-i-took">Steps I took</a></li>
   <li><a href="#schema-notes-2023-vs-2024" id="toc-schema-notes-2023-vs-2024" class="nav-link" data-scroll-target="#schema-notes-2023-vs-2024">Schema Notes (2023 vs 2024)</a></li>
@@ -310,6 +310,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data-issues-logged" id="toc-data-issues-logged" class="nav-link" data-scroll-target="#data-issues-logged">Data Issues (logged)</a></li>
   <li><a href="#screenshots" id="toc-screenshots" class="nav-link" data-scroll-target="#screenshots">Screenshots</a></li>
   </ul></li>
+  <li><a href="#from-excel-tableau-data-model" id="toc-from-excel-tableau-data-model" class="nav-link" data-scroll-target="#from-excel-tableau-data-model">From Excel → Tableau (Data Model)</a></li>
   <li><a href="#dashboard-snapshot" id="toc-dashboard-snapshot" class="nav-link" data-scroll-target="#dashboard-snapshot">Dashboard Snapshot</a></li>
   <li><a href="#findings-so-far" id="toc-findings-so-far" class="nav-link" data-scroll-target="#findings-so-far">Findings (So Far)</a></li>
   <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s Next</a></li>
@@ -353,16 +354,16 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p><strong>Question.</strong> For a scoped snapshot: <em>How did Bike Share Toronto usage differ between <strong>March 2023</strong> and <strong>March 2024</strong>, and when/where are the peaks most pronounced?</em></p>
-<p><strong>Why these months?</strong> March alone already has <strong>~500k+ trips</strong> across the two years—enough to expose hourly/weekday patterns without drowning in volume. I’ll scale later.</p>
+<p><strong>Question.</strong> For a scoped snapshot: <em>How did Bike Share Toronto usage differ between <strong>March 2023</strong> and <strong>March 2024</strong>—by hour and weekday/weekend—and what changed in the member/casual mix?</em></p>
+<p><strong>Why these months?</strong> March alone already has ~<strong>500k+</strong> trips across the two years—enough to reveal strong hourly patterns without boiling the ocean. I’ll scale the scope later.</p>
+<p><strong>Why I’m doing this.</strong> I’ve been seeing micromobility (bikes/scooters) all over Mississauga—often parked, sometimes deserted—and got curious about <strong>real usage</strong> and adoption. This project is my way to quantify it: start tight (two months), then expand into comparisons, models, and policy context (e-scooter restrictions).</p>
 <p><strong>Stack.</strong> Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)</p>
 <hr>
 </section>
 <section id="data-scope" class="level2">
 <h2 class="anchored" data-anchor-id="data-scope">Data &amp; Scope</h2>
 <ul>
-<li><strong>Source:</strong> Bike Share Toronto open data (Trips for <strong>Mar 2023</strong> and <strong>Mar 2024</strong>)<br>
-</li>
+<li><strong>Source:</strong> Bike Share Toronto open data (Trips for <strong>Mar 2023</strong> and <strong>Mar 2024</strong>)</li>
 <li><strong>Core fields:</strong> Trip Id, duration, start/end times, station IDs/names, bike ID, user type<br>
 </li>
 <li><strong>Scope choice:</strong> one month per year to keep season similar yet volume high</li>
@@ -372,10 +373,10 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <hr>
 </section>
-<section id="cleaning-workflow-excel" class="level2">
-<h2 class="anchored" data-anchor-id="cleaning-workflow-excel">Cleaning Workflow (Excel)</h2>
-<p>I used Excel to validate and clean both months systematically, with a reproducible <strong>Data_issues log</strong>.</p>
-<p><strong>Goals:</strong> fix types, remove duplicates, handle nulls, create analysis-ready columns.</p>
+<section id="excel-cleaning-validation" class="level2">
+<h2 class="anchored" data-anchor-id="excel-cleaning-validation">Excel Cleaning &amp; Validation</h2>
+<p>I validated and cleaned both months with a reproducible <strong>Data_issues</strong> log rather than ad-hoc fixes.</p>
+<p><strong>Goals:</strong> fix types, remove duplicates, handle nulls, and create analysis-ready columns.</p>
 <section id="steps-i-took" class="level3">
 <h3 class="anchored" data-anchor-id="steps-i-took">Steps I took</h3>
 <ol type="1">
@@ -389,7 +390,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li><strong>Data issues log:</strong> tracked anomalies (e.g., negative durations, unmapped station IDs)</li>
 </ol>
-<hr>
 </section>
 <section id="schema-notes-2023-vs-2024" class="level3">
 <h3 class="anchored" data-anchor-id="schema-notes-2023-vs-2024">Schema Notes (2023 vs 2024)</h3>
@@ -460,9 +460,8 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <blockquote class="blockquote">
-<p><strong>Stations reference:</strong> I found an <strong>older stations file</strong> with lat/longs. Many new station IDs (2023/2024) weren’t in it, so I flagged them as <strong>Unmapped</strong> instead of dropping valid trips.</p>
+<p><strong>Stations reference:</strong> I found an <strong>older stations file</strong> with lat/longs. Newer station IDs (2023/2024) weren’t all present, so I flagged those trips as <strong>Unmapped</strong> (kept for totals, excluded from maps as needed).</p>
 </blockquote>
-<hr>
 </section>
 <section id="derived-columns" class="level3">
 <h3 class="anchored" data-anchor-id="derived-columns">Derived Columns</h3>
@@ -510,7 +509,7 @@ ul.task-list li input[type="checkbox"] {
 <td><code>Same Station?</code></td>
 <td>boolean</td>
 <td><code>Start Station Id == End Station Id</code></td>
-<td>short loops / returns</td>
+<td>loops/returns</td>
 </tr>
 <tr class="even">
 <td><code>Mappable</code></td>
@@ -520,11 +519,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
 <section id="data-issues-logged" class="level3">
 <h3 class="anchored" data-anchor-id="data-issues-logged">Data Issues (logged)</h3>
-<p>Each issue was counted, decisioned, and either fixed or flagged. I repeated the pass for <strong>Mar 2024</strong> (with the extra <code>Model</code> field).</p>
+<p>Counted, decisioned, then fixed/flagged; repeated for <strong>Mar 2024</strong> (with the extra <code>Model</code> field).</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -579,24 +577,39 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>Station ID not in reference (new IDs)</td>
-<td>keep trip, mark as Unmapped</td>
+<td>keep trip, mark as <strong>Unmapped</strong></td>
 <td style="text-align: center;">✓</td>
 <td style="text-align: right;">22,000</td>
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
 <section id="screenshots" class="level3">
 <h3 class="anchored" data-anchor-id="screenshots">Screenshots</h3>
 <!-- Uncomment when ready -->
-<p><img src="images/excel-raw-sample.png" class="img-fluid" data-fig-cap="Raw March 2023 sample — note NULL end stations and inconsistent formats"> <img src="images/excel-data-issues.png" class="img-fluid" data-fig-cap="Data_issues log: issue, cause, and fix decisions"> <img src="images/excel-cleaned.png" class="img-fluid" data-fig-cap="Cleaned schema with derived fields (duration, hour, weekday, mappable); 2024 adds 'Model'"> <img src="images/stations-reference.png" class="img-fluid" data-fig-cap="Reference stations file (older, missing new IDs); unmapped trips flagged"></p>
+<p><img src="images/excel-raw-sample.png" class="img-fluid" data-fig-cap="Raw March 2023 sample — note NULL end stations and inconsistent formats"> <img src="images/excel-data-issues.png" class="img-fluid" data-fig-cap="Data_issues log: issue, cause, fix, and counts"> <img src="images/excel-cleaned.png" class="img-fluid" data-fig-cap="Cleaned schema with derived fields (duration, hour, weekday, mappable); 2024 adds 'Model'"> <img src="images/stations-reference.png" class="img-fluid" data-fig-cap="Stations reference (older file). New station IDs flagged as Unmapped."></p>
 <hr>
 </section>
 </section>
+<section id="from-excel-tableau-data-model" class="level2">
+<h2 class="anchored" data-anchor-id="from-excel-tableau-data-model">From Excel → Tableau (Data Model)</h2>
+<p>After cleaning, I imported both months into <strong>Tableau</strong>.</p>
+<ul>
+<li><strong>Union:</strong> Mar-2023 and Mar-2024 trip tables combined; added metadata (Year, Month).<br>
+</li>
+<li><strong>Join:</strong> Station reference (ID → lat/long/name) for mapping; rows with missing reference flagged as <strong>Unmapped</strong>.<br>
+</li>
+<li><strong>Fields used:</strong> duration (min), hour, weekday, member type, station IDs/names, <code>Model</code> (2024 only).<br>
+</li>
+<li><strong>Visuals built:</strong> overview KPIs, Trips-by-Hour, weekday heatmap, and station map.<br>
+</li>
+<li><strong>Next build:</strong> a <strong>comparison dashboard</strong> (side-by-side 2023 vs 2024).</li>
+</ul>
+<hr>
+</section>
 <section id="dashboard-snapshot" class="level2">
 <h2 class="anchored" data-anchor-id="dashboard-snapshot">Dashboard Snapshot</h2>
-<p><img src="images/StaticOverview.png" class="img-fluid" data-fig-cap="Overview dashboard — ridership peaks and station map (March 2024)"></p>
+<p><img src="images/StaticOverview.png" class="img-fluid" data-fig-cap="Overview dashboard — trips, peaks, and station map (March 2024)"></p>
 <div class="mt-3">
 <p class="text-muted">
 Prefer the interactive version? View it on <a href="https://public.tableau.com/views/Book2_17570616406970/Overview" target="_blank" rel="noopener">Tableau Public</a>.
@@ -607,40 +620,46 @@ Prefer the interactive version? View it on <a href="https://public.tableau.com/v
 <section id="findings-so-far" class="level2">
 <h2 class="anchored" data-anchor-id="findings-so-far">Findings (So Far)</h2>
 <ul>
-<li><strong>Peak hours:</strong> weekday <strong>17:00–18:00</strong> strongest; <strong>7–9 AM</strong> morning commute visible<br>
+<li><strong>Peak hours (weekdays):</strong> clear commute peaks at <strong>8–9 AM</strong> and <strong>5–7 PM</strong>.<br>
 </li>
-<li><strong>Member mix:</strong> Annual vs Casual share shifts year-to-year<br>
+<li><strong>Weekends:</strong> usage is broader and more distributed (<strong>~11 AM–7 PM</strong>), with no sharp single peak.<br>
 </li>
-<li><strong>Hotspots:</strong> downtown core stations dominate activity<br>
+<li><strong>Member mix:</strong> overall across the two months ≈ <strong>21.5% members</strong>; the <strong>YoY change is small</strong> (≈≤ <strong>2 percentage points</strong> from Mar-2023 → Mar-2024).<br>
 </li>
-<li><strong>2023 → 2024:</strong> peak intensity appears higher in 2024 (needs KPI confirmation)</li>
+<li><strong>Ridership growth:</strong> total rides are <strong>higher in 2024</strong>, so general usage is up.<br>
+</li>
+<li><strong>Routes:</strong> many <strong>round trips</strong> appear among top routes—likely loops/non-commute behavior (e.g., short errands, deliveries).</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Limits:</strong> single month per year; weather unaccounted; no promo/fare context</p>
+<p><strong>Limits:</strong> single month per year; weather not controlled; station reference partially outdated; promotions/policy context not yet incorporated.</p>
 </blockquote>
 <hr>
 </section>
 <section id="whats-next" class="level2">
 <h2 class="anchored" data-anchor-id="whats-next">What’s Next</h2>
 <ol type="1">
-<li><strong>Comparison dashboard</strong> (Mar 2023 vs Mar 2024 KPIs side-by-side)<br>
+<li><strong>Comparison dashboard:</strong> KPIs and distributions (Mar-2023 vs Mar-2024) side-by-side.<br>
 </li>
-<li><strong>E-scooter policy check</strong> with surrounding months (before/after) + citation<br>
+<li><strong>2024 model usage:</strong> which <strong>bike model</strong> is most used, and by when/where?<br>
 </li>
-<li><strong>Python/SQL pipeline</strong> for reproducible cleaning &amp; station-hour aggregations<br>
+<li><strong>Top routes (commute focus):</strong> analyze flows <strong>excluding round trips</strong> to better isolate commuting.<br>
 </li>
-<li><strong>Predictive baseline:</strong> simple hourly demand regression for top 10 stations</li>
+<li><strong>Policy check:</strong> add months around the <strong>e-scooter restriction</strong> date to test for a measurable <strong>before/after</strong> effect.<br>
+</li>
+<li><strong>Python/SQL pipeline:</strong> reproducible cleaning and station-hour aggregations.<br>
+</li>
+<li><strong>Predictive baseline:</strong> simple hourly demand model for top stations (limitations documented).</li>
 </ol>
 <hr>
 </section>
 <section id="repro-notes" class="level2">
 <h2 class="anchored" data-anchor-id="repro-notes">Repro Notes</h2>
 <ul>
-<li><strong>Assumptions:</strong> local timezone; station names normalized by ID where possible<br>
+<li><strong>Assumptions:</strong> local timezone; station names normalized by ID when possible.<br>
 </li>
-<li><strong>Files referenced:</strong> <code>data_issues.xlsx</code> (in this project folder), screenshots under <code>/images/</code><br>
+<li><strong>Files referenced:</strong> <code>data_issues.xlsx</code> (this project), screenshots under <code>/images/</code>.<br>
 </li>
-<li><strong>Contact:</strong> Feedback welcome—this will expand into a broader 2024 view + policy checks</li>
+<li><strong>Notes on mapping:</strong> trips with unknown/new station IDs are kept but flagged <strong>Unmapped</strong> to avoid dropping real rides.</li>
 </ul>
 
 
