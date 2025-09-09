@@ -11,42 +11,42 @@
     "href": "projects/citybike/index.html",
     "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
     "section": "",
-    "text": "Question. For a quick, scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024, and when/where are the peaks most pronounced?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to expose hourly/weekday patterns without boiling the ocean. I’ll scale the scope later.\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
+    "text": "Question. For a scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024, and when/where are the peaks most pronounced?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to expose hourly/weekday patterns without drowning in volume. I’ll scale later.\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
   },
   {
     "objectID": "projects/citybike/index.html#summary",
     "href": "projects/citybike/index.html#summary",
     "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
     "section": "",
-    "text": "Question. For a quick, scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024, and when/where are the peaks most pronounced?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to expose hourly/weekday patterns without boiling the ocean. I’ll scale the scope later.\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
+    "text": "Question. For a scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024, and when/where are the peaks most pronounced?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to expose hourly/weekday patterns without drowning in volume. I’ll scale later.\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
   },
   {
     "objectID": "projects/citybike/index.html#data-scope",
     "href": "projects/citybike/index.html#data-scope",
     "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
     "section": "Data & Scope",
-    "text": "Data & Scope\n\nSource: Bike Share Toronto open data (Trips for Mar 2023 and Mar 2024)\nCore fields: start time/end time, station names/IDs, trip duration, member type\nScope choice: one month per year to keep season similar yet volume high\n\n\nPlanned extension: add adjacent months to test before/after effects of downtown e-scooter restrictions (with citation)."
+    "text": "Data & Scope\n\nSource: Bike Share Toronto open data (Trips for Mar 2023 and Mar 2024)\n\nCore fields: Trip Id, duration, start/end times, station IDs/names, bike ID, user type\n\nScope choice: one month per year to keep season similar yet volume high\n\n\nPlanned extension: add adjacent months to test before/after effects of downtown e-scooter restrictions (with citation)."
   },
   {
     "objectID": "projects/citybike/index.html#cleaning-workflow-excel",
     "href": "projects/citybike/index.html#cleaning-workflow-excel",
     "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
     "section": "Cleaning Workflow (Excel)",
-    "text": "Cleaning Workflow (Excel)\nGoals: fix types, remove duplicates, handle nulls, and create analysis-ready columns.\nSteps I took 1. Type fixes: coerced timestamps to datetime; durations to numeric minutes\n2. Null handling: filtered rows with missing station IDs/time; documented counts\n3. De-duplication: removed duplicates by (start_time, end_time, bike_id)\n4. Derived columns: hour_of_day, weekday, is_member\n5. Data issues log: tracked anomalies (e.g., negative durations, midnight spikes)\n\n\nDecision note: trips &lt; 2 minutes flagged (unlock/relocate). Included in totals but excluded in some visuals."
+    "text": "Cleaning Workflow (Excel)\nI used Excel to validate and clean both months systematically, with a reproducible Data_issues log.\nGoals: fix types, remove duplicates, handle nulls, create analysis-ready columns.\n\nSteps I took\n\nType fixes: coerced timestamps to datetime; durations to numeric minutes\n\nNull handling: filtered rows with missing station IDs/time; documented counts\n\nDe-duplication: removed duplicates by (start_time, end_time, bike_id)\n\nDerived columns: Trip Duration (min), Start Date, Start Hour, Day of Week, Same Station?, Mappable\n\nData issues log: tracked anomalies (e.g., negative durations, unmapped station IDs)\n\n\n\n\nSchema Notes (2023 vs 2024)\n\n\n\n\n\n\n\n\n\nField\n2023\n2024\nNotes\n\n\n\n\nTrip Id\n✓\n✓\nunique per ride\n\n\nTrip Duration (sec)\n✓\n✓\nconverted to minutes for visuals\n\n\nStart/End Station Id & Name\n✓\n✓\nsome IDs had outdated names\n\n\nStart/End Time\n✓\n✓\ncoerced to datetime\n\n\nBike Id\n✓\n✓\n—\n\n\nUser Type\n✓\n✓\nAnnual / Casual\n\n\nModel (bike type)\n—\n✓\nNew in 2024\n\n\nDerived: Duration (min), Start Date, Start Hour, Day of Week, Same Station?, Mappable\n✓\n✓\ncreated during cleaning\n\n\n\n\nStations reference: I found an older stations file with lat/longs. Many new station IDs (2023/2024) weren’t in it, so I flagged them as Unmapped instead of dropping valid trips.\n\n\n\n\nDerived Columns\n\n\n\n\n\n\n\n\n\nColumn\nType\nHow it’s computed\nWhy it matters\n\n\n\n\nTrip Duration (min)\nnumeric\nduration_sec / 60 (rounded)\nconsistent comparisons\n\n\nStart Date\ndate\ndate(Start Time)\ndaily grouping\n\n\nStart Hour\ninteger\nhour(Start Time)\npeak-hour analysis\n\n\nDay of Week\ntext\nweekday(Start Time)\nweekday vs weekend\n\n\nSame Station?\nboolean\nStart Station Id == End Station Id\nshort loops / returns\n\n\nMappable\nboolean\nstation ID present in reference file\nmap readiness\n\n\n\n\n\n\nData Issues (logged)\nEach issue was counted, decisioned, and either fixed or flagged. I repeated the pass for Mar 2024 (with the extra Model field).\n\n\n\n\n\n\n\n\n\nIssue\nFix / Decision\nKept?\nCount (example)\n\n\n\n\nEnd Station = NULL\ndrop rows (incomplete)\n✗\n80\n\n\nTrip duration &lt; 1 min\ndrop (unlock/return test)\n✗\n417\n\n\nTrip duration &gt; 24 hr\ndrop (logging error)\n✗\n43\n\n\nStart station = End station\nkeep, flagged in Same Station?\n✓\n6,835\n\n\nDuplicate Trip Ids\nkeep first, remove duplicates\n✓\n0\n\n\nInconsistent station names (ID present)\nstandardize name via ID\n✓\n15,942\n\n\nStation ID not in reference (new IDs)\nkeep trip, mark as Unmapped\n✓\n22,000\n\n\n\n\n\n\nScreenshots"
   },
   {
     "objectID": "projects/citybike/index.html#dashboard-snapshot",
     "href": "projects/citybike/index.html#dashboard-snapshot",
     "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "Dashboard Snapshot 📸",
-    "text": "Dashboard Snapshot 📸\n\n\n\nPrefer the interactive version? View it on Tableau Public."
+    "section": "Dashboard Snapshot",
+    "text": "Dashboard Snapshot\n\n\n\nPrefer the interactive version? View it on Tableau Public."
   },
   {
     "objectID": "projects/citybike/index.html#findings-so-far",
     "href": "projects/citybike/index.html#findings-so-far",
     "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
     "section": "Findings (So Far)",
-    "text": "Findings (So Far)\n\nPeak hours: weekday 17:00–18:00 strongest; 7–9 AM morning commute visible\n\nMember mix: change in annual member % year-over-year (quantify after KPI lock)\n\nHotspots: downtown core stations dominate activity\n\n2023 → 2024: peak intensity appears higher in 2024 (confirm with final totals)\n\n\nLimits: single month per year; weather unaccounted; no promo/fare context"
+    "text": "Findings (So Far)\n\nPeak hours: weekday 17:00–18:00 strongest; 7–9 AM morning commute visible\n\nMember mix: Annual vs Casual share shifts year-to-year\n\nHotspots: downtown core stations dominate activity\n\n2023 → 2024: peak intensity appears higher in 2024 (needs KPI confirmation)\n\n\nLimits: single month per year; weather unaccounted; no promo/fare context"
   },
   {
     "objectID": "projects/citybike/index.html#whats-next",

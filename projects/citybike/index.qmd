@@ -8,19 +8,19 @@ toc: true
 
 ## Summary
 
-**Question.** For a quick, scoped snapshot: *How did Bike Share Toronto usage differ between **March 2023** and **March 2024**, and when/where are the peaks most pronounced?*
+**Question.** For a scoped snapshot: *How did Bike Share Toronto usage differ between **March 2023** and **March 2024**, and when/where are the peaks most pronounced?*  
 
-**Why these months?** March alone already has **~500k+ trips** across the two years—enough to expose hourly/weekday patterns without boiling the ocean. I’ll scale the scope later.
+**Why these months?** March alone already has **~500k+ trips** across the two years—enough to expose hourly/weekday patterns without drowning in volume. I’ll scale later.  
 
-**Stack.** Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)
+**Stack.** Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)  
 
 ---
 
 ## Data & Scope
 
-- **Source:** Bike Share Toronto open data (Trips for **Mar 2023** and **Mar 2024**)
-- **Core fields:** start time/end time, station names/IDs, trip duration, member type
-- **Scope choice:** one month per year to keep season similar yet volume high
+- **Source:** Bike Share Toronto open data (Trips for **Mar 2023** and **Mar 2024**)  
+- **Core fields:** Trip Id, duration, start/end times, station IDs/names, bike ID, user type  
+- **Scope choice:** one month per year to keep season similar yet volume high  
 
 > *Planned extension:* add adjacent months to test before/after effects of downtown **e-scooter restrictions** (with citation).
 
@@ -28,28 +28,78 @@ toc: true
 
 ## Cleaning Workflow (Excel)
 
-**Goals:** fix types, remove duplicates, handle nulls, and create analysis-ready columns.
+I used Excel to validate and clean both months systematically, with a reproducible **Data_issues log**.  
 
-**Steps I took**
+**Goals:** fix types, remove duplicates, handle nulls, create analysis-ready columns.  
+
+### Steps I took
 1. **Type fixes:** coerced timestamps to datetime; durations to numeric minutes  
 2. **Null handling:** filtered rows with missing station IDs/time; documented counts  
 3. **De-duplication:** removed duplicates by `(start_time, end_time, bike_id)`  
-4. **Derived columns:** `hour_of_day`, `weekday`, `is_member`  
-5. **Data issues log:** tracked anomalies (e.g., negative durations, midnight spikes)
-
-<!--
-### Cleaning screenshots (add later)
-![](images/excel-cleaning-overview.png){fig-cap="Excel cleaning overview: types, null filters, duplicates"}
-![](images/excel-data-issues-tab.png){fig-cap="Data_issues tab: anomalies & decisions"}
--->
-
-> **Decision note:** trips < 2 minutes flagged (unlock/relocate). Included in totals but excluded in some visuals.
+4. **Derived columns:** `Trip Duration (min)`, `Start Date`, `Start Hour`, `Day of Week`, `Same Station?`, `Mappable`  
+5. **Data issues log:** tracked anomalies (e.g., negative durations, unmapped station IDs)
 
 ---
 
-## Dashboard Snapshot 📸
+### Schema Notes (2023 vs 2024)
 
-![](images/StaticOverview.png){fig-cap="Overview — ridership, peaks, and station map (March 2024)"}
+| Field                                | 2023 | 2024 | Notes |
+|---|:---:|:---:|---|
+| Trip Id                              | ✓ | ✓ | unique per ride |
+| Trip Duration (sec)                  | ✓ | ✓ | converted to minutes for visuals |
+| Start/End Station Id & Name          | ✓ | ✓ | some IDs had outdated names |
+| Start/End Time                       | ✓ | ✓ | coerced to datetime |
+| Bike Id                              | ✓ | ✓ | — |
+| User Type                            | ✓ | ✓ | Annual / Casual |
+| **Model** (bike type)                | — | **✓** | **New in 2024** |
+| Derived: Duration (min), Start Date, Start Hour, Day of Week, Same Station?, Mappable | ✓ | ✓ | created during cleaning |
+
+> **Stations reference:** I found an **older stations file** with lat/longs. Many new station IDs (2023/2024) weren’t in it, so I flagged them as **Unmapped** instead of dropping valid trips.
+
+---
+
+### Derived Columns
+
+| Column              | Type     | How it’s computed                                | Why it matters |
+|---|---|---|---|
+| `Trip Duration (min)` | numeric  | `duration_sec / 60` (rounded)                    | consistent comparisons |
+| `Start Date`        | date     | `date(Start Time)`                                | daily grouping |
+| `Start Hour`        | integer  | `hour(Start Time)`                                | peak-hour analysis |
+| `Day of Week`       | text     | `weekday(Start Time)`                             | weekday vs weekend |
+| `Same Station?`     | boolean  | `Start Station Id == End Station Id`              | short loops / returns |
+| `Mappable`          | boolean  | station ID present in reference file              | map readiness |
+
+---
+
+### Data Issues (logged)
+
+Each issue was counted, decisioned, and either fixed or flagged. I repeated the pass for **Mar 2024** (with the extra `Model` field).
+
+| Issue                                   | Fix / Decision                                 | Kept? | Count (example) |
+|---|---|:---:|---:|
+| `End Station = NULL`                    | drop rows (incomplete)                          | ✗ | 80 |
+| Trip duration `< 1 min`                 | drop (unlock/return test)                       | ✗ | 417 |
+| Trip duration `> 24 hr`                 | drop (logging error)                            | ✗ | 43 |
+| Start station = End station             | keep, flagged in `Same Station?`                | ✓ | 6,835 |
+| Duplicate Trip Ids                      | keep first, remove duplicates                    | ✓ | 0 |
+| Inconsistent station names (ID present) | standardize name via ID                         | ✓ | 15,942 |
+| Station ID not in reference (new IDs)   | keep trip, mark as Unmapped                     | ✓ | 22,000 |
+
+---
+
+### Screenshots
+
+<!-- Uncomment when ready -->
+![](images/excel-raw-sample.png){fig-cap="Raw March 2023 sample — note NULL end stations and inconsistent formats"}
+![](images/excel-data-issues.png){fig-cap="Data_issues log: issue, cause, and fix decisions"}
+![](images/excel-cleaned.png){fig-cap="Cleaned schema with derived fields (duration, hour, weekday, mappable); 2024 adds 'Model'"}
+![](images/stations-reference.png){fig-cap="Reference stations file (older, missing new IDs); unmapped trips flagged"}
+
+---
+
+## Dashboard Snapshot
+
+![](images/StaticOverview.png){fig-cap="Overview dashboard — ridership peaks and station map (March 2024)"}
 
 <div class="mt-3">
   <p class="text-muted">
@@ -58,20 +108,14 @@ toc: true
   </p>
 </div>
 
-<!--
-### (Optional) Additional static previews (add later)
-![](images/dashboard-1.png){fig-cap="Ridership by hour"}
-![](images/dashboard-2.png){fig-cap="Station activity focus"}
--->
-
 ---
 
 ## Findings (So Far)
 
 - **Peak hours:** weekday **17:00–18:00** strongest; **7–9 AM** morning commute visible  
-- **Member mix:** change in **annual member %** year-over-year (quantify after KPI lock)  
+- **Member mix:** Annual vs Casual share shifts year-to-year  
 - **Hotspots:** downtown core stations dominate activity  
-- **2023 → 2024:** peak intensity appears higher in 2024 (confirm with final totals)
+- **2023 → 2024:** peak intensity appears higher in 2024 (needs KPI confirmation)  
 
 > **Limits:** single month per year; weather unaccounted; no promo/fare context
 
@@ -82,12 +126,7 @@ toc: true
 1. **Comparison dashboard** (Mar 2023 vs Mar 2024 KPIs side-by-side)  
 2. **E-scooter policy check** with surrounding months (before/after) + citation  
 3. **Python/SQL pipeline** for reproducible cleaning & station-hour aggregations  
-4. **Predictive baseline:** simple hourly demand regression for top 10 stations
-
-<!--
-### Code / Notebooks (later)
-Link notebooks or repo paths here when ready.
--->
+4. **Predictive baseline:** simple hourly demand regression for top 10 stations  
 
 ---
 
@@ -95,4 +134,4 @@ Link notebooks or repo paths here when ready.
 
 - **Assumptions:** local timezone; station names normalized by ID where possible  
 - **Files referenced:** `data_issues.xlsx` (in this project folder), screenshots under `/images/`  
-- **Contact:** Feedback welcome—this will expand into a broader 2024 view + policy checks
+- **Contact:** Feedback welcome—this will expand into a broader 2024 view + policy checks  

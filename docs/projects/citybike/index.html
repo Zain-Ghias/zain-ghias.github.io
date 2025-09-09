@@ -302,8 +302,15 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#data-scope" id="toc-data-scope" class="nav-link" data-scroll-target="#data-scope">Data &amp; Scope</a></li>
-  <li><a href="#cleaning-workflow-excel" id="toc-cleaning-workflow-excel" class="nav-link" data-scroll-target="#cleaning-workflow-excel">Cleaning Workflow (Excel)</a></li>
-  <li><a href="#dashboard-snapshot" id="toc-dashboard-snapshot" class="nav-link" data-scroll-target="#dashboard-snapshot">Dashboard Snapshot 📸</a></li>
+  <li><a href="#cleaning-workflow-excel" id="toc-cleaning-workflow-excel" class="nav-link" data-scroll-target="#cleaning-workflow-excel">Cleaning Workflow (Excel)</a>
+  <ul class="collapse">
+  <li><a href="#steps-i-took" id="toc-steps-i-took" class="nav-link" data-scroll-target="#steps-i-took">Steps I took</a></li>
+  <li><a href="#schema-notes-2023-vs-2024" id="toc-schema-notes-2023-vs-2024" class="nav-link" data-scroll-target="#schema-notes-2023-vs-2024">Schema Notes (2023 vs 2024)</a></li>
+  <li><a href="#derived-columns" id="toc-derived-columns" class="nav-link" data-scroll-target="#derived-columns">Derived Columns</a></li>
+  <li><a href="#data-issues-logged" id="toc-data-issues-logged" class="nav-link" data-scroll-target="#data-issues-logged">Data Issues (logged)</a></li>
+  <li><a href="#screenshots" id="toc-screenshots" class="nav-link" data-scroll-target="#screenshots">Screenshots</a></li>
+  </ul></li>
+  <li><a href="#dashboard-snapshot" id="toc-dashboard-snapshot" class="nav-link" data-scroll-target="#dashboard-snapshot">Dashboard Snapshot</a></li>
   <li><a href="#findings-so-far" id="toc-findings-so-far" class="nav-link" data-scroll-target="#findings-so-far">Findings (So Far)</a></li>
   <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s Next</a></li>
   <li><a href="#repro-notes" id="toc-repro-notes" class="nav-link" data-scroll-target="#repro-notes">Repro Notes</a></li>
@@ -346,16 +353,18 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p><strong>Question.</strong> For a quick, scoped snapshot: <em>How did Bike Share Toronto usage differ between <strong>March 2023</strong> and <strong>March 2024</strong>, and when/where are the peaks most pronounced?</em></p>
-<p><strong>Why these months?</strong> March alone already has <strong>~500k+ trips</strong> across the two years—enough to expose hourly/weekday patterns without boiling the ocean. I’ll scale the scope later.</p>
+<p><strong>Question.</strong> For a scoped snapshot: <em>How did Bike Share Toronto usage differ between <strong>March 2023</strong> and <strong>March 2024</strong>, and when/where are the peaks most pronounced?</em></p>
+<p><strong>Why these months?</strong> March alone already has <strong>~500k+ trips</strong> across the two years—enough to expose hourly/weekday patterns without drowning in volume. I’ll scale later.</p>
 <p><strong>Stack.</strong> Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)</p>
 <hr>
 </section>
 <section id="data-scope" class="level2">
 <h2 class="anchored" data-anchor-id="data-scope">Data &amp; Scope</h2>
 <ul>
-<li><strong>Source:</strong> Bike Share Toronto open data (Trips for <strong>Mar 2023</strong> and <strong>Mar 2024</strong>)</li>
-<li><strong>Core fields:</strong> start time/end time, station names/IDs, trip duration, member type</li>
+<li><strong>Source:</strong> Bike Share Toronto open data (Trips for <strong>Mar 2023</strong> and <strong>Mar 2024</strong>)<br>
+</li>
+<li><strong>Core fields:</strong> Trip Id, duration, start/end times, station IDs/names, bike ID, user type<br>
+</li>
 <li><strong>Scope choice:</strong> one month per year to keep season similar yet volume high</li>
 </ul>
 <blockquote class="blockquote">
@@ -365,35 +374,234 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="cleaning-workflow-excel" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning-workflow-excel">Cleaning Workflow (Excel)</h2>
-<p><strong>Goals:</strong> fix types, remove duplicates, handle nulls, and create analysis-ready columns.</p>
-<p><strong>Steps I took</strong> 1. <strong>Type fixes:</strong> coerced timestamps to datetime; durations to numeric minutes<br>
-2. <strong>Null handling:</strong> filtered rows with missing station IDs/time; documented counts<br>
-3. <strong>De-duplication:</strong> removed duplicates by <code>(start_time, end_time, bike_id)</code><br>
-4. <strong>Derived columns:</strong> <code>hour_of_day</code>, <code>weekday</code>, <code>is_member</code><br>
-5. <strong>Data issues log:</strong> tracked anomalies (e.g., negative durations, midnight spikes)</p>
-<!--
-### Cleaning screenshots (add later)
-![](images/excel-cleaning-overview.png){fig-cap="Excel cleaning overview: types, null filters, duplicates"}
-![](images/excel-data-issues-tab.png){fig-cap="Data_issues tab: anomalies & decisions"}
--->
+<p>I used Excel to validate and clean both months systematically, with a reproducible <strong>Data_issues log</strong>.</p>
+<p><strong>Goals:</strong> fix types, remove duplicates, handle nulls, create analysis-ready columns.</p>
+<section id="steps-i-took" class="level3">
+<h3 class="anchored" data-anchor-id="steps-i-took">Steps I took</h3>
+<ol type="1">
+<li><strong>Type fixes:</strong> coerced timestamps to datetime; durations to numeric minutes<br>
+</li>
+<li><strong>Null handling:</strong> filtered rows with missing station IDs/time; documented counts<br>
+</li>
+<li><strong>De-duplication:</strong> removed duplicates by <code>(start_time, end_time, bike_id)</code><br>
+</li>
+<li><strong>Derived columns:</strong> <code>Trip Duration (min)</code>, <code>Start Date</code>, <code>Start Hour</code>, <code>Day of Week</code>, <code>Same Station?</code>, <code>Mappable</code><br>
+</li>
+<li><strong>Data issues log:</strong> tracked anomalies (e.g., negative durations, unmapped station IDs)</li>
+</ol>
+<hr>
+</section>
+<section id="schema-notes-2023-vs-2024" class="level3">
+<h3 class="anchored" data-anchor-id="schema-notes-2023-vs-2024">Schema Notes (2023 vs 2024)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 31%">
+<col style="width: 31%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th style="text-align: center;">2023</th>
+<th style="text-align: center;">2024</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trip Id</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td>unique per ride</td>
+</tr>
+<tr class="even">
+<td>Trip Duration (sec)</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td>converted to minutes for visuals</td>
+</tr>
+<tr class="odd">
+<td>Start/End Station Id &amp; Name</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td>some IDs had outdated names</td>
+</tr>
+<tr class="even">
+<td>Start/End Time</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td>coerced to datetime</td>
+</tr>
+<tr class="odd">
+<td>Bike Id</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>User Type</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td>Annual / Casual</td>
+</tr>
+<tr class="odd">
+<td><strong>Model</strong> (bike type)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>✓</strong></td>
+<td><strong>New in 2024</strong></td>
+</tr>
+<tr class="even">
+<td>Derived: Duration (min), Start Date, Start Hour, Day of Week, Same Station?, Mappable</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td>created during cleaning</td>
+</tr>
+</tbody>
+</table>
 <blockquote class="blockquote">
-<p><strong>Decision note:</strong> trips &lt; 2 minutes flagged (unlock/relocate). Included in totals but excluded in some visuals.</p>
+<p><strong>Stations reference:</strong> I found an <strong>older stations file</strong> with lat/longs. Many new station IDs (2023/2024) weren’t in it, so I flagged them as <strong>Unmapped</strong> instead of dropping valid trips.</p>
 </blockquote>
 <hr>
 </section>
+<section id="derived-columns" class="level3">
+<h3 class="anchored" data-anchor-id="derived-columns">Derived Columns</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>How it’s computed</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Trip Duration (min)</code></td>
+<td>numeric</td>
+<td><code>duration_sec / 60</code> (rounded)</td>
+<td>consistent comparisons</td>
+</tr>
+<tr class="even">
+<td><code>Start Date</code></td>
+<td>date</td>
+<td><code>date(Start Time)</code></td>
+<td>daily grouping</td>
+</tr>
+<tr class="odd">
+<td><code>Start Hour</code></td>
+<td>integer</td>
+<td><code>hour(Start Time)</code></td>
+<td>peak-hour analysis</td>
+</tr>
+<tr class="even">
+<td><code>Day of Week</code></td>
+<td>text</td>
+<td><code>weekday(Start Time)</code></td>
+<td>weekday vs weekend</td>
+</tr>
+<tr class="odd">
+<td><code>Same Station?</code></td>
+<td>boolean</td>
+<td><code>Start Station Id == End Station Id</code></td>
+<td>short loops / returns</td>
+</tr>
+<tr class="even">
+<td><code>Mappable</code></td>
+<td>boolean</td>
+<td>station ID present in reference file</td>
+<td>map readiness</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="data-issues-logged" class="level3">
+<h3 class="anchored" data-anchor-id="data-issues-logged">Data Issues (logged)</h3>
+<p>Each issue was counted, decisioned, and either fixed or flagged. I repeated the pass for <strong>Mar 2024</strong> (with the extra <code>Model</code> field).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 33%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Issue</th>
+<th>Fix / Decision</th>
+<th style="text-align: center;">Kept?</th>
+<th style="text-align: right;">Count (example)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>End Station = NULL</code></td>
+<td>drop rows (incomplete)</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="even">
+<td>Trip duration <code>&lt; 1 min</code></td>
+<td>drop (unlock/return test)</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: right;">417</td>
+</tr>
+<tr class="odd">
+<td>Trip duration <code>&gt; 24 hr</code></td>
+<td>drop (logging error)</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="even">
+<td>Start station = End station</td>
+<td>keep, flagged in <code>Same Station?</code></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: right;">6,835</td>
+</tr>
+<tr class="odd">
+<td>Duplicate Trip Ids</td>
+<td>keep first, remove duplicates</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>Inconsistent station names (ID present)</td>
+<td>standardize name via ID</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: right;">15,942</td>
+</tr>
+<tr class="odd">
+<td>Station ID not in reference (new IDs)</td>
+<td>keep trip, mark as Unmapped</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: right;">22,000</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="screenshots" class="level3">
+<h3 class="anchored" data-anchor-id="screenshots">Screenshots</h3>
+<!-- Uncomment when ready -->
+<p><img src="images/excel-raw-sample.png" class="img-fluid" data-fig-cap="Raw March 2023 sample — note NULL end stations and inconsistent formats"> <img src="images/excel-data-issues.png" class="img-fluid" data-fig-cap="Data_issues log: issue, cause, and fix decisions"> <img src="images/excel-cleaned.png" class="img-fluid" data-fig-cap="Cleaned schema with derived fields (duration, hour, weekday, mappable); 2024 adds 'Model'"> <img src="images/stations-reference.png" class="img-fluid" data-fig-cap="Reference stations file (older, missing new IDs); unmapped trips flagged"></p>
+<hr>
+</section>
+</section>
 <section id="dashboard-snapshot" class="level2">
-<h2 class="anchored" data-anchor-id="dashboard-snapshot">Dashboard Snapshot 📸</h2>
-<p><img src="images/StaticOverview.png" class="img-fluid" data-fig-cap="Overview — ridership, peaks, and station map (March 2024)"></p>
+<h2 class="anchored" data-anchor-id="dashboard-snapshot">Dashboard Snapshot</h2>
+<p><img src="images/StaticOverview.png" class="img-fluid" data-fig-cap="Overview dashboard — ridership peaks and station map (March 2024)"></p>
 <div class="mt-3">
 <p class="text-muted">
 Prefer the interactive version? View it on <a href="https://public.tableau.com/views/Book2_17570616406970/Overview" target="_blank" rel="noopener">Tableau Public</a>.
 </p>
 </div>
-<!--
-### (Optional) Additional static previews (add later)
-![](images/dashboard-1.png){fig-cap="Ridership by hour"}
-![](images/dashboard-2.png){fig-cap="Station activity focus"}
--->
 <hr>
 </section>
 <section id="findings-so-far" class="level2">
@@ -401,11 +609,11 @@ Prefer the interactive version? View it on <a href="https://public.tableau.com/v
 <ul>
 <li><strong>Peak hours:</strong> weekday <strong>17:00–18:00</strong> strongest; <strong>7–9 AM</strong> morning commute visible<br>
 </li>
-<li><strong>Member mix:</strong> change in <strong>annual member %</strong> year-over-year (quantify after KPI lock)<br>
+<li><strong>Member mix:</strong> Annual vs Casual share shifts year-to-year<br>
 </li>
 <li><strong>Hotspots:</strong> downtown core stations dominate activity<br>
 </li>
-<li><strong>2023 → 2024:</strong> peak intensity appears higher in 2024 (confirm with final totals)</li>
+<li><strong>2023 → 2024:</strong> peak intensity appears higher in 2024 (needs KPI confirmation)</li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Limits:</strong> single month per year; weather unaccounted; no promo/fare context</p>
@@ -423,10 +631,6 @@ Prefer the interactive version? View it on <a href="https://public.tableau.com/v
 </li>
 <li><strong>Predictive baseline:</strong> simple hourly demand regression for top 10 stations</li>
 </ol>
-<!--
-### Code / Notebooks (later)
-Link notebooks or repo paths here when ready.
--->
 <hr>
 </section>
 <section id="repro-notes" class="level2">
