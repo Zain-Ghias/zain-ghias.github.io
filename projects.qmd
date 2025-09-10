@@ -8,7 +8,6 @@ listing:
   fields: [image, title, description, date]
   image-height: 250px
 ---
-
 ## 
 
 Short highlights from what I'm building and learning. Each project represents a step forward in my data science and analytics journey.

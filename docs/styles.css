@@ -1,3 +1,66 @@
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* Account for sticky header */
+}
+
+/* Enhanced smooth scrolling with momentum and page load animation */
+body {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+  overscroll-behavior: contain; /* Prevent scroll chaining */
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text fade-in animation with staggered timing */
+.about-contents h1,
+.about-contents h2,
+.about-contents p,
+.about-contents .callout-note {
+  opacity: 0;
+  animation: textFadeIn 0.8s ease-out forwards;
+}
+
+/* Stagger the text animations */
+.about-contents h1 {
+  animation-delay: 0.2s;
+}
+
+.about-contents h2 {
+  animation-delay: 0.4s;
+}
+
+.about-contents p {
+  animation-delay: 0.6s;
+}
+
+.about-contents .callout-note {
+  animation-delay: 0.8s;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Navbar background */
 .navbar {
   background-color: #23272f !important; /* Charcoal */
@@ -75,12 +138,22 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   transition: color 0.5s, border-color 0.5s;
 }
 
+/* Desktop profile image sizing */
+.about-image {
+  width: 375px !important;
+  height: 375px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  border: 2px solid rgba(0, 0, 0, 0.1) !important;
+}
+
 /* Responsive profile image sizing */
 @media (max-width: 768px) {
   .about-image {
     width: 190px !important;
     height: 190px !important;
     margin-top: 2rem !important;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 3px 12px rgba(0, 0, 0, 0.1) !important;
+    border: 2px solid rgba(0, 0, 0, 0.1) !important;
   }
   
   /* Make social icons horizontal on mobile */
@@ -97,6 +170,8 @@ html[data-theme='dark'] .navbar-nav .nav-link {
     width: 160px !important;
     height: 160px !important;
     margin-top: 1.5rem !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    border: 2px solid rgba(0, 0, 0, 0.1) !important;
   }
   
   /* Adjust spacing for smaller screens */
@@ -294,18 +369,29 @@ html[data-theme='dark'] .card-text {
    Fixed Left Sidebar for Trestles Template
    ======================================================== */
 
-/* Make the left sidebar (about-entity) sticky */
+/* Make the left sidebar (about-entity) sticky with smooth transitions */
 .about-entity {
   position: sticky !important;
   top: 120px !important;
   height: fit-content;
   z-index: 10;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
 
-/* Ensure the right content area can scroll independently */
+/* Ensure the right content area can scroll independently with smooth transitions */
 .about-contents {
   flex: 1;
   min-height: 100vh;
+  transition: opacity 0.3s ease;
+}
+
+/* Smooth transitions for content elements */
+.about-contents p,
+.about-contents h2,
+.about-contents .callout-note {
+  transition: opacity 0.3s ease;
 }
 
 /* Responsive: disable sticky on mobile */
@@ -324,6 +410,9 @@ html[data-theme='dark'] .card-text {
     position: sticky !important;
     top: 96px !important;     /* a bit tighter than 120px */
     z-index: 1 !important;    /* keep it beneath content/footer layers */
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0); /* Force hardware acceleration */
   }
 }
 
@@ -334,5 +423,79 @@ html[data-theme='dark'] .card-text {
     top: auto !important;
     z-index: auto !important;
   }
+}
+
+/* ========================================================
+   Smooth Table of Contents Navigation (All Pages)
+   ======================================================== */
+
+/* TOC sidebar container */
+.quarto-sidebar {
+  transition: opacity 0.3s ease;
+}
+
+/* TOC listing container */
+.quarto-sidebar .quarto-listing {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* TOC items - smooth appearance animation */
+.quarto-sidebar .quarto-listing-item {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: tocItemAppear 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Staggered animation delays for smooth cascading */
+.quarto-sidebar .quarto-listing-item:nth-child(1) { animation-delay: 0.1s; }
+.quarto-sidebar .quarto-listing-item:nth-child(2) { animation-delay: 0.15s; }
+.quarto-sidebar .quarto-listing-item:nth-child(3) { animation-delay: 0.2s; }
+.quarto-sidebar .quarto-listing-item:nth-child(4) { animation-delay: 0.25s; }
+.quarto-sidebar .quarto-listing-item:nth-child(5) { animation-delay: 0.3s; }
+.quarto-sidebar .quarto-listing-item:nth-child(6) { animation-delay: 0.35s; }
+.quarto-sidebar .quarto-listing-item:nth-child(7) { animation-delay: 0.4s; }
+.quarto-sidebar .quarto-listing-item:nth-child(8) { animation-delay: 0.45s; }
+
+/* TOC item appearance animation */
+@keyframes tocItemAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-5px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* TOC links styling */
+.quarto-sidebar .quarto-listing-item a {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin: 0.15rem 0;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effects for TOC links */
+.quarto-sidebar .quarto-listing-item a:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: translateX(3px);
+  transition: all 0.2s ease;
+}
+
+/* Active TOC item highlighting */
+.quarto-sidebar .quarto-listing-item.active a {
+  background-color: rgba(0, 123, 255, 0.15);
+  color: #007bff;
+  font-weight: 500;
 }
 
