@@ -23,15 +23,20 @@ a third-year **Applied Statistics** student at the **University of Toronto Missi
 
 I'm currently a **Software Engineer Intern** at **Wholeviz**, a data visualization platform that helps NGOs, journalists, and public teams build interactive dashboards. My work focuses on **React**, **Next.js**, **Tailwind**, and **Plotly**, where I’ve been learning to merge design, data, and storytelling to make information more usable.  
 
-Previously, I worked at **Quor**, a Toronto startup, as a **Frontend Developer Intern**, helping design and build a cross-platform mobile app in **React Native**. Those startup experiences taught me to be adaptable — to pick up new tools on the fly and figure things out as I go.  
+Previously, I worked at **Quor**, a Toronto startup, as a **Frontend Developer Intern**, helping design and build a cross-platform mobile app in **React Native**. Those startup experiences taught me to be adaptable, to pick up new tools on the fly, and to figure things out as I go.  
 
 Lately, I’ve been expanding into **data analytics** and **business analysis**, combining my statistics background with technical skills to uncover trends and communicate insights. I’m also exploring **machine learning** and **data visualization**, aiming to bridge the gap between analysis and product decisions.  
 
-Outside of code and coursework, I try to stay grounded — literally. I like **volleyball**, **table tennis**, and long walks around Mississauga to balance the screen time (and touch grass for my sanity).  
+Outside of code and coursework, I try to stay grounded. I like **volleyball**, **table tennis**, and long walks around Mississauga to balance the screen time (and touch grass for my sanity).  
 
-I’m naturally curious about how things work — whether it’s a dataset, a business model, or a React component — and I enjoy translating that curiosity into projects that make data actually mean something.  
+I’m naturally curious about how things work, whether it’s a dataset, a business model, or a React component, and I enjoy translating that curiosity into projects that make data actually mean something.  
 
 **Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
+
+::: {.callout-tip title="📢 Currently Open to Summer 2026 Internships"}
+Looking for opportunities in **Data Analytics**, **Business Analysis**, or **Software Engineering**.  
+If you think my skills could be a fit, feel free to reach out!
+:::
 
 ---
 
