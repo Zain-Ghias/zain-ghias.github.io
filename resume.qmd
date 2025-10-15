@@ -51,11 +51,11 @@ format: html
 ::: {.resume-header}
 # Zain Ghias
 
-Applied Statistics | Computer Science | Machine Learning
+Applied Statistics | Data Analytics | Software Development
 :::
 
 ::: {.resume-actions}
-[Download PDF](resume/MainResume.pdf){.btn .btn-primary .btn-lg target="_blank"} [Contact Me](mailto:zain.ghias@mail.utoronto.ca){.btn .btn-outline-primary .btn-lg}
+[Download PDF](resume/SMyResume.pdf){.btn .btn-primary .btn-lg target="_blank"} [Contact Me](mailto:zain.ghias@mail.utoronto.ca){.btn .btn-outline-primary .btn-lg}
 :::
 
 ::: {.alert .alert-info}
@@ -63,11 +63,11 @@ Applied Statistics | Computer Science | Machine Learning
 :::
 
 <div class="embed-container">
-  <iframe src="resume/MainResume.pdf" style="border: 0.5px"></iframe>
+  <iframe src="resume/SMyResume.pdf" style="border: 0.5px"></iframe>
 </div>
 
 <div class="mt-4 text-center">
   <p class="text-muted">
-    <small>Last updated: September 2025</small>
+    <small>Last updated: October 2025</small>
   </p>
 </div> 

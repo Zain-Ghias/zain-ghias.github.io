@@ -1,0 +1,193 @@
+---
+title: "Bike Share Toronto Snapshot (March 2023 vs March 2024)"
+date: 2025-10-15
+image: images/Bike_Share_Toronto_logo.png
+description: "Comparison of March 2023 and March 2024 ridership trends; cleaned in Excel and visualized in Tableau."
+toc: true
+---
+
+## Overview
+
+![](images/OverviewDashboard.png){fig-cap="Overview Dashboard — key KPIs, hourly usage, and station activity (March 2023 vs March 2024)"}
+
+This analysis explores how **Bike Share Toronto** usage shifted between **March 2023** and **March 2024**, focusing on hourly ridership, weekday/weekend differences, and member vs casual mix.  
+The project demonstrates a clear workflow from **Excel cleaning** to **Tableau dashboards**, with all decisions logged for transparency.
+
+---
+
+## Project Purpose
+
+### Motivation
+Living in Mississauga, I rarely saw Lime scooters or shared bikes being actively used — most were either idle or even abandoned mid-trip across sidewalks and plazas.  
+That made me wonder: **are these systems truly being used, or just expanding in size?**
+
+I initially reached out to Lime to access their GBFS (live feed) data, but since the process stalled, I pivoted to **Bike Share Toronto’s open data**, which offered a cleaner and more structured source. This curiosity evolved into a **business-style analysis** — exploring whether **ridership growth** actually kept pace with **network expansion**.
+
+### Core Question
+> How did Bike Share Toronto usage differ between **March 2023** and **March 2024** — by hour, by weekday/weekend, and by user type?
+
+### Why These Months?
+During exploration, I noticed that each monthly dataset contained **hundreds of thousands of trip records**, making it both rich and representative.  
+Rather than “boiling the ocean,” I chose **March 2023 and March 2024** — two directly comparable early-season months — to strike a balance between **depth and focus**.  
+This allowed for a manageable yet **statistically meaningful comparison** that reveals clear year-over-year patterns.
+
+### Tools & Stack
+**Excel** (cleaning & validation) · **Tableau** (visualization) · **Python/SQL** (planned automation)
+
+---
+
+## Data Summary
+
+- **Source:** [Bike Share Toronto Open Data](https://open.toronto.ca/dataset/bike-share-toronto-ridership-data/)
+- **Months analyzed:** March 2023 & March 2024  
+- **Volume:** ~537K total trips  
+- **Key fields:** Trip ID, duration, start/end stations, times, bike ID, user type  
+- **2024 addition:** *Model* (bike type)  
+- **Supplementary file:** *Station reference CSV* (with IDs, names, and coordinates) used for mapping and validation — included in the project’s GitHub repo.
+
+> *Rationale:* March vs March provides comparable seasonal conditions while still high enough volume for reliable trend analysis.
+
+---
+
+## Cleaning & Validation (Excel)
+
+Data was cleaned and standardized using a structured **Data Issues Log** instead of one-off fixes.
+
+### Cleaning Steps
+1. Converted data types (timestamps → datetime; duration → minutes).  
+2. Filtered incomplete rows (missing start/end station or time).  
+3. Removed duplicates via `(start_time, end_time, bike_id)`.  
+4. Created derived columns for `Start Hour`, `Day of Week`, `Same Station?`, and `Mappable`.  
+5. Linked station IDs to reference coordinates; flagged missing IDs as **Unmapped**.
+
+### Schema Notes (2023 vs 2024)
+
+| Field | 2023 | 2024 | Notes |
+|:--|:--:|:--:|--|
+| Trip Id | ✓ | ✓ | Unique per trip |
+| Trip Duration (sec) | ✓ | ✓ | Converted to minutes |
+| Start/End Station Id & Name | ✓ | ✓ | Some IDs updated |
+| Start/End Time | ✓ | ✓ | Coerced to datetime |
+| Bike Id | ✓ | ✓ | — |
+| User Type | ✓ | ✓ | Annual / Casual |
+| **Model (bike type)** | — | **✓** | New in 2024 |
+| Derived columns | ✓ | ✓ | Created during cleaning |
+
+> **Station reference:** Some 2024 station IDs didn’t exist in the 2023 map file, so they were flagged as *Unmapped* (kept for totals, excluded from maps).
+
+### Derived Columns
+
+| Column | Type | How it’s computed | Why it matters |
+|:--|:--|:--|:--|
+| Trip Duration (min) | Numeric | `duration_sec / 60` (rounded) | Consistent time comparison |
+| Start Date | Date | `date(Start Time)` | Enables day-level grouping |
+| Start Hour | Integer | `hour(Start Time)` | Reveals hourly ridership patterns |
+| Day of Week | Text | `weekday(Start Time)` | Compares weekday vs weekend |
+| Same Station? | Boolean | `Start Station Id == End Station Id` | Identifies loops/non-loops |
+| Mappable | Boolean | Station ID found in reference | Ensures map-ready data |
+
+### Data Issues (logged)
+
+| Issue | Fix / Decision | Kept? | Example Count |
+|:--|--|:--:|--:|
+| `End Station = NULL` | Dropped incomplete rows | ✗ | 80 |
+| Trip duration `< 1 min` | Dropped (unlock/return test) | ✗ | 417 |
+| Trip duration `> 24 hr` | Dropped (logging error) | ✗ | 43 |
+| Start = End station | Kept, flagged as **Same Station?** | ✓ | 6,835 |
+| Duplicate Trip Ids | Removed duplicates | ✓ | 0 |
+| Inconsistent station names | Standardized via ID | ✓ | 15,942 |
+| Station ID missing (new) | Kept, flagged **Unmapped** | ✓ | 22,000 |
+
+---
+
+## From Excel → Tableau
+
+Both datasets (Mar-2023 & Mar-2024) were **unioned** and **joined** to a station reference for mapping. Trips with missing reference data were flagged *Unmapped* but retained for count accuracy. Key analysis fields: `duration (min)`, `hour`, `weekday`, `user type`, `station names`, `Model` (2024).
+
+---
+
+## Dashboards & Insights
+
+### 1) Overview Dashboard
+![](images/OverviewDashboard.png){fig-cap="Overview — total ridership, network stats, and hourly demand patterns (March 2023 & 2024 combined)"}
+
+#### At a Glance
+- **Total Trips:** 537,045 (both months) — strong early-season performance.  
+- **Avg Duration:** 15 minutes — short urban trips, mainly commuting or errands.  
+- **Network Size:** 7,028 bikes across 815 stations → **8.6 bikes per station**, a healthy density.  
+- **Annual Members:** 21.5% — casual users still dominate, potential for membership growth.
+
+#### Usage Patterns
+- **Peaks:** 8–9 AM & 5–7 PM, consistent with office commutes.  
+- **Midday/Weekend Rides:** steady, pointing to errands and recreation.  
+- **Tues–Thurs activity** slightly higher — aligns with hybrid work schedules (in-office midweek).
+
+#### Business Interpretation
+- Predictable AM/PM peaks allow for **dock rebalancing and resource planning**.  
+- The short average trip duration confirms the system’s role as a **first/last-mile link** in city transport.  
+- The 1-in-5 membership ratio shows room to **convert frequent casuals** through commuter promotions or referral discounts.
+
+> *Overall:* Bike Share Toronto shows strong system utilization and clear commuter dependence — valuable for both planners and operators.
+
+---
+
+### 2) Comparison Dashboard
+![](images/ComparisonDashboard.png){fig-cap="Comparison — hourly and weekday trends (2023 teal vs 2024 orange)"}
+
+#### Key Observations
+- **Trip Volume:** +39% (224K → 312K)  
+- **Average Duration:** +12.8% (14.4 → 16.2 min) → longer trips, likely casual/leisure.  
+- **Bikes/Stations:** +9% bikes, +20% stations — expansion aligned with demand.  
+- **Member Share:** ↓ 2.1 pp (22.7% → 20.6%) → casual segment grew faster.  
+- **Saturday Spread:** wider use range, suggesting leisure/tourism component.
+
+#### Interpretation
+- **Growth Quality:** Supply (stations, bikes) scaled with usage → no overcapacity issue.  
+- **Trip Duration:** Longer rides reflect **new routes, leisure use, or extended trips** rather than inefficiency.  
+- **Commute Peaks:** 8–9 AM, 5–7 PM still dominate; lighter Mondays/Fridays show **hybrid work** impact.  
+- **Membership Mix:** Drop in member ratio = **more casual users entering funnel** → marketing can aim to retain & convert these.
+
+> *In summary:* March 2024 brought both scale and diversity — a broader, more active user base beyond just commuters.
+
+---
+
+### 3) Commuter Patterns Dashboard
+![](images/CommuterDashboard.png){fig-cap="Commuter Patterns — top routes by year (2023 teal, 2024 orange)"}
+
+> **Note:** Routes showing **only one location** (e.g., *Tommy Thompson Park*) are **round trips** — users start and end at the same station, often for recreation. Trips with **unmapped stations** were excluded to ensure accuracy.
+
+#### At a Glance
+- ~**97%** of trips = **point-to-point commuting**.  
+- **Top Corridors:** Union Station, Front St, Bay St, and Yonge St remain high-volume anchors.  
+- **Loop Routes:** Recreational trips like *Tommy Thompson Park* still see heavy activity.  
+- **2024 Growth:** Most high-traffic routes increased further — showing consolidation, not fragmentation.
+
+#### Interpretation
+- Bike Share Toronto serves primarily **urban commuters**, with consistent weekday use.  
+- **Loop trips** reflect **weekend leisure demand**, balancing functional and recreational users.  
+- **Operational priority:** focus on **dock turnover & rebalancing** in core corridors during peaks.  
+- **Marketing insight:** casual weekend users could be encouraged to join membership tiers through **day-pass → subscription funnels**.
+
+> *Bottom line:* The commuter network is expanding efficiently — sustaining weekday reliability while attracting weekend explorers.
+
+---
+
+## Next Steps / Extensions
+
+- Automate cleaning using **Python (Pandas)** for future datasets.  
+- Add **Feb/Apr data** to test seasonal consistency.  
+- Explore **bike model mix** (classic vs e-bike) from 2024 column.  
+- Layer in **weather or event data** for richer context.  
+- Consider publishing interactive Tableau Public dashboard with route filters.
+
+---
+
+## Repro Notes & Disclaimer
+
+- **Assumptions:** local timezone; standardized station names by ID.  
+- **Color coding:** 2023 = teal, 2024 = orange.  
+- **Files:** `data_issues.xlsx`, Tableau workbook (`.twb`), `/images` for visuals.
+
+This project is **personal and educational**, built for analytics practice and portfolio display.  
+Data: [Bike Share Toronto Open Data Portal](https://open.toronto.ca/).  
+Logo used under **fair use** for non-commercial illustrative purposes.

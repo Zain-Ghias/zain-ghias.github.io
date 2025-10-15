@@ -19,30 +19,34 @@ format:
 
 Hi, I'm **Zain**,  
 
-a third-year student at the **University of Toronto Mississauga**, majoring in **Applied Statistics** with minors in **Computer Science** and **Math**.  
+a third-year **Applied Statistics** student at the **University of Toronto Mississauga**, with minors in **Computer Science** and **Mathematics**.  
 
-I recently worked as a **Front-End Developer Intern** at a startup over the summer, and I'm now shifting my focus toward **Data Analytics**, **Data Science**, and exploring areas like **Machine Learning**. I'm planning to take more ML and stats courses next year, and I'm open to getting involved in research if it's in something exciting or meaningful.  
+I'm currently a **Software Engineer Intern** at **Wholeviz**, a data visualization platform that helps NGOs, journalists, and public teams build interactive dashboards. My work focuses on **React**, **Next.js**, **Tailwind**, and **Plotly**, where I’ve been learning to merge design, data, and storytelling to make information more usable.  
 
-I like **volleyball**, **table tennis**, and **basketball**, and I try to balance screen time with touching grass and going on long walks, partly for my sanity.  
+Previously, I worked at **Quor**, a Toronto startup, as a **Frontend Developer Intern**, helping design and build a cross-platform mobile app in **React Native**. Those startup experiences taught me to be adaptable — to pick up new tools on the fly and figure things out as I go.  
 
-Thanks for stopping by. Excited to see where this journey goes.
+Lately, I’ve been expanding into **data analytics** and **business analysis**, combining my statistics background with technical skills to uncover trends and communicate insights. I’m also exploring **machine learning** and **data visualization**, aiming to bridge the gap between analysis and product decisions.  
+
+Outside of code and coursework, I try to stay grounded — literally. I like **volleyball**, **table tennis**, and long walks around Mississauga to balance the screen time (and touch grass for my sanity).  
+
+I’m naturally curious about how things work — whether it’s a dataset, a business model, or a React component — and I enjoy translating that curiosity into projects that make data actually mean something.  
 
 **Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
 
 ---
 
-## Featured Project: CityBike Analysis 🚴‍♂️
+## Featured Project: Toronto Bike Share Analysis 🚴‍♂️
 
 ::: {.callout-note style="max-width: 430px;"}
-### CityBike: Toronto Bike Share Analysis (2023–2024)
+### Toronto Bike Share: March 2023 vs March 2024
 
-![](projects/citybike/images/Bike_Share_Toronto_logo.png){width="200px" .center}
+![](projects/bikeshare/images/Bike_Share_Toronto_logo.png){width="200px" .center}
 
-Exploring Bike Share Toronto with interactive dashboards and forecasting insights.
+Analyzing **Bike Share Toronto** data to understand year-over-year ridership patterns and how network expansion aligns with actual use.
 
 **Stack:** Excel · Tableau · Python (planned)
 
-**Question:** Are Bike Share assets being used efficiently, or are some stations/times underutilized?
+**Question:** Are Bike Share Toronto's growing assets being used efficiently, or are certain stations and times under-utilized?
 
-[View Project](projects/citybike/index.qmd){.btn .btn-primary .me-2}
+[View Project](projects/bikeshare/index.qmd){.btn .btn-primary .me-2}
 :::

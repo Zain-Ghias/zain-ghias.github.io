@@ -4,70 +4,70 @@
     "href": "resume.html",
     "title": "Resume",
     "section": "",
-    "text": "Zain Ghias\nApplied Statistics | Computer Science | Machine Learning\n\n\nDownload PDF Contact Me\n\n\nPreview: View the full resume below or download the PDF for the best experience.\n\n\n\n\n\n\nLast updated: September 2025"
+    "text": "Zain Ghias\nApplied Statistics | Data Analytics | Software Development\n\n\nDownload PDF Contact Me\n\n\nPreview: View the full resume below or download the PDF for the best experience.\n\n\n\n\n\n\nLast updated: October 2025"
   },
   {
-    "objectID": "projects/citybike/index.html",
-    "href": "projects/citybike/index.html",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "objectID": "projects/bikeshare/index.html",
+    "href": "projects/bikeshare/index.html",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
     "section": "",
-    "text": "Question. For a scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024—by hour and weekday/weekend—and what changed in the member/casual mix?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to reveal strong hourly patterns without boiling the ocean. I’ll scale the scope later.\nWhy I’m doing this. I’ve been seeing micromobility (bikes/scooters) all over Mississauga—often parked, sometimes deserted—and got curious about real usage and adoption. This project is my way to quantify it: start tight (two months), then expand into comparisons, models, and policy context (e-scooter restrictions).\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
+    "text": "This analysis explores how Bike Share Toronto usage shifted between March 2023 and March 2024, focusing on hourly ridership, weekday/weekend differences, and member vs casual mix.\nThe project demonstrates a clear workflow from Excel cleaning to Tableau dashboards, with all decisions logged for transparency."
   },
   {
-    "objectID": "projects/citybike/index.html#summary",
-    "href": "projects/citybike/index.html#summary",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
+    "objectID": "projects/bikeshare/index.html#overview",
+    "href": "projects/bikeshare/index.html#overview",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
     "section": "",
-    "text": "Question. For a scoped snapshot: How did Bike Share Toronto usage differ between March 2023 and March 2024—by hour and weekday/weekend—and what changed in the member/casual mix?\nWhy these months? March alone already has ~500k+ trips across the two years—enough to reveal strong hourly patterns without boiling the ocean. I’ll scale the scope later.\nWhy I’m doing this. I’ve been seeing micromobility (bikes/scooters) all over Mississauga—often parked, sometimes deserted—and got curious about real usage and adoption. This project is my way to quantify it: start tight (two months), then expand into comparisons, models, and policy context (e-scooter restrictions).\nStack. Excel (cleaning/validation) · Tableau (dashboard) · Python/SQL (planned)"
+    "text": "This analysis explores how Bike Share Toronto usage shifted between March 2023 and March 2024, focusing on hourly ridership, weekday/weekend differences, and member vs casual mix.\nThe project demonstrates a clear workflow from Excel cleaning to Tableau dashboards, with all decisions logged for transparency."
   },
   {
-    "objectID": "projects/citybike/index.html#data-scope",
-    "href": "projects/citybike/index.html#data-scope",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "Data & Scope",
-    "text": "Data & Scope\n\nSource: Bike Share Toronto open data (Trips for Mar 2023 and Mar 2024)\nCore fields: Trip Id, duration, start/end times, station IDs/names, bike ID, user type\n\nScope choice: one month per year to keep season similar yet volume high\n\n\nPlanned extension: add adjacent months to test before/after effects of downtown e-scooter restrictions (with citation)."
+    "objectID": "projects/bikeshare/index.html#project-purpose",
+    "href": "projects/bikeshare/index.html#project-purpose",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
+    "section": "Project Purpose",
+    "text": "Project Purpose\n\nMotivation\nLiving in Mississauga, I rarely saw Lime scooters or shared bikes being actively used — most were either idle or even abandoned mid-trip across sidewalks and plazas.\nThat made me wonder: are these systems truly being used, or just expanding in size?\nI initially reached out to Lime to access their GBFS (live feed) data, but since the process stalled, I pivoted to Bike Share Toronto’s open data, which offered a cleaner and more structured source. This curiosity evolved into a business-style analysis — exploring whether ridership growth actually kept pace with network expansion.\n\n\nCore Question\n\nHow did Bike Share Toronto usage differ between March 2023 and March 2024 — by hour, by weekday/weekend, and by user type?\n\n\n\nWhy These Months?\nDuring exploration, I noticed that each monthly dataset contained hundreds of thousands of trip records, making it both rich and representative.\nRather than “boiling the ocean,” I chose March 2023 and March 2024 — two directly comparable early-season months — to strike a balance between depth and focus.\nThis allowed for a manageable yet statistically meaningful comparison that reveals clear year-over-year patterns.\n\n\nTools & Stack\nExcel (cleaning & validation) · Tableau (visualization) · Python/SQL (planned automation)"
   },
   {
-    "objectID": "projects/citybike/index.html#excel-cleaning-validation",
-    "href": "projects/citybike/index.html#excel-cleaning-validation",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "Excel Cleaning & Validation",
-    "text": "Excel Cleaning & Validation\nI validated and cleaned both months with a reproducible Data_issues log rather than ad-hoc fixes.\nGoals: fix types, remove duplicates, handle nulls, and create analysis-ready columns.\n\nSteps I took\n\nType fixes: coerced timestamps to datetime; durations to numeric minutes\n\nNull handling: filtered rows with missing station IDs/time; documented counts\n\nDe-duplication: removed duplicates by (start_time, end_time, bike_id)\n\nDerived columns: Trip Duration (min), Start Date, Start Hour, Day of Week, Same Station?, Mappable\n\nData issues log: tracked anomalies (e.g., negative durations, unmapped station IDs)\n\n\n\nSchema Notes (2023 vs 2024)\n\n\n\n\n\n\n\n\n\nField\n2023\n2024\nNotes\n\n\n\n\nTrip Id\n✓\n✓\nunique per ride\n\n\nTrip Duration (sec)\n✓\n✓\nconverted to minutes for visuals\n\n\nStart/End Station Id & Name\n✓\n✓\nsome IDs had outdated names\n\n\nStart/End Time\n✓\n✓\ncoerced to datetime\n\n\nBike Id\n✓\n✓\n—\n\n\nUser Type\n✓\n✓\nAnnual / Casual\n\n\nModel (bike type)\n—\n✓\nNew in 2024\n\n\nDerived: Duration (min), Start Date, Start Hour, Day of Week, Same Station?, Mappable\n✓\n✓\ncreated during cleaning\n\n\n\n\nStations reference: I found an older stations file with lat/longs. Newer station IDs (2023/2024) weren’t all present, so I flagged those trips as Unmapped (kept for totals, excluded from maps as needed).\n\n\n\nDerived Columns\n\n\n\n\n\n\n\n\n\nColumn\nType\nHow it’s computed\nWhy it matters\n\n\n\n\nTrip Duration (min)\nnumeric\nduration_sec / 60 (rounded)\nconsistent comparisons\n\n\nStart Date\ndate\ndate(Start Time)\ndaily grouping\n\n\nStart Hour\ninteger\nhour(Start Time)\npeak-hour analysis\n\n\nDay of Week\ntext\nweekday(Start Time)\nweekday vs weekend\n\n\nSame Station?\nboolean\nStart Station Id == End Station Id\nloops/returns\n\n\nMappable\nboolean\nstation ID present in reference file\nmap readiness\n\n\n\n\n\nData Issues (logged)\nCounted, decisioned, then fixed/flagged; repeated for Mar 2024 (with the extra Model field).\n\n\n\n\n\n\n\n\n\nIssue\nFix / Decision\nKept?\nCount (example)\n\n\n\n\nEnd Station = NULL\ndrop rows (incomplete)\n✗\n80\n\n\nTrip duration &lt; 1 min\ndrop (unlock/return test)\n✗\n417\n\n\nTrip duration &gt; 24 hr\ndrop (logging error)\n✗\n43\n\n\nStart station = End station\nkeep, flagged in Same Station?\n✓\n6,835\n\n\nDuplicate Trip Ids\nkeep first, remove duplicates\n✓\n0\n\n\nInconsistent station names (ID present)\nstandardize name via ID\n✓\n15,942\n\n\nStation ID not in reference (new IDs)\nkeep trip, mark as Unmapped\n✓\n22,000\n\n\n\n\n\nScreenshots"
+    "objectID": "projects/bikeshare/index.html#data-summary",
+    "href": "projects/bikeshare/index.html#data-summary",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
+    "section": "Data Summary",
+    "text": "Data Summary\n\nSource: Bike Share Toronto Open Data\nMonths analyzed: March 2023 & March 2024\n\nVolume: ~537K total trips\n\nKey fields: Trip ID, duration, start/end stations, times, bike ID, user type\n\n2024 addition: Model (bike type)\n\nSupplementary file: Station reference CSV (with IDs, names, and coordinates) used for mapping and validation — included in the project’s GitHub repo.\n\n\nRationale: March vs March provides comparable seasonal conditions while still high enough volume for reliable trend analysis."
   },
   {
-    "objectID": "projects/citybike/index.html#from-excel-tableau-data-model",
-    "href": "projects/citybike/index.html#from-excel-tableau-data-model",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "From Excel → Tableau (Data Model)",
-    "text": "From Excel → Tableau (Data Model)\nAfter cleaning, I imported both months into Tableau.\n\nUnion: Mar-2023 and Mar-2024 trip tables combined; added metadata (Year, Month).\n\nJoin: Station reference (ID → lat/long/name) for mapping; rows with missing reference flagged as Unmapped.\n\nFields used: duration (min), hour, weekday, member type, station IDs/names, Model (2024 only).\n\nVisuals built: overview KPIs, Trips-by-Hour, weekday heatmap, and station map.\n\nNext build: a comparison dashboard (side-by-side 2023 vs 2024)."
+    "objectID": "projects/bikeshare/index.html#cleaning-validation-excel",
+    "href": "projects/bikeshare/index.html#cleaning-validation-excel",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
+    "section": "Cleaning & Validation (Excel)",
+    "text": "Cleaning & Validation (Excel)\nData was cleaned and standardized using a structured Data Issues Log instead of one-off fixes.\n\nCleaning Steps\n\nConverted data types (timestamps → datetime; duration → minutes).\n\nFiltered incomplete rows (missing start/end station or time).\n\nRemoved duplicates via (start_time, end_time, bike_id).\n\nCreated derived columns for Start Hour, Day of Week, Same Station?, and Mappable.\n\nLinked station IDs to reference coordinates; flagged missing IDs as Unmapped.\n\n\n\nSchema Notes (2023 vs 2024)\n\n\n\nField\n2023\n2024\nNotes\n\n\n\n\nTrip Id\n✓\n✓\nUnique per trip\n\n\nTrip Duration (sec)\n✓\n✓\nConverted to minutes\n\n\nStart/End Station Id & Name\n✓\n✓\nSome IDs updated\n\n\nStart/End Time\n✓\n✓\nCoerced to datetime\n\n\nBike Id\n✓\n✓\n—\n\n\nUser Type\n✓\n✓\nAnnual / Casual\n\n\nModel (bike type)\n—\n✓\nNew in 2024\n\n\nDerived columns\n✓\n✓\nCreated during cleaning\n\n\n\n\nStation reference: Some 2024 station IDs didn’t exist in the 2023 map file, so they were flagged as Unmapped (kept for totals, excluded from maps).\n\n\n\nDerived Columns\n\n\n\n\n\n\n\n\n\nColumn\nType\nHow it’s computed\nWhy it matters\n\n\n\n\nTrip Duration (min)\nNumeric\nduration_sec / 60 (rounded)\nConsistent time comparison\n\n\nStart Date\nDate\ndate(Start Time)\nEnables day-level grouping\n\n\nStart Hour\nInteger\nhour(Start Time)\nReveals hourly ridership patterns\n\n\nDay of Week\nText\nweekday(Start Time)\nCompares weekday vs weekend\n\n\nSame Station?\nBoolean\nStart Station Id == End Station Id\nIdentifies loops/non-loops\n\n\nMappable\nBoolean\nStation ID found in reference\nEnsures map-ready data\n\n\n\n\n\nData Issues (logged)\n\n\n\nIssue\nFix / Decision\nKept?\nExample Count\n\n\n\n\nEnd Station = NULL\nDropped incomplete rows\n✗\n80\n\n\nTrip duration &lt; 1 min\nDropped (unlock/return test)\n✗\n417\n\n\nTrip duration &gt; 24 hr\nDropped (logging error)\n✗\n43\n\n\nStart = End station\nKept, flagged as Same Station?\n✓\n6,835\n\n\nDuplicate Trip Ids\nRemoved duplicates\n✓\n0\n\n\nInconsistent station names\nStandardized via ID\n✓\n15,942\n\n\nStation ID missing (new)\nKept, flagged Unmapped\n✓\n22,000"
   },
   {
-    "objectID": "projects/citybike/index.html#dashboard-snapshot",
-    "href": "projects/citybike/index.html#dashboard-snapshot",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "Dashboard Snapshot",
-    "text": "Dashboard Snapshot\n\n\n\nPrefer the interactive version? View it on Tableau Public."
+    "objectID": "projects/bikeshare/index.html#from-excel-tableau",
+    "href": "projects/bikeshare/index.html#from-excel-tableau",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
+    "section": "From Excel → Tableau",
+    "text": "From Excel → Tableau\nBoth datasets (Mar-2023 & Mar-2024) were unioned and joined to a station reference for mapping. Trips with missing reference data were flagged Unmapped but retained for count accuracy. Key analysis fields: duration (min), hour, weekday, user type, station names, Model (2024)."
   },
   {
-    "objectID": "projects/citybike/index.html#findings-so-far",
-    "href": "projects/citybike/index.html#findings-so-far",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "Findings (So Far)",
-    "text": "Findings (So Far)\n\nPeak hours (weekdays): clear commute peaks at 8–9 AM and 5–7 PM.\n\nWeekends: usage is broader and more distributed (~11 AM–7 PM), with no sharp single peak.\n\nMember mix: overall across the two months ≈ 21.5% members; the YoY change is small (≈≤ 2 percentage points from Mar-2023 → Mar-2024).\n\nRidership growth: total rides are higher in 2024, so general usage is up.\n\nRoutes: many round trips appear among top routes—likely loops/non-commute behavior (e.g., short errands, deliveries).\n\n\nLimits: single month per year; weather not controlled; station reference partially outdated; promotions/policy context not yet incorporated."
+    "objectID": "projects/bikeshare/index.html#dashboards-insights",
+    "href": "projects/bikeshare/index.html#dashboards-insights",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
+    "section": "Dashboards & Insights",
+    "text": "Dashboards & Insights\n\n1) Overview Dashboard\n\n\nAt a Glance\n\nTotal Trips: 537,045 (both months) — strong early-season performance.\n\nAvg Duration: 15 minutes — short urban trips, mainly commuting or errands.\n\nNetwork Size: 7,028 bikes across 815 stations → 8.6 bikes per station, a healthy density.\n\nAnnual Members: 21.5% — casual users still dominate, potential for membership growth.\n\n\n\nUsage Patterns\n\nPeaks: 8–9 AM & 5–7 PM, consistent with office commutes.\n\nMidday/Weekend Rides: steady, pointing to errands and recreation.\n\nTues–Thurs activity slightly higher — aligns with hybrid work schedules (in-office midweek).\n\n\n\nBusiness Interpretation\n\nPredictable AM/PM peaks allow for dock rebalancing and resource planning.\n\nThe short average trip duration confirms the system’s role as a first/last-mile link in city transport.\n\nThe 1-in-5 membership ratio shows room to convert frequent casuals through commuter promotions or referral discounts.\n\n\nOverall: Bike Share Toronto shows strong system utilization and clear commuter dependence — valuable for both planners and operators.\n\n\n\n\n\n2) Comparison Dashboard\n\n\nKey Observations\n\nTrip Volume: +39% (224K → 312K)\n\nAverage Duration: +12.8% (14.4 → 16.2 min) → longer trips, likely casual/leisure.\n\nBikes/Stations: +9% bikes, +20% stations — expansion aligned with demand.\n\nMember Share: ↓ 2.1 pp (22.7% → 20.6%) → casual segment grew faster.\n\nSaturday Spread: wider use range, suggesting leisure/tourism component.\n\n\n\nInterpretation\n\nGrowth Quality: Supply (stations, bikes) scaled with usage → no overcapacity issue.\n\nTrip Duration: Longer rides reflect new routes, leisure use, or extended trips rather than inefficiency.\n\nCommute Peaks: 8–9 AM, 5–7 PM still dominate; lighter Mondays/Fridays show hybrid work impact.\n\nMembership Mix: Drop in member ratio = more casual users entering funnel → marketing can aim to retain & convert these.\n\n\nIn summary: March 2024 brought both scale and diversity — a broader, more active user base beyond just commuters.\n\n\n\n\n\n3) Commuter Patterns Dashboard\n\n\nNote: Routes showing only one location (e.g., Tommy Thompson Park) are round trips — users start and end at the same station, often for recreation. Trips with unmapped stations were excluded to ensure accuracy.\n\n\nAt a Glance\n\n~97% of trips = point-to-point commuting.\n\nTop Corridors: Union Station, Front St, Bay St, and Yonge St remain high-volume anchors.\n\nLoop Routes: Recreational trips like Tommy Thompson Park still see heavy activity.\n\n2024 Growth: Most high-traffic routes increased further — showing consolidation, not fragmentation.\n\n\n\nInterpretation\n\nBike Share Toronto serves primarily urban commuters, with consistent weekday use.\n\nLoop trips reflect weekend leisure demand, balancing functional and recreational users.\n\nOperational priority: focus on dock turnover & rebalancing in core corridors during peaks.\n\nMarketing insight: casual weekend users could be encouraged to join membership tiers through day-pass → subscription funnels.\n\n\nBottom line: The commuter network is expanding efficiently — sustaining weekday reliability while attracting weekend explorers."
   },
   {
-    "objectID": "projects/citybike/index.html#whats-next",
-    "href": "projects/citybike/index.html#whats-next",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "What’s Next",
-    "text": "What’s Next\n\nComparison dashboard: KPIs and distributions (Mar-2023 vs Mar-2024) side-by-side.\n\n2024 model usage: which bike model is most used, and by when/where?\n\nTop routes (commute focus): analyze flows excluding round trips to better isolate commuting.\n\nPolicy check: add months around the e-scooter restriction date to test for a measurable before/after effect.\n\nPython/SQL pipeline: reproducible cleaning and station-hour aggregations.\n\nPredictive baseline: simple hourly demand model for top stations (limitations documented)."
+    "objectID": "projects/bikeshare/index.html#next-steps-extensions",
+    "href": "projects/bikeshare/index.html#next-steps-extensions",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
+    "section": "Next Steps / Extensions",
+    "text": "Next Steps / Extensions\n\nAutomate cleaning using Python (Pandas) for future datasets.\n\nAdd Feb/Apr data to test seasonal consistency.\n\nExplore bike model mix (classic vs e-bike) from 2024 column.\n\nLayer in weather or event data for richer context.\n\nConsider publishing interactive Tableau Public dashboard with route filters."
   },
   {
-    "objectID": "projects/citybike/index.html#repro-notes",
-    "href": "projects/citybike/index.html#repro-notes",
-    "title": "CityBike: Toronto Bike Share Snapshot (Mar 2023 vs Mar 2024)",
-    "section": "Repro Notes",
-    "text": "Repro Notes\n\nAssumptions: local timezone; station names normalized by ID when possible.\n\nFiles referenced: data_issues.xlsx (this project), screenshots under /images/.\n\nNotes on mapping: trips with unknown/new station IDs are kept but flagged Unmapped to avoid dropping real rides."
+    "objectID": "projects/bikeshare/index.html#repro-notes-disclaimer",
+    "href": "projects/bikeshare/index.html#repro-notes-disclaimer",
+    "title": "Bike Share Toronto Snapshot (March 2023 vs March 2024)",
+    "section": "Repro Notes & Disclaimer",
+    "text": "Repro Notes & Disclaimer\n\nAssumptions: local timezone; standardized station names by ID.\n\nColor coding: 2023 = teal, 2024 = orange.\n\nFiles: data_issues.xlsx, Tableau workbook (.twb), /images for visuals.\n\nThis project is personal and educational, built for analytics practice and portfolio display.\nData: Bike Share Toronto Open Data Portal.\nLogo used under fair use for non-commercial illustrative purposes."
   },
   {
     "objectID": "blog.html",
@@ -81,14 +81,14 @@
     "href": "index.html",
     "title": "Zain Ghias",
     "section": "",
-    "text": "Hi, I’m Zain,\na third-year student at the University of Toronto Mississauga, majoring in Applied Statistics with minors in Computer Science and Math.\nI recently worked as a Front-End Developer Intern at a startup over the summer, and I’m now shifting my focus toward Data Analytics, Data Science, and exploring areas like Machine Learning. I’m planning to take more ML and stats courses next year, and I’m open to getting involved in research if it’s in something exciting or meaningful.\nI like volleyball, table tennis, and basketball, and I try to balance screen time with touching grass and going on long walks, partly for my sanity.\nThanks for stopping by. Excited to see where this journey goes.\nGet in touch: zain.ghias@mail.utoronto.ca"
+    "text": "Hi, I’m Zain,\na third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m currently a Software Engineer Intern at Wholeviz, a data visualization platform that helps NGOs, journalists, and public teams build interactive dashboards. My work focuses on React, Next.js, Tailwind, and Plotly, where I’ve been learning to merge design, data, and storytelling to make information more usable.\nPreviously, I worked at Quor, a Toronto startup, as a Frontend Developer Intern, helping design and build a cross-platform mobile app in React Native. Those startup experiences taught me to be adaptable — to pick up new tools on the fly and figure things out as I go.\nLately, I’ve been expanding into data analytics and business analysis, combining my statistics background with technical skills to uncover trends and communicate insights. I’m also exploring machine learning and data visualization, aiming to bridge the gap between analysis and product decisions.\nOutside of code and coursework, I try to stay grounded — literally. I like volleyball, table tennis, and long walks around Mississauga to balance the screen time (and touch grass for my sanity).\nI’m naturally curious about how things work — whether it’s a dataset, a business model, or a React component — and I enjoy translating that curiosity into projects that make data actually mean something.\nGet in touch: zain.ghias@mail.utoronto.ca"
   },
   {
-    "objectID": "index.html#featured-project-citybike-analysis",
-    "href": "index.html#featured-project-citybike-analysis",
+    "objectID": "index.html#featured-project-toronto-bike-share-analysis",
+    "href": "index.html#featured-project-toronto-bike-share-analysis",
     "title": "Zain Ghias",
-    "section": "Featured Project: CityBike Analysis 🚴‍♂️",
-    "text": "Featured Project: CityBike Analysis 🚴‍♂️\n\n\n\n\n\n\nCityBike: Toronto Bike Share Analysis (2023–2024)\n\n\n\n\nExploring Bike Share Toronto with interactive dashboards and forecasting insights.\nStack: Excel · Tableau · Python (planned)\nQuestion: Are Bike Share assets being used efficiently, or are some stations/times underutilized?\nView Project"
+    "section": "Featured Project: Toronto Bike Share Analysis 🚴‍♂️",
+    "text": "Featured Project: Toronto Bike Share Analysis 🚴‍♂️\n\n\n\n\n\n\nToronto Bike Share: March 2023 vs March 2024\n\n\n\n\nAnalyzing Bike Share Toronto data to understand year-over-year ridership patterns and how network expansion aligns with actual use.\nStack: Excel · Tableau · Python (planned)\nQuestion: Are Bike Share Toronto’s growing assets being used efficiently, or are certain stations and times under-utilized?\nView Project"
   },
   {
     "objectID": "projects.html",
