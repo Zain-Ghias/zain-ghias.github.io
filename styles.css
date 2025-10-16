@@ -413,9 +413,14 @@ html[data-theme='dark'] .card-text {
     padding-bottom: 2rem !important;
   }
   
-  /* Add extra bottom margin to ensure footer is visible */
+  /* Hide footer on mobile for cleaner look */
+  .footer {
+    display: none !important;
+  }
+  
+  /* Remove extra bottom margin since footer is hidden */
   .about-contents > *:last-child {
-    margin-bottom: 3rem !important;
+    margin-bottom: 1rem !important;
   }
 }
 
