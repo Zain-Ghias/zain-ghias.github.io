@@ -138,6 +138,12 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   transition: color 0.5s, border-color 0.5s;
 }
 
+/* Make social media buttons slightly bigger */
+.about-link {
+  font-size: 1.3em !important;
+  padding: 0.3em !important;
+}
+
 /* Desktop profile image sizing */
 .about-image {
   width: 375px !important;
@@ -399,6 +405,17 @@ html[data-theme='dark'] .card-text {
   .about-entity {
     position: static !important;
     top: auto !important;
+  }
+  
+  /* Ensure content has proper spacing on mobile */
+  .about-contents {
+    margin-top: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Add extra bottom margin to ensure footer is visible */
+  .about-contents > *:last-child {
+    margin-bottom: 3rem !important;
   }
 }
 
