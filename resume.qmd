@@ -55,7 +55,7 @@ Applied Statistics | Data Analytics | Software Development
 :::
 
 ::: {.resume-actions}
-[Download PDF](resume/SMyResume.pdf){.btn .btn-primary .btn-lg target="_blank"} [Contact Me](mailto:zain.ghias@mail.utoronto.ca){.btn .btn-outline-primary .btn-lg}
+[Download PDF](resume/DAResume.pdf){.btn .btn-primary .btn-lg target="_blank"} [Contact Me](mailto:zain.ghias@mail.utoronto.ca){.btn .btn-outline-primary .btn-lg}
 :::
 
 ::: {.alert .alert-info}
@@ -63,7 +63,7 @@ Applied Statistics | Data Analytics | Software Development
 :::
 
 <div class="embed-container">
-  <iframe src="resume/SMyResume.pdf" style="border: 0.5px"></iframe>
+  <iframe src="resume/DAResume.pdf" style="border: 0.5px"></iframe>
 </div>
 
 <div class="mt-4 text-center">
