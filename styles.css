@@ -78,15 +78,13 @@ body {
   color: #ffd54f !important; /* gold, or pick another accent */
 }
 
-/* LinkedIn icon hover: original LinkedIn blue */
-.navbar-nav .nav-link[href*="linkedin"]:hover i,
-.about-link[href*="linkedin"]:hover i {
+/* LinkedIn icon hover: original LinkedIn blue (navbar only) */
+.navbar-nav .nav-link[href*="linkedin"]:hover i {
   color: #0A66C2 !important;
 }
 
-/* GitHub icon hover: orange */
-.navbar-nav .nav-link[href*="github"]:hover i,
-.about-link[href*="github"]:hover i {
+/* GitHub icon hover: orange (navbar only) */
+.navbar-nav .nav-link[href*="github"]:hover i {
   color: #ff9800 !important;
 }
 
@@ -105,7 +103,27 @@ html[data-theme='dark'] .navbar-nav .nav-link {
 .about-link:focus, .about-link:hover {
   outline: none !important;
   box-shadow: none !important;
-  border-color: white !important; /* Default to white border */
+}
+
+/* Smooth color and border transitions for about links and icons */
+.about-link,
+.about-link i {
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.5s, 
+              border-color 0.5s;
+}
+
+/* Make social media buttons slightly bigger */
+.about-link {
+  font-size: 1.3em !important;
+  padding: 0.3em !important;
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Pop-out effect on hover with original colors */
+.about-link:hover {
+  transform: scale(1.08);
 }
 
 /* LinkedIn: blue border and icon on hover */
@@ -124,24 +142,12 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   color: #ff9800 !important;
 }
 
-/* Email: white border and icon on hover */
+/* Email: green border and icon on hover */
 .about-link[href^="mailto"]:hover, .about-link[href^="mailto"]:focus {
   border-color: #2ecc40 !important;
 }
 .about-link[href^="mailto"]:hover i, .about-link[href^="mailto"]:focus i {
   color: #2ecc40 !important;
-}
-
-/* Smooth color and border transitions for about links and icons */
-.about-link,
-.about-link i {
-  transition: color 0.5s, border-color 0.5s;
-}
-
-/* Make social media buttons slightly bigger */
-.about-link {
-  font-size: 1.3em !important;
-  padding: 0.3em !important;
 }
 
 /* Desktop profile image sizing */
@@ -150,6 +156,15 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   height: 375px !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 4px 16px rgba(0, 0, 0, 0.1) !important;
   border: 2px solid rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  will-change: transform;
+}
+
+.about-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.18), 0 5px 18px rgba(0, 0, 0, 0.12) !important;
 }
 
 /* Responsive profile image sizing */
