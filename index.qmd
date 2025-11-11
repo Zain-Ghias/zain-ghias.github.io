@@ -17,41 +17,105 @@ format:
     toc: false
 ---
 
-Hi, I'm **Zain**,  
+::: {.about-intro-card}
+## About Me
 
-a third-year **Applied Statistics** student at the **University of Toronto Mississauga**, with minors in **Computer Science** and **Mathematics**.  
+Hi, I'm **Zain**, a third-year **Applied Statistics** student at the **University of Toronto Mississauga**, with minors in **Computer Science** and **Mathematics**.  
 
-I'm currently a **Software Engineer Intern** at **Wholeviz**, a data visualization platform that helps NGOs, journalists, and public teams build interactive dashboards. My work focuses on **React**, **Next.js**, **Tailwind**, and **Plotly**, where I’ve been learning to merge design, data, and storytelling to make information more usable.  
+I'm passionate about connecting **data, design, and storytelling** by using analysis and visualization to make information more human and useful.
+:::
 
-Previously, I worked at **Quor**, a Toronto startup, as a **Frontend Developer Intern**, helping design and build a cross-platform mobile app in **React Native**. Those startup experiences taught me to be adaptable, to pick up new tools on the fly, and to figure things out as I go.  
+::: {.about-section-card}
+### Current Work
 
-Lately, I’ve been expanding into **data analytics** and **business analysis**, combining my statistics background with technical skills to uncover trends and communicate insights. I’m also exploring **machine learning** and **data visualization**, aiming to bridge the gap between analysis and product decisions.  
+I'm currently a **Software Engineer Intern** at **Wholeviz**, a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on **React**, **Next.js**, **Tailwind**, and **Plotly**, where I design intuitive front-end interfaces and experiment with **AI-assisted data visualization** features like automated chart generation and data-cleaning helpers.
 
-Outside of code and coursework, I try to stay grounded. I like **volleyball**, **table tennis**, and long walks around Mississauga to balance the screen time (and touch grass for my sanity).  
+Recently, I was selected for the **Skills for the Future Program** with **IBM SkillsBuild × Riipen**, where I'm collaborating with **Digital Placemaking Canada**, a predictive intelligence startup that models and forecasts group behaviors in real-world spaces. I'm contributing to the **website redesign** and working on **data-driven dashboards** that visualize behavioral insights and community engagement in clearer, more actionable ways.
 
-I’m naturally curious about how things work, whether it’s a dataset, a business model, or a React component, and I enjoy translating that curiosity into projects that make data actually mean something.  
+My experience working at startups has taught me to be adaptable, communicate effectively across different teams, and deliver results in fast-paced environments.
+:::
+
+::: {.about-section-card}
+### Learning & Growth
+
+Alongside that, I'm completing the **IBM Data Analytics Professional Certificate** on Coursera and the **IBM SkillsBuild Digital Credential in User Experience Design Fundamentals**.  
+
+Through these programs, I'm deepening my skills in **Excel, SQL, Python (Pandas)**, and **IBM Cognos Analytics**, while learning to bridge **analytical storytelling** with **UI and UX design thinking**.
+:::
+
+::: {.about-section-card}
+### Beyond the Screen
+
+Outside of code and coursework, I recharge through **volleyball**, **table tennis**, and long walks around Mississauga.  
+
+I'm naturally curious about how things work, whether that's a dataset, a business model, or a React component, and I like turning that curiosity into projects that make data actually mean something.  
 
 **Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
+:::
 
-::: {.callout-tip title="📢 Currently Open to Summer 2026 Internships"}
-Looking for opportunities in **Data Analytics**, **Business Analysis**, or **Software Engineering**.  
-If you think my skills could be a fit, feel free to reach out!
+::: {.callout-tip title="Currently Open to Summer 2026 Internships"}
+Looking for opportunities in **Data Analytics**, **Business Analysis**, **Frontend / UI-UX Development**, or **Software Engineering / Data Visualization**.  
+Open to roles focused on **analytics**, **design**, and **problem-solving**.
 :::
 
 ---
 
-## Featured Project: Toronto Bike Share Analysis 🚴‍♂️
+## Featured Project: Toronto Bike Share Analysis
 
 ::: {.callout-note style="max-width: 430px;"}
-### Toronto Bike Share: March 2023 vs March 2024
+### Toronto Bike Share – March 2023 vs March 2024
 
 ![](projects/bikeshare/images/Bike_Share_Toronto_logo.png){width="200px" .center}
 
-Analyzing **Bike Share Toronto** data to understand year-over-year ridership patterns and how network expansion aligns with actual use.
+Analyzing **Bike Share Toronto** data to uncover how ridership patterns evolved year over year and whether network growth aligned with actual demand.  
 
-**Stack:** Excel · Tableau · Python (planned)
+**Stack:** Excel · Tableau · Python (planned)  
 
-**Question:** Are Bike Share Toronto's growing assets being used efficiently, or are certain stations and times under-utilized?
+**Key Question:** Are Bike Share Toronto’s growing assets being used efficiently, or are certain stations and times under-utilized?  
 
 [View Project](projects/bikeshare/index.qmd){.btn .btn-primary .me-2}
 :::
+
+---
+
+## Experience
+
+::: {.experience-grid}
+::: {.experience-card}
+**Software Engineer Intern**  
+*Wholeviz*  
+*Sep 2025 – Ongoing*
+
+Building data visualization platform with React, Next.js, and Plotly. Developing AI-assisted visualization features.
+:::
+
+::: {.experience-card}
+**Skills for the Future Program**  
+*IBM SkillsBuild × Riipen*  
+*Nov 2025 – Ongoing*
+
+Collaborating with Digital Placemaking Canada on website redesign and data-driven dashboards.
+:::
+
+::: {.experience-card}
+**Frontend Developer Intern**  
+*Quor*  
+*May 2025 – Aug 2025*
+
+Designed and built cross-platform mobile app in React Native for Toronto startup.
+:::
+
+::: {.experience-card .certificate-card}
+**Data Analytics Professional Certificate**  
+*IBM via Coursera*  
+*Oct 2025 – Ongoing*
+
+Completing comprehensive data analytics training covering Excel, SQL, Python, and IBM Cognos Analytics.
+:::
+:::
+
+---
+
+## Tools & Technologies
+
+React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas

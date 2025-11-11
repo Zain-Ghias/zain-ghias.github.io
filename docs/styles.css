@@ -521,3 +521,458 @@ html[data-theme='dark'] .card-text {
   font-weight: 500;
 }
 
+/* ========================================================
+   Experience Section Styling
+   ======================================================== */
+
+/* Experience grid - two-column layout */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+/* Experience card styling - more compact with default color */
+.experience-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid #dee2e6;
+  border-left: 3px solid #007bff;
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-left-width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  opacity: 0;
+  animation: fadeInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.experience-card:nth-child(1) { animation-delay: 0.1s; }
+.experience-card:nth-child(2) { animation-delay: 0.15s; }
+.experience-card:nth-child(3) { animation-delay: 0.2s; }
+.experience-card:nth-child(4) { animation-delay: 0.25s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  z-index: 0;
+  transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.experience-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.12);
+  border-color: #007bff;
+  border-left-width: 4px;
+}
+
+.experience-card:hover::before {
+  width: 4px;
+}
+
+/* Certificate card - different color scheme */
+.experience-card.certificate-card {
+  border-left-color: #28a745;
+  background: linear-gradient(135deg, #f8fff9 0%, #f0f9f4 100%);
+}
+
+.experience-card.certificate-card::before {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.experience-card.certificate-card:hover {
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.15);
+  border-left-color: #28a745;
+}
+
+.experience-card.certificate-card::after {
+  content: '';
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.experience-card strong {
+  display: block;
+  color: #2c3e50;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.experience-card em {
+  display: block;
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-style: normal;
+  margin-bottom: 0.2rem;
+}
+
+.experience-card p {
+  color: #495057;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0.6rem 0 0 0;
+}
+
+/* Dark mode experience cards */
+html[data-theme='dark'] .experience-card {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+  border-left-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme='dark'] .experience-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+  border-color: #007bff;
+}
+
+html[data-theme='dark'] .experience-card.certificate-card {
+  background: linear-gradient(135deg, #1e3a2e 0%, #1a2e24 100%);
+  border-left-color: #28a745;
+}
+
+html[data-theme='dark'] .experience-card.certificate-card:hover {
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.2);
+}
+
+html[data-theme='dark'] .experience-card strong {
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .experience-card em {
+  color: #a0aec0;
+}
+
+html[data-theme='dark'] .experience-card p {
+  color: #cbd5e0;
+}
+
+/* ========================================================
+   About Section Cards
+   ======================================================== */
+
+.about-intro-card,
+.about-section-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid #dee2e6;
+  border-left: 3px solid #007bff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-left-width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+}
+
+.about-intro-card::before,
+.about-section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  z-index: 0;
+}
+
+.about-intro-card:hover,
+.about-section-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.12);
+  border-left-width: 4px;
+}
+
+.about-intro-card h2,
+.about-section-card h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.about-intro-card p,
+.about-section-card p {
+  color: #495057;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+/* Dark mode about cards */
+html[data-theme='dark'] .about-intro-card,
+html[data-theme='dark'] .about-section-card {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+  border-left-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme='dark'] .about-intro-card h2,
+html[data-theme='dark'] .about-section-card h3 {
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .about-intro-card p,
+html[data-theme='dark'] .about-section-card p {
+  color: #cbd5e0;
+}
+
+/* ========================================================
+   Featured Project Callout Hover Effects
+   ======================================================== */
+
+/* Add hover effects to the featured project callout-note */
+.about-contents .callout-note {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  will-change: transform, box-shadow;
+}
+
+.about-contents .callout-note:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.15);
+  border-color: #007bff;
+}
+
+/* Dark mode callout hover */
+html[data-theme='dark'] .about-contents .callout-note:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: #007bff;
+}
+
+/* ========================================================
+   Tools Section Styling
+   ======================================================== */
+
+.tools-section {
+  margin: 2rem 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #495057;
+  text-align: center;
+}
+
+html[data-theme='dark'] .tools-section {
+  color: #cbd5e0;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Staggered fade-in for tool icons */
+.tool-item:nth-child(1) .tool-icon { animation-delay: 0.05s; }
+.tool-item:nth-child(2) .tool-icon { animation-delay: 0.1s; }
+.tool-item:nth-child(3) .tool-icon { animation-delay: 0.15s; }
+.tool-item:nth-child(4) .tool-icon { animation-delay: 0.2s; }
+.tool-item:nth-child(5) .tool-icon { animation-delay: 0.25s; }
+.tool-item:nth-child(6) .tool-icon { animation-delay: 0.3s; }
+.tool-item:nth-child(7) .tool-icon { animation-delay: 0.35s; }
+.tool-item:nth-child(8) .tool-icon { animation-delay: 0.4s; }
+.tool-item:nth-child(9) .tool-icon { animation-delay: 0.45s; }
+.tool-item:nth-child(10) .tool-icon { animation-delay: 0.5s; }
+.tool-item:nth-child(11) .tool-icon { animation-delay: 0.55s; }
+.tool-item:nth-child(12) .tool-icon { animation-delay: 0.6s; }
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tool-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tool-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid #dee2e6;
+  border-top: 3px solid #007bff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  color: #007bff;
+  text-align: center;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-top-width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  opacity: 0;
+  animation: fadeInScale 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.tool-icon .tool-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #495057;
+  margin-top: 0.25rem;
+}
+
+.tool-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 123, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tool-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.15);
+  border-color: #007bff;
+  border-top-width: 4px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+}
+
+.tool-icon:hover .tool-name {
+  color: #007bff;
+  transition: color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tool-icon:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.tool-icon:active {
+  transform: translateY(-1px);
+}
+
+/* Dark mode tool icons */
+html[data-theme='dark'] .tool-icon {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+  border-top-color: #007bff;
+  color: #60a5fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme='dark'] .tool-icon .tool-name {
+  color: #cbd5e0;
+}
+
+html[data-theme='dark'] .tool-icon:hover {
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+  border-color: #007bff;
+  background: linear-gradient(135deg, #1e3a5f 0%, #1a2f4a 100%);
+}
+
+html[data-theme='dark'] .tool-icon:hover .tool-name {
+  color: #60a5fa;
+}
+
+/* Responsive adjustments for Experience and Tools */
+@media (max-width: 768px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .experience-card {
+    padding: 1rem 1.1rem;
+  }
+  
+  .tools-grid {
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+    gap: 1rem;
+  }
+  
+  .tool-icon {
+    width: 85px;
+    height: 85px;
+    font-size: 1.2rem;
+  }
+  
+  .tool-icon .tool-name {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-card {
+    padding: 1rem;
+  }
+  
+  .experience-card strong {
+    font-size: 1rem;
+  }
+  
+  .tools-grid {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .tool-icon {
+    width: 75px;
+    height: 75px;
+    font-size: 1rem;
+  }
+  
+  .tool-icon .tool-name {
+    font-size: 0.65rem;
+  }
+}
+
