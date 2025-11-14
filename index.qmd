@@ -17,6 +17,51 @@ format:
     toc: false
 ---
 
+::: {.kpi-section .kpi-section-top}
+::: {.kpi-section-title}
+Key Metrics
+:::
+
+::: {.kpi-grid}
+::: {.kpi-card}
+::: {.kpi-value-wrapper}
+::: {.kpi-badge}
+3/4 Year
+:::
+::: {.kpi-value}
+75%
+:::
+:::
+::: {.kpi-label}
+Applied Statistics Degree
+<span class="kpi-degree-type">HBSc</span>
+:::
+::: {.progress-bar-container}
+<div class="progress-bar" data-progress="75"></div>
+:::
+:::
+
+::: {.kpi-card}
+::: {.kpi-value}
+3
+:::
+::: {.kpi-label}
+Internships
+:::
+:::
+
+::: {.kpi-card}
+::: {.kpi-value}
+2
+:::
+::: {.kpi-label}
+Analytics Projects
+:::
+:::
+:::
+
+---
+
 ::: {.about-intro-card}
 ## About Me
 
@@ -28,27 +73,19 @@ I'm passionate about connecting **data, design, and storytelling** by using anal
 ::: {.about-section-card}
 ### Current Work
 
-I'm currently a **Software Engineer Intern** at **Wholeviz**, a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on **React**, **Next.js**, **Tailwind**, and **Plotly**, where I design intuitive front-end interfaces and experiment with **AI-assisted data visualization** features like automated chart generation and data-cleaning helpers.
+I'm currently a **Software Engineer Intern** at **Wholeviz**, a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on **React**, **Next.js**, **Tailwind**, and **Plotly**, where I design intuitive front-end interfaces and experiment with **AI-assisted data visualization** features.
 
-Recently, I was selected for the **Skills for the Future Program** with **IBM SkillsBuild × Riipen**, where I'm collaborating with **Digital Placemaking Canada**, a predictive intelligence startup that models and forecasts group behaviors in real-world spaces. I'm contributing to the **website redesign** and working on **data-driven dashboards** that visualize behavioral insights and community engagement in clearer, more actionable ways.
+Recently, I was selected for the **Skills for the Future Program** with **IBM SkillsBuild × Riipen**, collaborating with **Digital Placemaking Canada** on website redesign and data-driven dashboards.
 
-My experience working at startups has taught me to be adaptable, communicate effectively across different teams, and deliver results in fast-paced environments.
+My startup experience has taught me to be adaptable, communicate effectively across different teams, and deliver results in fast-paced environments.
 :::
 
 ::: {.about-section-card}
-### Learning & Growth
+### More About Me
 
-Alongside that, I'm completing the **IBM Data Analytics Professional Certificate** on Coursera and the **IBM SkillsBuild Digital Credential in User Experience Design Fundamentals**.  
+Alongside my work, I'm completing the **IBM Data Analytics Professional Certificate** on Coursera and the **IBM SkillsBuild Digital Credential in User Experience Design Fundamentals**. Through these programs, I'm deepening my skills in **Excel, SQL, Python (Pandas)**, and **IBM Cognos Analytics**, while learning to bridge **analytical storytelling** with **UI and UX design thinking**.
 
-Through these programs, I'm deepening my skills in **Excel, SQL, Python (Pandas)**, and **IBM Cognos Analytics**, while learning to bridge **analytical storytelling** with **UI and UX design thinking**.
-:::
-
-::: {.about-section-card}
-### Beyond the Screen
-
-Outside of code and coursework, I recharge through **volleyball**, **table tennis**, and long walks around Mississauga.  
-
-I'm naturally curious about how things work, whether that's a dataset, a business model, or a React component, and I like turning that curiosity into projects that make data actually mean something.  
+Outside of code and coursework, I recharge through **volleyball**, **table tennis**, and long walks around Mississauga. I'm naturally curious about how things work, whether that's a dataset, a business model, or a React component, and I like turning that curiosity into projects that make data actually mean something.
 
 **Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
 :::
@@ -58,7 +95,6 @@ Looking for opportunities in **Data Analytics**, **Business Analysis**, **Fronte
 Open to roles focused on **analytics**, **design**, and **problem-solving**.
 :::
 
----
 
 ## Featured Project: Toronto Bike Share Analysis
 
@@ -78,7 +114,10 @@ Analyzing **Bike Share Toronto** data to uncover how ridership patterns evolved 
 
 ---
 
+::: {.section-header}
 ## Experience
+<span class="section-badge">3 Active</span>
+:::
 
 ::: {.experience-grid}
 ::: {.experience-card}
@@ -90,8 +129,9 @@ Building data visualization platform with React, Next.js, and Plotly. Developing
 :::
 
 ::: {.experience-card}
-**Skills for the Future Program**  
-*IBM SkillsBuild × Riipen*  
+**UX and Frontend Developer Intern**  
+*Digital Placemaking Canada*  
+*IBM SkillsBuild × Riipen - Skills for the Future*  
 *Nov 2025 – Ongoing*
 
 Collaborating with Digital Placemaking Canada on website redesign and data-driven dashboards.
@@ -116,6 +156,101 @@ Completing comprehensive data analytics training covering Excel, SQL, Python, an
 
 ---
 
+::: {.section-header}
 ## Tools & Technologies
+<span class="section-badge">12 Skills</span>
+:::
 
 React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas
+
+<script>
+// Scroll-triggered left border animation for about cards and project cards
+(function() {
+  'use strict';
+  
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.about-intro-card, .about-section-card, .experience-card, .about-contents .callout-note').forEach(function(card) {
+      card.classList.add('border-animated');
+    });
+    return;
+  }
+  
+  const borderObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('border-animated');
+        borderObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.4,
+    rootMargin: '0px 0px -100px 0px'
+  });
+  
+  document.querySelectorAll('.about-intro-card, .about-section-card, .experience-card, .about-contents .callout-note').forEach(function(card) {
+    borderObserver.observe(card);
+  });
+})();
+
+// Scroll-triggered progress bar animation
+(function() {
+  'use strict';
+  
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.progress-bar').forEach(function(bar) {
+      const progress = bar.getAttribute('data-progress');
+      if (progress) {
+        setTimeout(function() {
+          bar.style.width = progress + '%';
+        }, 100);
+      }
+    });
+    return;
+  }
+  
+  const progressObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const bar = entry.target;
+        const progress = bar.getAttribute('data-progress');
+        
+        if (progress && !bar.classList.contains('animated')) {
+          bar.classList.add('animated');
+          setTimeout(function() {
+            bar.style.width = progress + '%';
+          }, 100);
+        }
+        
+        progressObserver.unobserve(bar);
+      }
+    });
+  }, {
+    threshold: 0.3,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  document.querySelectorAll('.progress-bar').forEach(function(bar) {
+    progressObserver.observe(bar);
+  });
+  
+  const kpiObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        kpiObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -30px 0px'
+  });
+  
+  document.querySelectorAll('.kpi-card').forEach(function(card, index) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ' + (index * 0.1) + 's, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ' + (index * 0.1) + 's';
+    kpiObserver.observe(card);
+  });
+})();
+</script>

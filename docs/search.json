@@ -88,14 +88,35 @@
     "href": "index.html",
     "title": "Zain Ghias",
     "section": "",
+    "text": "Key Metrics\n\n\n\n\n\n3/4 Year\n\n\n75%\n\n\n\nApplied Statistics Degree HBSc\n\n\n\n\n\n\n\n\n3\n\n\nInternships\n\n\n\n\n2\n\n\nAnalytics Projects\n\n\n\n\n\n\nHi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful.\n\n\n\nI’m currently a Software Engineer Intern at Wholeviz, a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on React, Next.js, Tailwind, and Plotly, where I design intuitive front-end interfaces and experiment with AI-assisted data visualization features.\nRecently, I was selected for the Skills for the Future Program with IBM SkillsBuild × Riipen, collaborating with Digital Placemaking Canada on website redesign and data-driven dashboards.\nMy startup experience has taught me to be adaptable, communicate effectively across different teams, and deliver results in fast-paced environments.\n\n\n\nAlongside my work, I’m completing the IBM Data Analytics Professional Certificate on Coursera and the IBM SkillsBuild Digital Credential in User Experience Design Fundamentals. Through these programs, I’m deepening my skills in Excel, SQL, Python (Pandas), and IBM Cognos Analytics, while learning to bridge analytical storytelling with UI and UX design thinking.\nOutside of code and coursework, I recharge through volleyball, table tennis, and long walks around Mississauga. I’m naturally curious about how things work, whether that’s a dataset, a business model, or a React component, and I like turning that curiosity into projects that make data actually mean something.\nGet in touch: zain.ghias@mail.utoronto.ca\n\n\n\n\n\n\n\nCurrently Open to Summer 2026 Internships\n\n\n\nLooking for opportunities in Data Analytics, Business Analysis, Frontend / UI-UX Development, or Software Engineering / Data Visualization.\nOpen to roles focused on analytics, design, and problem-solving.\n\n\n\n\n\n\n\n\n\n\nToronto Bike Share – March 2023 vs March 2024\n\n\n\n\nAnalyzing Bike Share Toronto data to uncover how ridership patterns evolved year over year and whether network growth aligned with actual demand.\nStack: Excel · Tableau · Python (planned)\nKey Question: Are Bike Share Toronto’s growing assets being used efficiently, or are certain stations and times under-utilized?\nView Project\n\n\n\n\n\n\n3 Active\n\n\n\nSoftware Engineer Intern\nWholeviz\nSep 2025 – Ongoing\nBuilding data visualization platform with React, Next.js, and Plotly. Developing AI-assisted visualization features.\n\n\nUX and Frontend Developer Intern\nDigital Placemaking Canada\nIBM SkillsBuild × Riipen - Skills for the Future\nNov 2025 – Ongoing\nCollaborating with Digital Placemaking Canada on website redesign and data-driven dashboards.\n\n\nFrontend Developer Intern\nQuor\nMay 2025 – Aug 2025\nDesigned and built cross-platform mobile app in React Native for Toronto startup.\n\n\nData Analytics Professional Certificate\nIBM via Coursera\nOct 2025 – Ongoing\nCompleting comprehensive data analytics training covering Excel, SQL, Python, and IBM Cognos Analytics.\n\n\n\n\n\n12 Skills\n\nReact · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas"
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Zain Ghias",
+    "section": "",
     "text": "Hi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful."
   },
   {
     "objectID": "index.html#featured-project-toronto-bike-share-analysis",
     "href": "index.html#featured-project-toronto-bike-share-analysis",
     "title": "Zain Ghias",
-    "section": "Featured Project: Toronto Bike Share Analysis",
-    "text": "Featured Project: Toronto Bike Share Analysis\n\n\n\n\n\n\nToronto Bike Share – March 2023 vs March 2024\n\n\n\n\nAnalyzing Bike Share Toronto data to uncover how ridership patterns evolved year over year and whether network growth aligned with actual demand.\nStack: Excel · Tableau · Python (planned)\nKey Question: Are Bike Share Toronto’s growing assets being used efficiently, or are certain stations and times under-utilized?\nView Project"
+    "section": "",
+    "text": "Toronto Bike Share – March 2023 vs March 2024\n\n\n\n\nAnalyzing Bike Share Toronto data to uncover how ridership patterns evolved year over year and whether network growth aligned with actual demand.\nStack: Excel · Tableau · Python (planned)\nKey Question: Are Bike Share Toronto’s growing assets being used efficiently, or are certain stations and times under-utilized?\nView Project"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Zain Ghias",
+    "section": "",
+    "text": "3 Active"
+  },
+  {
+    "objectID": "index.html#tools-technologies",
+    "href": "index.html#tools-technologies",
+    "title": "Zain Ghias",
+    "section": "",
+    "text": "12 Skills"
   },
   {
     "objectID": "projects.html",
@@ -110,26 +131,5 @@
     "title": "Projects",
     "section": "",
     "text": "Short highlights from what I’m building and learning. Each project represents a step forward in my data science and analytics journey.\n\n\n Click on any project card to explore the full analysis, methodology, and results."
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Zain Ghias",
-    "section": "Experience",
-    "text": "Experience\n\n\nSoftware Engineer Intern\nWholeviz\nSep 2025 – Ongoing\nBuilding data visualization platform with React, Next.js, and Plotly. Developing AI-assisted visualization features.\n\n\nSkills for the Future Program\nIBM SkillsBuild × Riipen\nNov 2025 – Ongoing\nCollaborating with Digital Placemaking Canada on website redesign and data-driven dashboards.\n\n\nFrontend Developer Intern\nQuor\nMay 2025 – Aug 2025\nDesigned and built cross-platform mobile app in React Native for Toronto startup.\n\n\nData Analytics Professional Certificate\nIBM via Coursera\nOct 2025 – Ongoing\nCompleting comprehensive data analytics training covering Excel, SQL, Python, and IBM Cognos Analytics."
-  },
-  {
-    "objectID": "index.html#tools-technologies",
-    "href": "index.html#tools-technologies",
-    "title": "Zain Ghias",
-    "section": "Tools & Technologies",
-    "text": "Tools & Technologies\nReact · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas"
-  },
-  {
-    "objectID": "index.html#about-me",
-    "href": "index.html#about-me",
-    "title": "Zain Ghias",
-    "section": "",
-    "text": "Hi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful."
   }
 ]

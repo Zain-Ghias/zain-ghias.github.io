@@ -537,6 +537,484 @@ html[data-theme='dark'] .card-text {
 }
 
 /* ========================================================
+   KPI Section Styling
+   ======================================================== */
+
+.kpi-section {
+  margin: 2.5rem 0;
+}
+
+.kpi-section-top {
+  margin: 0 0 0.5rem 0;
+}
+
+/* Subtle Key Metrics title */
+.kpi-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+html[data-theme='dark'] .kpi-section-title {
+  color: #a0aec0;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.kpi-section-top .kpi-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-top: 1rem;
+  align-items: stretch;
+  width: 100%;
+  display: grid;
+}
+
+.kpi-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.kpi-section-top .kpi-card {
+  padding: 0.75rem 0.7rem;
+  min-height: 130px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+.kpi-section-top .kpi-card:first-child {
+  padding-top: 1.1rem;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+  border-color: #007bff;
+  z-index: 10;
+  position: relative;
+}
+
+.kpi-card:hover::before {
+  left: 100%;
+}
+
+.kpi-card:hover .kpi-value {
+  transform: scale(1.1);
+  color: #0056b3;
+  position: relative;
+  z-index: 2;
+}
+
+.kpi-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #007bff;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.kpi-section-top .kpi-value {
+  font-size: 1.85rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.1;
+  margin-top: 0.5rem;
+}
+
+.kpi-label {
+  font-size: 0.95rem;
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  min-height: 2.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.kpi-section-top .kpi-label {
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.kpi-section-top .kpi-card:first-child .kpi-label {
+  margin-bottom: 0.25rem;
+}
+
+/* Align labels at same height for all cards (accounting for progress bar on first card) */
+.kpi-section-top .kpi-card:not(:first-child) .kpi-label {
+  margin-bottom: 0.4rem;
+}
+
+/* Degree type indicator */
+.kpi-degree-type {
+  display: block;
+  font-size: 0.6rem;
+  color: #007bff;
+  font-weight: 600;
+  margin-top: 0.15rem;
+  opacity: 0.8;
+  line-height: 1.1;
+}
+
+html[data-theme='dark'] .kpi-degree-type {
+  color: #60a5fa;
+}
+
+/* KPI Value Wrapper for badge positioning */
+.kpi-value-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* KPI Badge for degree year indicator - subtle style */
+.kpi-badge {
+  position: absolute;
+  top: -0.6rem;
+  right: 0;
+  background: transparent;
+  color: #6c757d;
+  padding: 0.15rem 0.5rem;
+  border: none;
+  border-radius: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.kpi-section-top .kpi-badge {
+  top: -0.55rem;
+  padding: 0.12rem 0.4rem;
+  font-size: 0.6rem;
+}
+
+html[data-theme='dark'] .kpi-badge {
+  color: #a0aec0;
+  background: transparent;
+}
+
+/* Progress Bar Styling */
+.progress-bar-container {
+  margin-top: 1rem;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.kpi-section-top .progress-bar-container {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  height: 6px;
+  flex-shrink: 0;
+  background: #e9ecef !important;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  width: 100% !important;
+  display: block !important;
+  min-height: 6px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.progress-bar {
+  height: 100% !important;
+  background: linear-gradient(90deg, #007bff 0%, #0056b3 100%) !important;
+  border-radius: 4px;
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Dark mode KPI cards */
+html[data-theme='dark'] .kpi-card {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme='dark'] .kpi-value {
+  color: #60a5fa;
+}
+
+html[data-theme='dark'] .kpi-label {
+  color: #a0aec0;
+}
+
+html[data-theme='dark'] .progress-bar-container {
+  background: #4a5568;
+}
+
+html[data-theme='dark'] .kpi-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.25);
+  border-color: #007bff;
+}
+
+html[data-theme='dark'] .kpi-card:hover .kpi-value {
+  color: #60a5fa;
+}
+
+/* Section Header with Badge */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.section-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+html[data-theme='dark'] .section-badge {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+  color: #a0aec0;
+}
+
+/* KPI Carousel Styling */
+.kpi-carousel-container {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.kpi-carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.kpi-carousel-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.kpi-carousel-page {
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  display: block;
+}
+
+.kpi-carousel-btn {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.kpi-carousel-btn.hidden {
+  display: none;
+}
+
+.kpi-carousel-btn:hover {
+  background: #ffffff;
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.kpi-carousel-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.kpi-carousel-prev {
+  left: -18px;
+}
+
+.kpi-carousel-next {
+  right: -18px;
+}
+
+.kpi-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.kpi-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dee2e6;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.kpi-dot:hover {
+  background: #adb5bd;
+  transform: scale(1.2);
+}
+
+.kpi-dot.active {
+  background: #007bff;
+  width: 24px;
+  border-radius: 4px;
+}
+
+html[data-theme='dark'] .kpi-carousel-btn {
+  background: rgba(45, 55, 72, 0.9);
+  border-color: #4a5568;
+  color: #60a5fa;
+}
+
+html[data-theme='dark'] .kpi-carousel-btn:hover {
+  background: #2d3748;
+  border-color: #007bff;
+}
+
+html[data-theme='dark'] .kpi-dot {
+  background: #4a5568;
+}
+
+html[data-theme='dark'] .kpi-dot:hover {
+  background: #6c757d;
+}
+
+html[data-theme='dark'] .kpi-dot.active {
+  background: #007bff;
+}
+
+/* Responsive KPI section */
+@media (max-width: 768px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .kpi-card {
+    padding: 1.25rem;
+  }
+  
+  .kpi-value {
+    font-size: 2rem;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .kpi-carousel-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+  
+  .kpi-carousel-prev {
+    left: -16px;
+  }
+  
+  .kpi-carousel-next {
+    right: -16px;
+  }
+}
+
+/* ========================================================
    Experience Section Styling
    ======================================================== */
 
@@ -552,12 +1030,11 @@ html[data-theme='dark'] .card-text {
 .experience-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 1px solid #dee2e6;
-  border-left: 3px solid #007bff;
+  border-left: 0;
   border-radius: 12px;
   padding: 1.1rem 1.25rem;
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              border-left-width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
@@ -565,6 +1042,7 @@ html[data-theme='dark'] .card-text {
   opacity: 0;
   animation: fadeInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
+
 
 .experience-card:nth-child(1) { animation-delay: 0.1s; }
 .experience-card:nth-child(2) { animation-delay: 0.15s; }
@@ -588,10 +1066,18 @@ html[data-theme='dark'] .card-text {
   top: 0;
   left: 0;
   width: 3px;
-  height: 100%;
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  height: 0;
+  background: linear-gradient(180deg, #007bff 0%, #0056b3 100%);
   z-index: 0;
-  transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: height 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.experience-card.border-animated::before {
+  height: 100%;
+}
+
+.experience-card.certificate-card.border-animated::before {
+  background: linear-gradient(180deg, #28a745 0%, #20c997 100%);
 }
 
 .experience-card:hover {
@@ -603,7 +1089,9 @@ html[data-theme='dark'] .card-text {
 
 .experience-card:hover::before {
   width: 4px;
+  height: 100%;
 }
+
 
 /* Certificate card - different color scheme */
 .experience-card.certificate-card {
@@ -690,6 +1178,7 @@ html[data-theme='dark'] .experience-card p {
   color: #cbd5e0;
 }
 
+
 /* ========================================================
    About Section Cards
    ======================================================== */
@@ -698,14 +1187,13 @@ html[data-theme='dark'] .experience-card p {
 .about-section-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 1px solid #dee2e6;
-  border-left: 3px solid #007bff;
+  border-left: 0;
   border-radius: 12px;
   padding: 1.5rem;
   margin: 1.5rem 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              border-left-width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
   will-change: transform, box-shadow;
@@ -718,16 +1206,27 @@ html[data-theme='dark'] .experience-card p {
   top: 0;
   left: 0;
   width: 3px;
-  height: 100%;
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  height: 0;
+  background: linear-gradient(180deg, #007bff 0%, #0056b3 100%);
   z-index: 0;
+  transition: height 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-intro-card.border-animated::before,
+.about-section-card.border-animated::before {
+  height: 100%;
 }
 
 .about-intro-card:hover,
 .about-section-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 123, 255, 0.12);
-  border-left-width: 4px;
+}
+
+.about-intro-card.border-animated:hover::before,
+.about-section-card.border-animated:hover::before {
+  width: 4px;
+  height: 100%;
 }
 
 .about-intro-card h2,
@@ -768,27 +1267,85 @@ html[data-theme='dark'] .about-section-card p {
    Featured Project Callout Hover Effects
    ======================================================== */
 
-/* Add hover effects to the featured project callout-note */
+/* Enhanced Featured Project Card Styling */
 .about-contents .callout-note {
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 1px solid #dee2e6;
+  border-left: 0;
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin: 1.5rem 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, box-shadow;
 }
 
-.about-contents .callout-note:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.15);
-  border-color: #007bff;
+.about-contents .callout-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, #007bff 0%, #0056b3 100%);
+  z-index: 0;
+  transition: height 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Dark mode callout hover */
+.about-contents .callout-note.border-animated::before {
+  height: 100%;
+}
+
+.about-contents .callout-note h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.about-contents .callout-note p {
+  color: #495057;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.about-contents .callout-note img {
+  border-radius: 8px;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-contents .callout-note:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+}
+
+.about-contents .callout-note.border-animated:hover::before {
+  width: 4px;
+  height: 100%;
+}
+
+/* Dark mode project card */
+html[data-theme='dark'] .about-contents .callout-note {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme='dark'] .about-contents .callout-note h3 {
+  color: #e2e8f0;
+}
+
+html[data-theme='dark'] .about-contents .callout-note p {
+  color: #cbd5e0;
+}
+
 html[data-theme='dark'] .about-contents .callout-note:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  border-color: #007bff;
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.25);
 }
 
 /* ========================================================
@@ -810,8 +1367,41 @@ html[data-theme='dark'] .tools-section {
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tool-item .tool-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tool-item .tool-icon:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
+}
+
+.tool-item {
+  font-size: 0.85rem;
+  color: #495057;
+  font-weight: 500;
+  margin-top: 0.25rem;
 }
 
 /* Staggered fade-in for tool icons */
