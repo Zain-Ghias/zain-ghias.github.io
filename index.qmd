@@ -3,7 +3,7 @@ title: "Zain Ghias"
 about:
   id: main-content
   template: trestles
-  image: images/Zain Ghias.jpg
+  image: images/IMG_8377.jpg
   image-shape: round
   links:
     - icon: envelope
@@ -96,20 +96,43 @@ Open to roles focused on **analytics**, **design**, and **problem-solving**.
 :::
 
 
-## Featured Project: Toronto Bike Share Analysis
+::: {.section-header}
+## Projects
+<span class="section-badge">2 Active</span>
+:::
 
-::: {.callout-note style="max-width: 430px;"}
-### Toronto Bike Share – March 2023 vs March 2024
+::: {.projects-grid}
+::: {.project-card}
+::: {.project-image-container}
+![](projects/bikeshare/images/Bike_Share_Toronto_logo.png){.project-image}
+:::
 
-![](projects/bikeshare/images/Bike_Share_Toronto_logo.png){width="200px" .center}
+::: {.project-content}
+**Bike Share Toronto Analysis**
 
-Analyzing **Bike Share Toronto** data to uncover how ridership patterns evolved year over year and whether network growth aligned with actual demand.  
+Analyzing ridership patterns year-over-year to assess network efficiency and demand alignment. Conducting financial estimation analysis for trips to evaluate operational performance and resource allocation.
 
-**Stack:** Excel · Tableau · Python (planned)  
+**Stack:** Excel · Tableau
 
-**Key Question:** Are Bike Share Toronto’s growing assets being used efficiently, or are certain stations and times under-utilized?  
+<a href="projects/bikeshare/index.qmd" class="project-btn">View Project</a>
+:::
+:::
 
-[View Project](projects/bikeshare/index.qmd){.btn .btn-primary .me-2}
+::: {.project-card}
+::: {.project-image-container}
+<div class="project-placeholder">📊</div>
+:::
+
+::: {.project-content}
+**Customer & Product Profitability Insights Dashboard**
+
+End-to-end analytics project: SQL data cleaning, transformation, and Power BI dashboards revealing revenue trends, profitability, and customer behavior insights.
+
+**Stack:** SQL · Power BI · Python
+
+<button class="project-btn project-btn-disabled" disabled aria-label="Project coming soon">Coming Soon</button>
+:::
+:::
 :::
 
 ---
@@ -121,36 +144,107 @@ Analyzing **Bike Share Toronto** data to uncover how ridership patterns evolved 
 
 ::: {.experience-grid}
 ::: {.experience-card}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
 **Software Engineer Intern**  
 *Wholeviz*  
 *Sep 2025 – Ongoing*
 
-Building data visualization platform with React, Next.js, and Plotly. Developing AI-assisted visualization features.
+Building data visualization platform with React, Next.js, and Plotly.
+:::
+
+::: {.card-back}
+**Key Responsibilities**
+
+Building interactive dashboards using React, Next.js, and Plotly. Developing AI-assisted data visualization features to enhance user experience.
+
+Collaborating with cross-functional teams on platform improvements and implementing responsive designs with Tailwind CSS.
+
+**Technologies**
+
+React · Next.js · Tailwind · Plotly · Python · Git
+
+<span class="flip-hint">← Click to flip back</span>
+:::
+:::
 :::
 
 ::: {.experience-card}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
 **UX and Frontend Developer Intern**  
 *Digital Placemaking Canada*  
-*IBM SkillsBuild × Riipen - Skills for the Future*  
-*Nov 2025 – Ongoing*
+*Nov 2025 – Present*
 
-Collaborating with Digital Placemaking Canada on website redesign and data-driven dashboards.
+Selected for Skills for the Future program (IBM SkillsBuild × Riipen). Redesigning website interface and creating data-driven dashboards.
+:::
+
+::: {.card-back}
+**Key Responsibilities**
+
+Selected for a paid experiential internship through the Skills for the Future program (IBM SkillsBuild × Riipen), collaborating with the startup team at Digital Placemaking Canada to redesign and develop a responsive website for their AI-driven platform, KinesisIQ.
+
+Contributing to UX research, front-end development, and interactive data visualizations that showcase KinesisIQ's civic-intelligence insights. Supporting the creation of analytical dashboards, demo flows, and user-centric features that enhance storytelling and engagement.
+
+This project bridges UI/UX design, software development, and analytical visualization, strengthening data-driven thinking and cross-functional collaboration skills in a dynamic startup environment.
+
+**Technologies**
+
+UX Design · Responsive Web Design · HTML · CSS · JavaScript · Data Visualization
+:::
+:::
 :::
 
 ::: {.experience-card}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
 **Frontend Developer Intern**  
 *Quor*  
 *May 2025 – Aug 2025*
 
-Designed and built cross-platform mobile app in React Native for Toronto startup.
+Designed and built cross-platform mobile app in React Native.
+:::
+
+::: {.card-back}
+**Key Responsibilities**
+
+Designed and developed cross-platform mobile application with responsive UI components in React Native.
+
+Collaborated with startup team in fast-paced environment and delivered production-ready features on tight deadlines.
+
+**Technologies**
+
+React Native · JavaScript · TypeScript · Mobile Development · Git
+:::
+:::
 :::
 
 ::: {.experience-card .certificate-card}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
 **Data Analytics Professional Certificate**  
 *IBM via Coursera*  
 *Oct 2025 – Ongoing*
 
-Completing comprehensive data analytics training covering Excel, SQL, Python, and IBM Cognos Analytics.
+Comprehensive data analytics training covering Excel, SQL, Python, and IBM Cognos Analytics.
+:::
+
+::: {.card-back}
+**Coursework**
+
+Excel fundamentals and advanced data analysis. SQL for data extraction and manipulation. Python programming with Pandas for data science.
+
+IBM Cognos Analytics for business intelligence and data visualization and storytelling techniques.
+
+**Skills Gained**
+
+Data Analysis · Statistical Methods · Business Intelligence
+:::
+:::
 :::
 :::
 
@@ -164,31 +258,46 @@ Completing comprehensive data analytics training covering Excel, SQL, Python, an
 React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas
 
 <script>
-// Scroll-triggered left border animation for about cards and project cards
+// Scroll-triggered card entrance + border animation
+// Cards fade in and slide up first, then border fills down
 (function() {
   'use strict';
   
+  const cards = document.querySelectorAll('.about-intro-card, .about-section-card, .experience-card, .project-card');
+  
   if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.about-intro-card, .about-section-card, .experience-card, .about-contents .callout-note').forEach(function(card) {
-      card.classList.add('border-animated');
+    // Fallback: show all cards immediately
+    cards.forEach(function(card) {
+      card.classList.add('card-visible', 'border-animated');
     });
     return;
   }
   
-  const borderObserver = new IntersectionObserver(function(entries) {
+  // Observer for card entrance animation
+  const cardObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add('border-animated');
-        borderObserver.unobserve(entry.target);
+        const card = entry.target;
+        
+        // Step 1: Make card visible (fade in + slide up)
+        card.classList.add('card-visible');
+        
+        // Step 2: After card appears, trigger border animation
+        setTimeout(function() {
+          card.classList.add('border-animated');
+        }, 300); // 300ms delay after card appears
+        
+        cardObserver.unobserve(card);
       }
     });
   }, {
-    threshold: 0.4,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.2, // Trigger when 20% of card is visible
+    rootMargin: '0px 0px -50px 0px' // Start animation slightly before card fully enters
   });
   
-  document.querySelectorAll('.about-intro-card, .about-section-card, .experience-card, .about-contents .callout-note').forEach(function(card) {
-    borderObserver.observe(card);
+  // Observe all cards
+  cards.forEach(function(card) {
+    cardObserver.observe(card);
   });
 })();
 
@@ -252,5 +361,71 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
     card.style.transition = 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ' + (index * 0.1) + 's, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ' + (index * 0.1) + 's';
     kpiObserver.observe(card);
   });
+})();
+
+// Flip card functionality for experience cards
+(function() {
+  'use strict';
+  
+  // Wait for DOM to be ready
+  function initFlipCards() {
+    const experienceCards = document.querySelectorAll('.experience-card');
+    
+    if (experienceCards.length === 0) {
+      // Retry if cards aren't loaded yet
+      setTimeout(initFlipCards, 100);
+      return;
+    }
+    
+    experienceCards.forEach(function(card) {
+      // Handle click/touch events
+      function handleFlip(e) {
+        // Prevent event bubbling
+        e.stopPropagation();
+        
+        // Only allow flip after card is visible
+        if (card.classList.contains('card-visible')) {
+          card.classList.toggle('flipped');
+          // Mark card as interacted to hide indicator
+          card.classList.add('card-interacted');
+        }
+      }
+      
+      // Click event
+      card.addEventListener('click', handleFlip);
+      
+      // Touch event for mobile (prevent double-tap zoom)
+      let touchStartTime = 0;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      
+      card.addEventListener('touchstart', function(e) {
+        touchStartTime = Date.now();
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      });
+      
+      card.addEventListener('touchend', function(e) {
+        const touchDuration = Date.now() - touchStartTime;
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const deltaX = Math.abs(touchEndX - touchStartX);
+        const deltaY = Math.abs(touchEndY - touchStartY);
+        
+        // Only flip on quick tap (not long press or swipe)
+        if (touchDuration < 300 && deltaX < 10 && deltaY < 10) {
+          e.preventDefault();
+          handleFlip(e);
+        }
+      });
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFlipCards);
+  } else {
+    initFlipCards();
+  }
 })();
 </script>
