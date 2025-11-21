@@ -2,6 +2,7 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/customer-profitability/index.html",
       "/projects/bikeshare/index.html"
     ]
   }

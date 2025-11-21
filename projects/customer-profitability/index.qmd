@@ -1,0 +1,25 @@
+---
+title: "Customer & Product Profitability Analytics Dashboard"
+date: 2025-11-01
+description: "End-to-end analytics project: SQL data cleaning, transformation, and Power BI dashboards revealing revenue trends, profitability, and customer behavior insights."
+toc: true
+---
+
+## Overview
+
+Project in progress — full write-up coming soon.
+
+---
+
+## Project Details
+
+**Date:** Nov 2025 – Present
+
+**Tools:** SQL · Power BI
+
+---
+
+## Status
+
+This project is currently in development. A detailed analysis and dashboard walkthrough will be available soon.
+

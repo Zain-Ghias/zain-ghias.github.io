@@ -88,14 +88,14 @@
     "href": "index.html",
     "title": "Zain Ghias",
     "section": "",
-    "text": "Key Metrics\n\n\n\n\n\n3/4 Year\n\n\n75%\n\n\n\nApplied Statistics Degree HBSc\n\n\n\n\n\n\n\n\n3\n\n\nInternships\n\n\n\n\n2\n\n\nAnalytics Projects\n\n\n\n\n\n\nHi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful.\n\n\n\nI’m currently a Software Engineer Intern at Wholeviz, a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on React, Next.js, Tailwind, and Plotly, where I design intuitive front-end interfaces and experiment with AI-assisted data visualization features.\nRecently, I was selected for the Skills for the Future Program with IBM SkillsBuild × Riipen, collaborating with Digital Placemaking Canada on website redesign and data-driven dashboards.\nMy startup experience has taught me to be adaptable, communicate effectively across different teams, and deliver results in fast-paced environments.\n\n\n\nAlongside my work, I’m completing the IBM Data Analytics Professional Certificate on Coursera and the IBM SkillsBuild Digital Credential in User Experience Design Fundamentals. Through these programs, I’m deepening my skills in Excel, SQL, Python (Pandas), and IBM Cognos Analytics, while learning to bridge analytical storytelling with UI and UX design thinking.\nOutside of code and coursework, I recharge through volleyball, table tennis, and long walks around Mississauga. I’m naturally curious about how things work, whether that’s a dataset, a business model, or a React component, and I like turning that curiosity into projects that make data actually mean something.\nGet in touch: zain.ghias@mail.utoronto.ca\n\n\n\n\n\n\n\nCurrently Open to Summer 2026 Internships\n\n\n\nLooking for opportunities in Data Analytics, Business Analysis, Frontend / UI-UX Development, or Software Engineering / Data Visualization.\nOpen to roles focused on analytics, design, and problem-solving.\n\n\n\n\n2 Active\n\n\n\n\n\n\n\nBike Share Toronto Analysis\nAnalyzing ridership patterns year-over-year to assess network efficiency and demand alignment. Conducting financial estimation analysis for trips to evaluate operational performance and resource allocation.\nStack: Excel · Tableau\nView Project\n\n\n\n\n\n📊\n\n\n\nCustomer & Product Profitability Insights Dashboard\nEnd-to-end analytics project: SQL data cleaning, transformation, and Power BI dashboards revealing revenue trends, profitability, and customer behavior insights.\nStack: SQL · Power BI · Python\n\nComing Soon\n\n\n\n\n\n\n\n3 Active\n\n\n\n\n\n\n\nSoftware Engineer Intern\nWholeviz\nSep 2025 – Ongoing\nBuilding data visualization platform with React, Next.js, and Plotly.\n\n\nKey Responsibilities\nBuilding interactive dashboards using React, Next.js, and Plotly. Developing AI-assisted data visualization features to enhance user experience.\nCollaborating with cross-functional teams on platform improvements and implementing responsive designs with Tailwind CSS.\nTechnologies\nReact · Next.js · Tailwind · Plotly · Python · Git\n← Click to flip back\n\n\n\n\n\n\n\n\nUX and Frontend Developer Intern\nDigital Placemaking Canada\nNov 2025 – Present\nSelected for Skills for the Future program (IBM SkillsBuild × Riipen). Redesigning website interface and creating data-driven dashboards.\n\n\nKey Responsibilities\nSelected for a paid experiential internship through the Skills for the Future program (IBM SkillsBuild × Riipen), collaborating with the startup team at Digital Placemaking Canada to redesign and develop a responsive website for their AI-driven platform, KinesisIQ.\nContributing to UX research, front-end development, and interactive data visualizations that showcase KinesisIQ’s civic-intelligence insights. Supporting the creation of analytical dashboards, demo flows, and user-centric features that enhance storytelling and engagement.\nThis project bridges UI/UX design, software development, and analytical visualization, strengthening data-driven thinking and cross-functional collaboration skills in a dynamic startup environment.\nTechnologies\nUX Design · Responsive Web Design · HTML · CSS · JavaScript · Data Visualization\n\n\n\n\n\n\n\n\nFrontend Developer Intern\nQuor\nMay 2025 – Aug 2025\nDesigned and built cross-platform mobile app in React Native.\n\n\nKey Responsibilities\nDesigned and developed cross-platform mobile application with responsive UI components in React Native.\nCollaborated with startup team in fast-paced environment and delivered production-ready features on tight deadlines.\nTechnologies\nReact Native · JavaScript · TypeScript · Mobile Development · Git\n\n\n\n\n\n\n\n\nData Analytics Professional Certificate\nIBM via Coursera\nOct 2025 – Ongoing\nComprehensive data analytics training covering Excel, SQL, Python, and IBM Cognos Analytics.\n\n\nCoursework\nExcel fundamentals and advanced data analysis. SQL for data extraction and manipulation. Python programming with Pandas for data science.\nIBM Cognos Analytics for business intelligence and data visualization and storytelling techniques.\nSkills Gained\nData Analysis · Statistical Methods · Business Intelligence\n\n\n\n\n\n\n\n12 Skills\n\nReact · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas"
+    "text": "Key Metrics\n\n\n\n\n\n3/4 Year\n\n\n75%\n\n\n\nApplied Statistics Degree HBSc\n\n\n\n\n\n\n\n\n3\n\n\nInternships\n\n\n\n\n2\n\n\nAnalytics Projects\nReact · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas"
   },
   {
     "objectID": "index.html#about-me",
     "href": "index.html#about-me",
     "title": "Zain Ghias",
-    "section": "",
-    "text": "Hi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful."
+    "section": "About Me",
+    "text": "About Me\nHi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful."
   },
   {
     "objectID": "index.html#featured-project-toronto-bike-share-analysis",
@@ -108,15 +108,15 @@
     "objectID": "index.html#experience",
     "href": "index.html#experience",
     "title": "Zain Ghias",
-    "section": "",
-    "text": "3 Active"
+    "section": "Experience",
+    "text": "Experience\n3 Active"
   },
   {
     "objectID": "index.html#tools-technologies",
     "href": "index.html#tools-technologies",
     "title": "Zain Ghias",
-    "section": "",
-    "text": "12 Skills"
+    "section": "Tools & Technologies",
+    "text": "Tools & Technologies\n12 Skills"
   },
   {
     "objectID": "projects.html",
@@ -136,7 +136,35 @@
     "objectID": "index.html#projects",
     "href": "index.html#projects",
     "title": "Zain Ghias",
+    "section": "Projects",
+    "text": "Projects\n2 Active"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html",
+    "href": "projects/customer-profitability/index.html",
+    "title": "Customer & Product Profitability Analytics Dashboard",
     "section": "",
-    "text": "2 Active"
+    "text": "Project in progress — full write-up coming soon."
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#overview",
+    "href": "projects/customer-profitability/index.html#overview",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "",
+    "text": "Project in progress — full write-up coming soon."
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#project-details",
+    "href": "projects/customer-profitability/index.html#project-details",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Project Details",
+    "text": "Project Details\nDate: Nov 2025 – Present\nTools: SQL · Power BI"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#status",
+    "href": "projects/customer-profitability/index.html#status",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Status",
+    "text": "Status\nThis project is currently in development. A detailed analysis and dashboard walkthrough will be available soon."
   }
 ]

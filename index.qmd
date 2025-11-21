@@ -59,6 +59,7 @@ Analytics Projects
 :::
 :::
 :::
+:::
 
 ---
 
@@ -124,13 +125,13 @@ Analyzing ridership patterns year-over-year to assess network efficiency and dem
 :::
 
 ::: {.project-content}
-**Customer & Product Profitability Insights Dashboard**
+**Customer & Product Profitability Analytics Dashboard**
 
 End-to-end analytics project: SQL data cleaning, transformation, and Power BI dashboards revealing revenue trends, profitability, and customer behavior insights.
 
 **Stack:** SQL · Power BI · Python
 
-<button class="project-btn project-btn-disabled" disabled aria-label="Project coming soon">Coming Soon</button>
+<a href="projects/customer-profitability/index.qmd" class="project-btn">View Project</a>
 :::
 :::
 :::
