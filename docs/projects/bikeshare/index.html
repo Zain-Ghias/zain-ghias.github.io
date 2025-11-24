@@ -333,13 +333,17 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#financial-extension-business-and-revenue-analysis" id="toc-financial-extension-business-and-revenue-analysis" class="nav-link" data-scroll-target="#financial-extension-business-and-revenue-analysis">Financial Extension — Business and Revenue Analysis</a>
   <ul class="collapse">
   <li><a href="#why-a-financial-view" id="toc-why-a-financial-view" class="nav-link" data-scroll-target="#why-a-financial-view">Why a financial view?</a></li>
-  <li><a href="#findings" id="toc-findings" class="nav-link" data-scroll-target="#findings">Findings</a></li>
-  <li><a href="#interpretation-and-suggestions" id="toc-interpretation-and-suggestions" class="nav-link" data-scroll-target="#interpretation-and-suggestions">Interpretation and Suggestions</a></li>
-  <li><a href="#how-this-was-modeled" id="toc-how-this-was-modeled" class="nav-link" data-scroll-target="#how-this-was-modeled">How This Was Modeled</a></li>
+  <li><a href="#revenue-findings-trip-level-only" id="toc-revenue-findings-trip-level-only" class="nav-link" data-scroll-target="#revenue-findings-trip-level-only">Revenue Findings (Trip-Level Only)</a></li>
+  <li><a href="#interpretation-2" id="toc-interpretation-2" class="nav-link" data-scroll-target="#interpretation-2">Interpretation</a></li>
+  </ul></li>
+  <li><a href="#how-the-trip-level-revenue-model-works" id="toc-how-the-trip-level-revenue-model-works" class="nav-link" data-scroll-target="#how-the-trip-level-revenue-model-works">How the Trip-Level Revenue Model Works</a>
+  <ul class="collapse">
+  <li><a href="#new-excel-fields" id="toc-new-excel-fields" class="nav-link" data-scroll-target="#new-excel-fields">New Excel Fields</a></li>
+  <li><a href="#pricing-framework-validated" id="toc-pricing-framework-validated" class="nav-link" data-scroll-target="#pricing-framework-validated">Pricing Framework (Validated)</a></li>
+  <li><a href="#additional-data-issue" id="toc-additional-data-issue" class="nav-link" data-scroll-target="#additional-data-issue">Additional Data Issue</a></li>
   <li><a href="#references-sources-and-assumptions" id="toc-references-sources-and-assumptions" class="nav-link" data-scroll-target="#references-sources-and-assumptions">References, Sources, and Assumptions</a></li>
   </ul></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
-  <li><a href="#repro-notes-and-disclaimer" id="toc-repro-notes-and-disclaimer" class="nav-link" data-scroll-target="#repro-notes-and-disclaimer">Repro Notes and Disclaimer</a></li>
+  <li><a href="#project-note" id="toc-project-note" class="nav-link" data-scroll-target="#project-note">Project Note</a></li>
   </ul>
 </nav>
     </div>
@@ -737,53 +741,78 @@ Key fields used: duration (min), hour, weekday, user type, station names, and <c
 <h2 class="anchored" data-anchor-id="financial-extension-business-and-revenue-analysis">Financial Extension — Business and Revenue Analysis</h2>
 <section id="why-a-financial-view" class="level3">
 <h3 class="anchored" data-anchor-id="why-a-financial-view">Why a financial view?</h3>
-<p>Bike Share Toronto’s open data does not include pricing, ledger, or cost fields. To connect ridership to business outcomes, I built a simple financial layer:</p>
+<p>Bike Share Toronto’s open data does not include pricing, membership fees, taxes, or cost information.<br>
+To connect ridership trends to business outcomes, I added a <strong>trip-level revenue model</strong> using only publicly available pricing rules from the City of Toronto (2023 and 2024).</p>
+<p>This keeps the analysis fully transparent:</p>
 <ul>
-<li><strong>Trip-level revenue model</strong> using public pricing from City background files (2023/2024) and the current pricing page.<br>
+<li><strong>Revenue is modeled purely at the trip level</strong> (duration × bike model × user type)<br>
 </li>
-<li><strong>Cost proxy</strong> of <strong>30% of revenue</strong>, guided by NACTO’s shared micromobility benchmarks (typical range 25–35%).<br>
+<li><strong>Membership fees, taxes, discounts, and account-level billing are not included</strong><br>
 </li>
-<li><strong>Transparent rules</strong>: 2023 annual-member rides are set to $0 per trip (model type and overage billing not available). A small set of 2023 annual trips over 30 minutes (n=806) was flagged and excluded from revenue.<br>
+<li><strong>Costs and profit are not yet modeled</strong>, because system-wide operational cost data is not available in the open dataset<br>
 </li>
-<li><strong>Scope</strong>: Membership fees, taxes, and non-operational costs are out of scope. Results are modeled estimates to illustrate direction, not accounting figures.</li>
+<li>Any cost/profit KPIs visible in the dashboard are <strong>temporary placeholders</strong>, included only to show what a complete financial dashboard layout could look like</li>
 </ul>
-<p><strong>What to look for below:</strong><br>
-1) YoY <strong>Revenue</strong>, <strong>Cost</strong>, and <strong>Gross Profit</strong> KPI cards.<br>
-2) <strong>Revenue by day of week</strong> to match commuter patterns.<br>
-3) <strong>Top 10 trips</strong> by modeled revenue.<br>
-4) <strong>Bike-type split</strong> (classic vs e-bike) and <strong>member vs casual</strong> contribution.</p>
-<p>The goal is to turn usage data into a concise business readout that supports decisions on pricing, promotions, and operations.</p>
-<p><img src="images/FinancialPerformanceDashboard.png" class="img-fluid" data-fig-cap="Financial Performance Dashboard: Revenue, Cost (30% proxy), and Gross Profit (Mar 2023 → Mar 2024)"></p>
-</section>
-<section id="findings" class="level3">
-<h3 class="anchored" data-anchor-id="findings">Findings</h3>
+<p>I have found <strong>official cost-per-trip figures provided by Bike Share Toronto</strong>, which will allow a more accurate cost model.<br>
+These will be integrated in a future update.</p>
+<p>The financial portion of this project will remain <strong>trip-level only</strong>, meaning it will not include external costs such as:</p>
 <ul>
-<li><strong>Revenue:</strong> $711,804 in Mar 2024 vs $628,748 in Mar 2023 (<strong>+13.2%</strong>)<br>
+<li>bike purchase and depreciation<br>
 </li>
-<li><strong>Cost (proxy):</strong> $213,541 in 2024 using a 30% operating ratio<br>
+<li>maintenance and repairs<br>
 </li>
-<li><strong>Gross Profit:</strong> $498,263 in 2024 vs $440,124 in 2023 (<strong>+13.2%</strong>)<br>
+<li>staff labour<br>
 </li>
-<li><strong>Weekday revenue peaks</strong> midweek, matching commuter demand<br>
+<li>rebalancing/relocation costs<br>
 </li>
-<li><strong>Classic bikes</strong> generated ~94% of March 2024 revenue; e-bikes are smaller but a clear upsell</li>
+<li>charging infrastructure<br>
+</li>
+<li>administration and overhead</li>
 </ul>
-</section>
-<section id="interpretation-and-suggestions" class="level3">
-<h3 class="anchored" data-anchor-id="interpretation-and-suggestions">Interpretation and Suggestions</h3>
-<ul>
-<li><strong>Efficiency:</strong> GP growth tracks revenue, suggesting scalable operations rather than cost inflation<br>
-</li>
-<li><strong>Demand focus:</strong> Wednesday and Thursday are reliable cash-flow days; weekends are an opportunity for promotions or partner offers<br>
-</li>
-<li><strong>Growth play:</strong> Most per-trip dollars come from casuals; nudge frequent casuals toward annual memberships to stabilize demand and retention</li>
-</ul>
+<p>Those are outside the scope of the ridership dataset, but the trip-level approach provides a realistic and defensible baseline.</p>
+<p><img src="images/FinancialPerformanceDashboard.png" class="img-fluid" data-fig-cap="Financial Performance Dashboard: modeled trip-level revenue (cost/profit placeholders)"></p>
 <hr>
 </section>
-<section id="how-this-was-modeled" class="level3">
-<h3 class="anchored" data-anchor-id="how-this-was-modeled">How This Was Modeled</h3>
-<section id="new-excel-fields" class="level4">
-<h4 class="anchored" data-anchor-id="new-excel-fields">New Excel Fields</h4>
+<section id="revenue-findings-trip-level-only" class="level3">
+<h3 class="anchored" data-anchor-id="revenue-findings-trip-level-only">Revenue Findings (Trip-Level Only)</h3>
+<ul>
+<li><strong>March 2023 Revenue:</strong> $628,748<br>
+</li>
+<li><strong>March 2024 Revenue:</strong> $711,804<br>
+</li>
+<li><strong>YoY Growth:</strong> <strong>+13.2%</strong></li>
+</ul>
+<p>Additional observations:</p>
+<ul>
+<li>Midweek (Wed/Thu) shows the strongest revenue, matching commuter behaviour<br>
+</li>
+<li>Classic bikes contribute ~94 percent of total revenue due to their volume<br>
+</li>
+<li>Casual riders generate the highest per-trip revenue and represent a strong conversion opportunity</li>
+</ul>
+</section>
+<section id="interpretation-2" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-2">Interpretation</h3>
+<ul>
+<li>Ridership and revenue increased year-over-year across both commuter and leisure segments<br>
+</li>
+<li>Longer trip durations in 2024 suggest stronger leisure/tourism momentum<br>
+</li>
+<li>Casual riders remain the key source of per-trip dollars<br>
+</li>
+<li>Midweek revenue stability demonstrates reliable commuter demand</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Revenue is modeled accurately using official rate rules.<br>
+Cost and profit values shown in the dashboard are placeholders and will be replaced by a trip-level cost model using verified figures from Bike Share Toronto.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="how-the-trip-level-revenue-model-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-trip-level-revenue-model-works">How the Trip-Level Revenue Model Works</h2>
+<section id="new-excel-fields" class="level3">
+<h3 class="anchored" data-anchor-id="new-excel-fields">New Excel Fields</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -800,94 +829,93 @@ Key fields used: duration (min), hour, weekday, user type, station names, and <c
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><strong>Est. Trip Revenue ($)</strong></td>
-<td style="text-align: left;">Calculate revenue per row</td>
-<td style="text-align: left;">Applies the correct pricing rule by user type, duration, and bike model when available</td>
+<td style="text-align: left;">Revenue per trip</td>
+<td style="text-align: left;">Applies rate rules by year, duration, bike model, and user type</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Pricing Basis</strong></td>
-<td style="text-align: left;">Keep logic transparent</td>
-<td style="text-align: left;">Label such as “Casual classic unlock + per-min” or “Member classic ≤ 30 min”</td>
+<td style="text-align: left;">Transparency</td>
+<td style="text-align: left;">Labels such as “2024 casual classic per-min rate”</td>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
-<section id="pricing-framework" class="level4">
-<h4 class="anchored" data-anchor-id="pricing-framework">Pricing Framework</h4>
-<p><img src="images/Pricing_Constants.png" class="img-fluid" data-fig-cap="Pricing constants from City of Toronto background files, 2023 and 2024"></p>
+<section id="pricing-framework-validated" class="level3">
+<h3 class="anchored" data-anchor-id="pricing-framework-validated">Pricing Framework (Validated)</h3>
+<p><img src="images/Pricing_Constants.png" class="img-fluid" data-fig-cap="Pricing constants sourced from City of Toronto background files"></p>
+<p><strong>2023 Pricing</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Year</th>
-<th style="text-align: center;">User Type</th>
-<th style="text-align: center;">Bike Type</th>
-<th style="text-align: left;">Pricing Rule</th>
-<th style="text-align: left;">Formula / Rate</th>
-<th style="text-align: left;">Notes</th>
+<th>User Type</th>
+<th>Bike</th>
+<th>Rule</th>
+<th>Formula</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">2023</td>
-<td style="text-align: center;">Casual</td>
-<td style="text-align: center;">Classic</td>
-<td style="text-align: left;">Base 30 min</td>
-<td style="text-align: left;">$3.25 flat</td>
-<td style="text-align: left;">+$4 for each additional 30-min block</td>
+<td>Casual</td>
+<td>Classic</td>
+<td>Base 30 min</td>
+<td>$3.25 flat + $4 per extra 30-min block</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">2023</td>
-<td style="text-align: center;">Annual</td>
-<td style="text-align: center;">Classic</td>
-<td style="text-align: left;">Included</td>
-<td style="text-align: left;">$0 per trip</td>
-<td style="text-align: left;">Overage not identifiable in the dataset</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2024</td>
-<td style="text-align: center;">Casual</td>
-<td style="text-align: center;">Classic</td>
-<td style="text-align: left;">Unlock + per-min</td>
-<td style="text-align: left;">$1 + $0.12 × minutes</td>
-<td style="text-align: left;">2024 model</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2024</td>
-<td style="text-align: center;">Casual</td>
-<td style="text-align: center;">E-bike</td>
-<td style="text-align: left;">Unlock + per-min</td>
-<td style="text-align: left;">$1 + $0.20 × minutes</td>
-<td style="text-align: left;">Higher e-bike rate</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2024</td>
-<td style="text-align: center;">Annual</td>
-<td style="text-align: center;">Classic</td>
-<td style="text-align: left;">Included + overage</td>
-<td style="text-align: left;">MAX(0, minutes − 30) × $0.12</td>
-<td style="text-align: left;">Conservative</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2024</td>
-<td style="text-align: center;">Annual</td>
-<td style="text-align: center;">E-bike</td>
-<td style="text-align: left;">Per-min</td>
-<td style="text-align: left;">$0.10 × minutes</td>
-<td style="text-align: left;">Applies to all durations</td>
+<td>Annual</td>
+<td>Classic</td>
+<td>Included</td>
+<td>$0 per trip (overage not identifiable)</td>
 </tr>
 </tbody>
 </table>
-<p>Annual member rides in 2023 were treated as <strong>$0</strong> because the dataset lacks overage billing and bike model detail.</p>
+<p><strong>2024 Pricing</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>User Type</th>
+<th>Bike</th>
+<th>Rule</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Casual</td>
+<td>Classic</td>
+<td>Unlock + per-min</td>
+<td>$1 + $0.12 × minutes</td>
+</tr>
+<tr class="even">
+<td>Casual</td>
+<td>E-bike</td>
+<td>Unlock + per-min</td>
+<td>$1 + $0.20 × minutes</td>
+</tr>
+<tr class="odd">
+<td>Annual</td>
+<td>Classic</td>
+<td>Overage only</td>
+<td>MAX(0, minutes − 30) × $0.12</td>
+</tr>
+<tr class="even">
+<td>Annual</td>
+<td>E-bike</td>
+<td>Per-min</td>
+<td>$0.10 × minutes</td>
+</tr>
+</tbody>
+</table>
+<hr>
 </section>
-<section id="additional-data-issue" class="level4">
-<h4 class="anchored" data-anchor-id="additional-data-issue">Additional Data Issue</h4>
+<section id="additional-data-issue" class="level3">
+<h3 class="anchored" data-anchor-id="additional-data-issue">Additional Data Issue</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -901,26 +929,21 @@ Key fields used: duration (min), hour, weekday, user type, station names, and <c
 <th style="text-align: left;">Issue</th>
 <th style="text-align: center;">Year</th>
 <th style="text-align: right;">Count</th>
-<th>Likely cause</th>
-<th>Fix</th>
+<th>Likely Cause</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Annual member trips &gt; 30 min</td>
+<td style="text-align: left;">Annual member trips &gt; 30 minutes</td>
 <td style="text-align: center;">2023</td>
 <td style="text-align: right;"><strong>806</strong></td>
-<td>Overage billing not present in dataset</td>
-<td>Excluded from revenue and noted in assumptions</td>
+<td>Billing data not available</td>
+<td>Excluded from revenue (cannot be priced reliably)</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="cost-proxy" class="level4">
-<h4 class="anchored" data-anchor-id="cost-proxy">Cost Proxy</h4>
-<p>A <strong>30% operating cost</strong> ratio was applied to revenue to estimate costs. This aligns with the <em>NACTO 2023 Shared Micromobility Report</em>, which places typical cost shares in the <strong>25–35%</strong> range for comparable systems.</p>
 <hr>
-</section>
 </section>
 <section id="references-sources-and-assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="references-sources-and-assumptions">References, Sources, and Assumptions</h3>
@@ -936,61 +959,93 @@ Key fields used: duration (min), hour, weekday, user type, station names, and <c
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td><a href="https://nacto.org/publication/shared-micromobility-report-2023/?utm_source=chatgpt.com">NACTO 2023 Shared Micromobility Report</a></td>
-<td>Cost and revenue benchmarks</td>
-<td>Basis for the <strong>30% operating cost</strong> proxy (within a 25–35% range)</td>
+<td><a href="https://www.toronto.ca/legdocs/mmis/2023/ie/bgrd/backgroundfile-234851.pdf">City of Toronto Background File (2023)</a></td>
+<td>2023 pricing structure</td>
+<td>Used for 2023 casual/annual trip-level pricing rules</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
-<td><a href="https://www.toronto.ca/legdocs/mmis/2023/ie/bgrd/backgroundfile-234851.pdf?utm_source=chatgpt.com">City of Toronto Background File (2023)</a></td>
-<td>2023 pricing structure</td>
-<td>Constants for 2023 casual pricing ($3.25 base, $4 per 30-min overage)</td>
+<td><a href="https://www.toronto.ca/legdocs/mmis/2024/ie/bgrd/backgroundfile-241790.pdf">City of Toronto Background File (2024)</a></td>
+<td>2024 updated pricing</td>
+<td>Used for 2024 unlock fees and per-minute rate rules</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td><a href="https://www.toronto.ca/legdocs/mmis/2024/ie/bgrd/backgroundfile-241790.pdf?utm_source=chatgpt.com">City of Toronto Background File (2024)</a></td>
-<td>2024 pricing and rate changes</td>
-<td>Constants for 2024 unlock and per-minute rates</td>
+<td><a href="https://bikesharetoronto.com/pricing/">Bike Share Toronto Pricing</a></td>
+<td>Public reference pricing</td>
+<td>Validated trip pricing logic for modeling</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td><a href="https://bikesharetoronto.com/pricing/?utm_source=chatgpt.com">Bike Share Toronto Pricing</a></td>
-<td>Public reference</td>
-<td>Validation and a clear reader link</td>
+<td><em>Upcoming: Bike Share Toronto trip-level cost metrics</em></td>
+<td>Verified system cost-per-trip values</td>
+<td>Will replace placeholder cost/profit KPIs in the next update</td>
 </tr>
 </tbody>
 </table>
 <blockquote class="blockquote">
-<p>All financial figures are modeled estimates for learning and portfolio display. When account-level data was unavailable, assumptions were applied and documented.</p>
+<p>All financial figures reflect <strong>trip-level modeling only</strong>, based on publicly available pricing.<br>
+Membership fees, overhead costs, rebalancing, repairs, depreciation, and other operational expenses are <strong>outside the scope</strong> of the dataset.<br>
+A refined version with verified cost-per-trip values will be added once integrated.</p>
 </blockquote>
 <hr>
 </section>
 </section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
-<ul>
-<li>Automate cleaning and revenue logic in <strong>Python (Pandas)</strong><br>
-</li>
-<li>Add February and April to test seasonal stability<br>
-</li>
-<li>Use weather and event data for richer explanations<br>
-</li>
-<li>Publish interactive dashboards with filters on Tableau Public</li>
-</ul>
-<hr>
-</section>
-<section id="repro-notes-and-disclaimer" class="level2">
-<h2 class="anchored" data-anchor-id="repro-notes-and-disclaimer">Repro Notes and Disclaimer</h2>
-<ul>
-<li><strong>Assumptions:</strong> local timezone, station names standardized by ID<br>
-</li>
-<li><strong>Color coding:</strong> 2023 teal, 2024 orange<br>
-</li>
-<li><strong>Artifacts:</strong> <code>data_issues.xlsx</code>, Tableau workbook (<code>.twb</code>), <code>/images</code> folder</li>
-</ul>
-<p>This is a personal educational project.<br>
-Data: <a href="https://open.toronto.ca/">Bike Share Toronto Open Data Portal</a>.<br>
-Logo used for illustrative purposes.</p>
+<section id="project-note" class="level2">
+<h2 class="anchored" data-anchor-id="project-note">Project Note</h2>
+<p>This financial extension is part of a <strong>personal data analytics project</strong>.<br>
+It is designed to demonstrate how trip-level modeling can be applied to an open mobility dataset.<br>
+The financial section is intentionally limited to fields available in the data.<br>
+A refined version with verified cost-per-trip values will be published soon.</p>
+<style>
+/* Enhanced heading styles with blue horizontal lines */
+h2 {
+  color: #2c3e50;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #007bff;
+}
+
+h3 {
+  color: #495057;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Dark mode heading styles */
+html[data-theme='dark'] h1,
+html[data-theme='dark'] h2,
+html[data-theme='dark'] h3,
+html[data-theme='dark'] h4,
+html[data-theme='dark'] h5,
+html[data-theme='dark'] h6,
+body.quarto-dark h1,
+body.quarto-dark h2,
+body.quarto-dark h3,
+body.quarto-dark h4,
+body.quarto-dark h5,
+body.quarto-dark h6,
+html[data-theme='dark'] main h1,
+html[data-theme='dark'] main h2,
+html[data-theme='dark'] main h3,
+html[data-theme='dark'] main h4,
+body.quarto-dark main h1,
+body.quarto-dark main h2,
+body.quarto-dark main h3,
+body.quarto-dark main h4 {
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] h2,
+body.quarto-dark h2,
+html[data-theme='dark'] main h2,
+body.quarto-dark main h2 {
+  border-bottom-color: #4da3ff !important;
+}
+</style>
 
 
 </section>

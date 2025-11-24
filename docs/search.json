@@ -4,7 +4,126 @@
     "href": "resume.html",
     "title": "Resume",
     "section": "",
-    "text": "Zain Ghias\nApplied Statistics | Data Analytics | Software Development\n\n\nDownload PDF Contact Me\n\n\nPreview: View the full resume below or download the PDF for the best experience.\n\n\n\n\n\n\nLast updated: October 2025"
+    "text": "Zain Ghias\nApplied Statistics | Data Analytics | Software Development\n\n\nDownload PDF Contact Me\n\n\nPreview: View the full resume below or download the PDF for the best experience.\n\n\n\n\n\nLast updated: November 10, 2025"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html",
+    "href": "projects/customer-profitability/index.html",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "",
+    "text": "This project analyzes an 18,432-transaction retail dataset using SQL and Power BI to answer critical business questions about profitability, customer behavior, and market performance.\nThe project shows a clear workflow from SQL transformation to Power BI dashboards, with all cleaning and metric engineering completed in SQL before visualization.\n\n\nThe SQL analysis and Power BI dashboards address these key business questions:\nProduct & Profitability: - Which product categories generate the highest revenue? - Which categories actually drive profit (not just sales)? - Which sub-categories are the true margin leaders?\nMarket Performance: - Which countries and markets outperform others? - How do sales and profit evolve over time?\nCustomer Behavior: - Who are the highest-value customers? - Which age groups drive the most revenue? - Does gender influence spending patterns? - Which regions consistently attract high-value sales?"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#overview",
+    "href": "projects/customer-profitability/index.html#overview",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "",
+    "text": "This project analyzes an 18,432-transaction retail dataset using SQL and Power BI to answer critical business questions about profitability, customer behavior, and market performance.\nThe project shows a clear workflow from SQL transformation to Power BI dashboards, with all cleaning and metric engineering completed in SQL before visualization.\n\n\nThe SQL analysis and Power BI dashboards address these key business questions:\nProduct & Profitability: - Which product categories generate the highest revenue? - Which categories actually drive profit (not just sales)? - Which sub-categories are the true margin leaders?\nMarket Performance: - Which countries and markets outperform others? - How do sales and profit evolve over time?\nCustomer Behavior: - Who are the highest-value customers? - Which age groups drive the most revenue? - Does gender influence spending patterns? - Which regions consistently attract high-value sales?"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#project-purpose",
+    "href": "projects/customer-profitability/index.html#project-purpose",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Project Purpose",
+    "text": "Project Purpose\n\nMotivation\nUnderstanding which products and markets actually drive profitability is crucial for business decision-making. Revenue alone doesn’t tell the full story. This project explores the gap between high-revenue categories and high-profit categories, revealing patterns that can inform pricing, inventory, and marketing strategies.\n\n\nCore Question\n\nWhich products, markets, and customer segments drive profitability, and how do revenue and profit patterns differ across categories and regions?\n\n\n\nWhy This Dataset?\nThis retail transaction dataset provides a realistic view of profitability challenges in a competitive market. The data includes product categories, customer demographics, geography, pricing, and costs, making it ideal for understanding margin dynamics and identifying opportunities for optimization.\n\n\nTools & Technologies\n\nSQL: MySQL Workbench - data transformation and analysis\nPower BI: Dashboard development and visualization"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#data-summary",
+    "href": "projects/customer-profitability/index.html#data-summary",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Data Summary",
+    "text": "Data Summary\n\nSource: Analyzing Customer Spending Habits (Kaggle)\nOriginal Author: Vineet Bahl\nDataset: SalesForCourse_quizz_table.csv\nVolume: 18,432 transactions\nTime Period: January 2015 - July 2016\nKey Fields: Date, Year, Month, Customer Age, Customer Gender, Country, State, Product Category, Sub Category, Quantity, Unit Cost, Unit Price, Revenue\nData Structure: Single flat table format (not normalized). In a production environment, this data would typically be stored across multiple normalized tables (e.g., orders, order_items, customers, products, inventory).\nKey Limitation: The dataset lacks product-level IDs and customer IDs, which limits product-specific tracking and individual customer analysis. See the Data Limitations section for details."
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#data-preparation-sql",
+    "href": "projects/customer-profitability/index.html#data-preparation-sql",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Data Preparation (SQL)",
+    "text": "Data Preparation (SQL)\nBefore visualization, the raw dataset required significant transformation. All cleaning and metric engineering was completed in MySQL using structured SQL scripts.\n\nTransformation Steps\n\nStandardized column names - converted spaces to underscores for SQL compatibility\nDate conversion - transformed text-based dates (MM/DD/YY) into proper DATE type\nMetric engineering - calculated Profit and Profit_Margin at the transaction level\nData validation - ran checks for nulls, negative values, and revenue calculation mismatches\n\n\n\nSQL Transformation Script\nThe complete transformation script is available for download: transformations.sql\nKey transformations:\n-- Standardize column names\nALTER TABLE sales_transactions\nCHANGE COLUMN `Customer Age` Customer_Age INT,\nCHANGE COLUMN `Customer Gender` Customer_Gender VARCHAR(10),\nCHANGE COLUMN `Product Category` Product_Category VARCHAR(50),\nCHANGE COLUMN `Sub Category` Sub_Category VARCHAR(50);\n\n-- Convert text dates to DATE type\nUPDATE sales_transactions\nSET Date_Formatted = STR_TO_DATE(Date, '%m/%d/%y');\n\n-- Add derived business metrics\nUPDATE sales_transactions\nSET Profit = (Unit_Price - Unit_Cost) * Quantity,\n    Profit_Margin = ROUND(Profit / Revenue * 100, 2);\nWhat this does:\n\nColumn name standardization (e.g., Customer Age to Customer_Age)\nDate parsing using STR_TO_DATE() with format '%m/%d/%y'\nProfit calculation: (Unit_Price - Unit_Cost) * Quantity\nProfit margin: (Profit / Revenue) * 100"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#exploratory-analysis-sql",
+    "href": "projects/customer-profitability/index.html#exploratory-analysis-sql",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Exploratory Analysis (SQL)",
+    "text": "Exploratory Analysis (SQL)\nAfter transformation, exploratory queries were run to understand profitability patterns, validate data quality, and prepare insights for visualization.\n\nAnalysis Queries\nThe complete analysis script is available for download: analysis_queries.sql\nExample queries:\n-- Executive Summary Metrics\nSELECT \n    ROUND(SUM(Revenue), 2) AS Total_Revenue,\n    ROUND(SUM(Profit), 2) AS Total_Profit,\n    ROUND(AVG(Profit_Margin), 2) AS Avg_Profit_Margin,\n    SUM(Quantity) AS Total_Units_Sold,\n    COUNT(*) AS Total_Transactions\nFROM sales_transactions;\n\n-- Revenue / Profit by Product Category\nSELECT \n    Product_Category,\n    ROUND(SUM(Revenue), 2) AS Total_Revenue,\n    ROUND(SUM(Profit), 2) AS Total_Profit,\n    ROUND(AVG(Profit_Margin), 2) AS Avg_Profit_Margin\nFROM sales_transactions\nGROUP BY Product_Category\nORDER BY Total_Profit DESC;\nAnalysis covered:\n\nExecutive summary metrics (total revenue, profit, margin)\nProduct category and sub-category profitability\nRegional performance (country and state level)\nMonthly revenue and profit trends\nCustomer segmentation by age and gender\nMargin analysis across product lines"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#key-findings",
+    "href": "projects/customer-profitability/index.html#key-findings",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nExecutive Summary\n\n\n\n\n\n\nOverall Performance\n\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\nTotal Revenue\n$12.94M\n\n\nTotal Profit\n$1.30M\n\n\nAverage Profit Margin\n13.37%\n\n\nTotal Units Sold\n36,805\n\n\nTotal Transactions\n18,432\n\n\n\n\n\n\n\n\nProfitability by Product Category\nThe analysis reveals a clear pattern: accessories drive profit, while bikes drive volume.\n\n\n\n\n\n\n\n\n\n\nCategory\nRevenue\nProfit\nAvg Margin\nUnits Sold\n\n\n\n\nAccessories\n$3.97M\n$740,630\n17.23%\n22,873\n\n\nClothing\n$1.91M\n$304,852\n14.80%\n5,692\n\n\nBikes\n$7.06M\n$257,559\n1.49%\n8,240\n\n\n\nWhat this tells us:\n\nAccessories and Clothing drive the majority of profit due to strong margins (17% and 15% respectively)\nBikes generate the highest revenue ($7M+) but deliver extremely low margin (~1.5%)\nThis is a classic retail pattern: high-ticket items equal low margin; accessories equal high margin\n\nThe bike category is essentially a volume play. It brings in revenue but doesn’t contribute much to the bottom line. Meanwhile, accessories are the real profit engine.\n\n\n\nMost Profitable Sub-Categories\nHigh-margin accessories dominate profit generation, while high-revenue bike categories struggle with thin margins.\n\n\n\n\n\n\n\n\n\nSub-Category\nRevenue\nProfit\nAvg Margin\n\n\n\n\nHelmets\n$1.44M\n$272,058\n17.27%\n\n\nTires and Tubes\n$1.36M\n$244,189\n16.80%\n\n\nJerseys\n$1.01M\n$165,593\n14.45%\n\n\nMountain Bikes\n$4.02M\n$129,768\n1.44%\n\n\nBottles & Cages\n$377,929\n$70,565\n17.24%\n\n\nTouring Bikes\n$935,282\n$65,686\n4.49%\n\n\nFenders\n$300,787\n$63,832\n20.35%\n\n\nRoad Bikes\n$2.11M\n$62,106\n0.61%\n\n\nShorts\n$390,164\n$52,134\n12.23%\n\n\nHydration Packs\n$265,017\n$45,237\n15.60%\n\n\nVests\n$220,398\n$34,839\n14.08%\n\n\nGloves\n$110,139\n$23,674\n20.18%\n\n\nCaps\n$140,652\n$23,499\n15.25%\n\n\nBike Racks\n$98,139\n$21,893\n22.68%\n\n\nBike Stands\n$83,539\n$14,374\n17.08%\n\n\n\nKey observations:\n\nHelmets, Tires & Tubes, and Jerseys dominate profit generation with strong margins (14-17%)\nHigh-margin accessories like Fenders (20.35%), Gloves (20.18%), and Bike Racks (22.68%) are the true profit drivers\nMountain Bikes generate $4M+ revenue but only $130k profit (1.44% margin)\nRoad Bikes show the lowest margin at 0.61% despite $2.1M revenue, indicating heavy price pressure or cost issues\n\nThis is where the story gets interesting. Small-ticket items like fenders and gloves are generating margins above 20%, while the high-revenue bike categories are barely breaking even. If I were making pricing decisions, I would focus on protecting margins in accessories and figuring out why bikes are so thin.\n\n\n\nRegional Performance\nGermany stands out as the most profitable market, while the United States leads in volume but lags in efficiency.\n\n\n\n\n\n\n\n\n\n\nCountry\nRevenue\nProfit\nAvg Margin\nTransactions\n\n\n\n\nGermany\n$2.63M\n$577,345\n26.37%\n2,837\n\n\nUnited States\n$5.27M\n$375,840\n11.36%\n8,871\n\n\nUnited Kingdom\n$2.84M\n$210,084\n12.10%\n3,826\n\n\nFrance\n$2.20M\n$139,772\n8.49%\n2,898\n\n\n\nInsights:\n\nGermany is the most profitable market with the strongest margins (26.37%) despite fewer transactions. This suggests a premium product mix or less aggressive discounting.\nUnited States leads in revenue and volume but has significantly lower margins (11.36%), suggesting heavier discounting or a product mix skewed toward low-margin categories.\nFrance shows the weakest margin performance (8.49%) among top markets.\n\nGermany’s performance is particularly striking. They are generating more profit with fewer transactions, which points to either higher prices, a better product mix, or stronger brand positioning. The US market, while high-volume, is clearly operating on thinner margins.\n\n\n\nMonthly Revenue & Profit Trends\nA dramatic shift occurred between 2015 and 2016, with revenue and profit exploding in late 2015 and 2016 showing massive year-over-year growth.\nKey patterns:\n\nHuge seasonal spike: Revenue and profit explode from July → December 2015, with December 2015 reaching $1.19M revenue\n2016 Q1-Q2 is dramatically stronger than 2015 with clear year-over-year growth (January 2016: $1.02M vs January 2015: $157k)\nEarly 2015 shows consistently negative profit margins, flipping positive mid-year\n2016 performance suggests either business expansion, pricing strategy changes, or product mix shifts\n\n\n\n\nYear\nMonth\nRevenue\nProfit\n\n\n\n\n2015\nJanuary\n$157,860\n-$2,742\n\n\n2015\nJune\n$243,409\n-$3,531\n\n\n2015\nJuly\n$484,449\n$8,978\n\n\n2015\nAugust\n$705,931\n$40,267\n\n\n2015\nDecember\n$1,196,429\n$37,447\n\n\n2016\nJanuary\n$1,016,294\n$162,339\n\n\n2016\nMarch\n$1,107,363\n$177,451\n\n\n2016\nJune\n$1,359,297\n$215,844\n\n\n\nUnderstanding the 2015-2016 Surge:\nThe data clearly shows what drove the massive increase: 2016 had significantly more transactions and units sold compared to 2015. When filtering the dashboard by year, 2016 shows roughly 70% more transactions and units sold than 2015. This volume growth directly explains the revenue and profit surge.\nThe question of why volume increased so dramatically could be answered by several factors: business expansion into new markets or channels, successful marketing campaigns, new product launches, or competitive positioning. However, without product-level IDs or marketing data in this dataset, I cannot pinpoint exactly which specific products, campaigns, or strategies drove the volume growth. The analysis focuses on aggregate patterns at the category level. For more details on data limitations, see the Data Limitations & Assumptions section.\n\n\n\nCustomer Segmentation Insights\nRevenue by Age:\n\nAges 28-31 drive the highest revenue (core buyer segment)\nRevenue remains strong across late 30s-early 40s, suggesting mature customers also spend heavily\nVery young (18-23) and very old (60+) ages contribute minimal revenue\n\nTop revenue-generating ages: 28 ($563k), 31 ($523k), 29 ($513k), 40 ($480k), 30 ($477k)\nThe 28-31 age group is clearly the sweet spot. These are likely customers in their early career growth phase with disposable income and active lifestyles. The fact that 40-year-olds also rank high suggests this isn’t just a young person’s market. There’s value in the mid-career segment too."
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#dashboards-insights",
+    "href": "projects/customer-profitability/index.html#dashboards-insights",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Dashboards & Insights",
+    "text": "Dashboards & Insights\n\nDashboard 1: Sales Performance & Profitability\nThis dashboard focuses on understanding what drives revenue and profit at a product and market level. It answers the business questions listed at the top of this page.\n\n\n\n\n\n\n\nNote\n\n\n\nThe interactive Power BI dashboard requires a paid subscription to share publicly. A GIF demonstrating the interactive filtering capabilities will be added soon.\n\n\nKey Insights:\n\nAccessories & Clothing produce the strongest margins (17-15%), while Bikes generate $7M+ revenue but only 1.5% margin - a classic low-margin, high-volume pattern\nHelmets, Tires & Tubes, Jerseys, Fenders, and Gloves dominate profit among sub-categories\nGermany is the best-performing region by profit margin (26%), while the US leads volume but not efficiency\nA strong seasonal spike occurs from Q3-Q4 2015 to Q1-Q2 2016. See the Monthly Revenue & Profit Trends section for details on interpreting this surge.\n\nDashboard Components:\n\nKPI cards: Total Sales, Profit, Margin, Units Sold, Transactions\nCategory-level analysis: Revenue and profit breakdown by product category\nRegional performance: Profit by country with margin indicators\nTime series: Sales and profit trends over time\nSub-category drill-down: Top profit-generating products\nInteractive slicers: Filter by Category, Country, Year, Month\n\n\n\n\nDashboard 2: Customer Insights & Behavioral Analysis\nComing Soon\nThis dashboard will focus on understanding who the customers are, how they behave financially, and which segments contribute the most value. These insights support decisions related to pricing, targeted promotions, regional strategy, and customer segmentation.\nBusiness Questions to be Answered:\n\nWho are the highest-value customers?\n\nWhich age groups drive the most revenue?\n\nDoes gender influence spending patterns?\n\nHow does Average Order Value (AOV) differ across demographic or geographic groups?\n\nWhich regions consistently attract high-value sales?\n\nPlanned Insights (from SQL Analysis):\nCustomer Demographics: - Ages 28-31 are the core revenue-generating segment - Revenue remains strong across late 30s-early 40s - Gender-based differences in purchasing behavior\nRegional Customer Value: - Germany produces the highest-value customers with premium product mix - United States leads volume but shows lower per-customer value - France underperforms across customer value metrics\nProduct Preferences by Segment: - High-margin accessories (Helmets, Tires, Jerseys) are customer favorites - Accessory-driven purchases drive profitability, not high-ticket bikes"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#data-limitations-assumptions",
+    "href": "projects/customer-profitability/index.html#data-limitations-assumptions",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Data Limitations & Assumptions",
+    "text": "Data Limitations & Assumptions\nThis analysis is based on a single-table transaction dataset with aggregate-level information. Understanding these limitations is important for interpreting the insights accurately.\n\nData Structure Limitations\nNo Product-Level Identifiers: - The dataset includes product categories and sub-categories but not individual product SKUs or IDs - Cannot track specific product pricing changes over time - Cannot identify which exact products drove revenue spikes or margin changes - Product-level profitability analysis is limited to category/sub-category aggregates\nNo Customer Identifiers: - No unique customer IDs are present in the dataset - Cannot perform customer lifetime value (CLV) analysis - Cannot track repeat purchase patterns or customer journey analysis - Customer segmentation is limited to demographic aggregates (age, gender, location)\nSingle-Table Format: - Data is stored in a single flat table rather than normalized relational structure - In production environments, this would typically be split across multiple tables (orders, order_items, customers, products, inventory) - Limits ability to perform complex join-based analysis - Requires assumptions about data relationships\n\n\nAssumptions in Analysis\nProfitability & Revenue Trends: - When interpreting spikes in revenue or profit (like the 2015-2016 surge), multiple plausible explanations are considered: business expansion, pricing strategy changes, product mix shifts, or volume growth - Without product-level detail, changes cannot be definitively attributed to specific factors - Analysis focuses on aggregate patterns that are observable at the category and transaction level\nRegional Performance: - Country and state-level insights assume consistent data quality and categorization across regions - Differences in margin could reflect pricing strategies, product mix variations, or data collection differences - Regional comparisons are valid at the aggregate level but may mask local variations\nCustomer Segmentation: - Age and gender-based insights are aggregate-level only - Individual customer behavior patterns cannot be analyzed without customer IDs - Demographic insights represent group-level patterns, not individual customer journeys\n\n\nImpact on Insights\nThese limitations are common in exploratory analytics projects using public datasets. The insights presented in this project focus on aggregate patterns (category profitability, regional performance, seasonal trends) that are robust despite these constraints. The analysis is designed to answer business questions at the category, regional, and demographic segment levels rather than individual product or customer levels.\nFor production analytics, additional data sources (product IDs, customer IDs, normalized schema) would enable deeper analysis including: - Product-level pricing optimization - Customer lifetime value and retention analysis - Individual customer segmentation and targeting - More granular profitability analysis"
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#key-takeaways",
+    "href": "projects/customer-profitability/index.html#key-takeaways",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\nThis project demonstrates a complete, end-to-end analytics workflow from raw data to business insights:\n\nProfitability is driven by accessories, not high-ticket bikes\nBike categories require margin intervention due to extremely low profitability despite large revenue\nGermany is the strongest-performing region, with high margins and strong customer value\nAges 28-31 represent the most valuable demographic segment\nCustomer behavior varies sharply by age, gender, and region, offering multiple opportunities for targeted promotions and pricing refinement\n\nTogether, the dashboards support product, pricing, and customer decisions by presenting clear KPIs, performance visuals, and segmentation insights."
+  },
+  {
+    "objectID": "projects/customer-profitability/index.html#project-note",
+    "href": "projects/customer-profitability/index.html#project-note",
+    "title": "Customer & Product Profitability Analytics Dashboard",
+    "section": "Project Note",
+    "text": "Project Note\nThis is a personal data analytics project completed as part of my portfolio development. The analysis demonstrates end-to-end analytics capabilities from SQL data transformation to Power BI visualization, using a publicly available retail transaction dataset.\nDataset Attribution: - Dataset: Analyzing Customer Spending Habits - Source: Kaggle - Original Author: Vineet Bahl - License: Dataset copyright by authors (Creative Commons Attribution-ShareAlike)\nAll analysis, insights, visualizations, and interpretations presented in this project are my own work. The SQL transformation scripts, Power BI dashboards, and business insights were developed independently for educational and portfolio purposes."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Zain Ghias",
+    "section": "",
+    "text": "Key Metrics\n\n\n\n\n\n3/4 Year\n\n\n75%\n\n\n\nApplied Statistics Degree HBSc\n\n\n\n\n\n\n\n\n3\n\n\nInternships\n\n\n\n\n2\n\n\nAnalytics Projects\nReact · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas"
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Zain Ghias",
+    "section": "About Me",
+    "text": "About Me\nHi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful."
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "Zain Ghias",
+    "section": "Projects",
+    "text": "Projects\n2 Active"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Zain Ghias",
+    "section": "Experience",
+    "text": "Experience\n3 Active"
+  },
+  {
+    "objectID": "index.html#tools-technologies",
+    "href": "index.html#tools-technologies",
+    "title": "Zain Ghias",
+    "section": "Tools & Technologies",
+    "text": "Tools & Technologies\n12 Skills"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Coming soon."
   },
   {
     "objectID": "projects/bikeshare/index.html",
@@ -60,63 +179,21 @@
     "href": "projects/bikeshare/index.html#financial-extension-business-and-revenue-analysis",
     "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
     "section": "Financial Extension — Business and Revenue Analysis",
-    "text": "Financial Extension — Business and Revenue Analysis\n\nWhy a financial view?\nBike Share Toronto’s open data does not include pricing, ledger, or cost fields. To connect ridership to business outcomes, I built a simple financial layer:\n\nTrip-level revenue model using public pricing from City background files (2023/2024) and the current pricing page.\n\nCost proxy of 30% of revenue, guided by NACTO’s shared micromobility benchmarks (typical range 25–35%).\n\nTransparent rules: 2023 annual-member rides are set to $0 per trip (model type and overage billing not available). A small set of 2023 annual trips over 30 minutes (n=806) was flagged and excluded from revenue.\n\nScope: Membership fees, taxes, and non-operational costs are out of scope. Results are modeled estimates to illustrate direction, not accounting figures.\n\nWhat to look for below:\n1) YoY Revenue, Cost, and Gross Profit KPI cards.\n2) Revenue by day of week to match commuter patterns.\n3) Top 10 trips by modeled revenue.\n4) Bike-type split (classic vs e-bike) and member vs casual contribution.\nThe goal is to turn usage data into a concise business readout that supports decisions on pricing, promotions, and operations.\n\n\n\nFindings\n\nRevenue: $711,804 in Mar 2024 vs $628,748 in Mar 2023 (+13.2%)\n\nCost (proxy): $213,541 in 2024 using a 30% operating ratio\n\nGross Profit: $498,263 in 2024 vs $440,124 in 2023 (+13.2%)\n\nWeekday revenue peaks midweek, matching commuter demand\n\nClassic bikes generated ~94% of March 2024 revenue; e-bikes are smaller but a clear upsell\n\n\n\nInterpretation and Suggestions\n\nEfficiency: GP growth tracks revenue, suggesting scalable operations rather than cost inflation\n\nDemand focus: Wednesday and Thursday are reliable cash-flow days; weekends are an opportunity for promotions or partner offers\n\nGrowth play: Most per-trip dollars come from casuals; nudge frequent casuals toward annual memberships to stabilize demand and retention\n\n\n\n\nHow This Was Modeled\n\nNew Excel Fields\n\n\n\n\n\n\n\n\nNew Field\nPurpose\nDescription\n\n\n\n\nEst. Trip Revenue ($)\nCalculate revenue per row\nApplies the correct pricing rule by user type, duration, and bike model when available\n\n\nPricing Basis\nKeep logic transparent\nLabel such as “Casual classic unlock + per-min” or “Member classic ≤ 30 min”\n\n\n\n\n\nPricing Framework\n\n\n\n\n\n\n\n\n\n\n\n\nYear\nUser Type\nBike Type\nPricing Rule\nFormula / Rate\nNotes\n\n\n\n\n2023\nCasual\nClassic\nBase 30 min\n$3.25 flat\n+$4 for each additional 30-min block\n\n\n2023\nAnnual\nClassic\nIncluded\n$0 per trip\nOverage not identifiable in the dataset\n\n\n2024\nCasual\nClassic\nUnlock + per-min\n$1 + $0.12 × minutes\n2024 model\n\n\n2024\nCasual\nE-bike\nUnlock + per-min\n$1 + $0.20 × minutes\nHigher e-bike rate\n\n\n2024\nAnnual\nClassic\nIncluded + overage\nMAX(0, minutes − 30) × $0.12\nConservative\n\n\n2024\nAnnual\nE-bike\nPer-min\n$0.10 × minutes\nApplies to all durations\n\n\n\nAnnual member rides in 2023 were treated as $0 because the dataset lacks overage billing and bike model detail.\n\n\nAdditional Data Issue\n\n\n\n\n\n\n\n\n\n\nIssue\nYear\nCount\nLikely cause\nFix\n\n\n\n\nAnnual member trips &gt; 30 min\n2023\n806\nOverage billing not present in dataset\nExcluded from revenue and noted in assumptions\n\n\n\n\n\nCost Proxy\nA 30% operating cost ratio was applied to revenue to estimate costs. This aligns with the NACTO 2023 Shared Micromobility Report, which places typical cost shares in the 25–35% range for comparable systems.\n\n\n\n\nReferences, Sources, and Assumptions\n\n\n\n#\nSource\nWhat it provides\nHow it was used\n\n\n\n\n1\nNACTO 2023 Shared Micromobility Report\nCost and revenue benchmarks\nBasis for the 30% operating cost proxy (within a 25–35% range)\n\n\n2\nCity of Toronto Background File (2023)\n2023 pricing structure\nConstants for 2023 casual pricing ($3.25 base, $4 per 30-min overage)\n\n\n3\nCity of Toronto Background File (2024)\n2024 pricing and rate changes\nConstants for 2024 unlock and per-minute rates\n\n\n4\nBike Share Toronto Pricing\nPublic reference\nValidation and a clear reader link\n\n\n\n\nAll financial figures are modeled estimates for learning and portfolio display. When account-level data was unavailable, assumptions were applied and documented."
+    "text": "Financial Extension — Business and Revenue Analysis\n\nWhy a financial view?\nBike Share Toronto’s open data does not include pricing, membership fees, taxes, or cost information.\nTo connect ridership trends to business outcomes, I added a trip-level revenue model using only publicly available pricing rules from the City of Toronto (2023 and 2024).\nThis keeps the analysis fully transparent:\n\nRevenue is modeled purely at the trip level (duration × bike model × user type)\n\nMembership fees, taxes, discounts, and account-level billing are not included\n\nCosts and profit are not yet modeled, because system-wide operational cost data is not available in the open dataset\n\nAny cost/profit KPIs visible in the dashboard are temporary placeholders, included only to show what a complete financial dashboard layout could look like\n\nI have found official cost-per-trip figures provided by Bike Share Toronto, which will allow a more accurate cost model.\nThese will be integrated in a future update.\nThe financial portion of this project will remain trip-level only, meaning it will not include external costs such as:\n\nbike purchase and depreciation\n\nmaintenance and repairs\n\nstaff labour\n\nrebalancing/relocation costs\n\ncharging infrastructure\n\nadministration and overhead\n\nThose are outside the scope of the ridership dataset, but the trip-level approach provides a realistic and defensible baseline.\n\n\n\n\nRevenue Findings (Trip-Level Only)\n\nMarch 2023 Revenue: $628,748\n\nMarch 2024 Revenue: $711,804\n\nYoY Growth: +13.2%\n\nAdditional observations:\n\nMidweek (Wed/Thu) shows the strongest revenue, matching commuter behaviour\n\nClassic bikes contribute ~94 percent of total revenue due to their volume\n\nCasual riders generate the highest per-trip revenue and represent a strong conversion opportunity\n\n\n\nInterpretation\n\nRidership and revenue increased year-over-year across both commuter and leisure segments\n\nLonger trip durations in 2024 suggest stronger leisure/tourism momentum\n\nCasual riders remain the key source of per-trip dollars\n\nMidweek revenue stability demonstrates reliable commuter demand\n\n\nNote: Revenue is modeled accurately using official rate rules.\nCost and profit values shown in the dashboard are placeholders and will be replaced by a trip-level cost model using verified figures from Bike Share Toronto."
   },
   {
-    "objectID": "projects/bikeshare/index.html#next-steps",
-    "href": "projects/bikeshare/index.html#next-steps",
+    "objectID": "projects/bikeshare/index.html#how-the-trip-level-revenue-model-works",
+    "href": "projects/bikeshare/index.html#how-the-trip-level-revenue-model-works",
     "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
-    "section": "Next Steps",
-    "text": "Next Steps\n\nAutomate cleaning and revenue logic in Python (Pandas)\n\nAdd February and April to test seasonal stability\n\nUse weather and event data for richer explanations\n\nPublish interactive dashboards with filters on Tableau Public"
+    "section": "How the Trip-Level Revenue Model Works",
+    "text": "How the Trip-Level Revenue Model Works\n\nNew Excel Fields\n\n\n\n\n\n\n\n\nNew Field\nPurpose\nDescription\n\n\n\n\nEst. Trip Revenue ($)\nRevenue per trip\nApplies rate rules by year, duration, bike model, and user type\n\n\nPricing Basis\nTransparency\nLabels such as “2024 casual classic per-min rate”\n\n\n\n\n\n\nPricing Framework (Validated)\n\n2023 Pricing\n\n\n\n\n\n\n\n\n\nUser Type\nBike\nRule\nFormula\n\n\n\n\nCasual\nClassic\nBase 30 min\n$3.25 flat + $4 per extra 30-min block\n\n\nAnnual\nClassic\nIncluded\n$0 per trip (overage not identifiable)\n\n\n\n2024 Pricing\n\n\n\nUser Type\nBike\nRule\nFormula\n\n\n\n\nCasual\nClassic\nUnlock + per-min\n$1 + $0.12 × minutes\n\n\nCasual\nE-bike\nUnlock + per-min\n$1 + $0.20 × minutes\n\n\nAnnual\nClassic\nOverage only\nMAX(0, minutes − 30) × $0.12\n\n\nAnnual\nE-bike\nPer-min\n$0.10 × minutes\n\n\n\n\n\n\nAdditional Data Issue\n\n\n\n\n\n\n\n\n\n\nIssue\nYear\nCount\nLikely Cause\nAction\n\n\n\n\nAnnual member trips &gt; 30 minutes\n2023\n806\nBilling data not available\nExcluded from revenue (cannot be priced reliably)\n\n\n\n\n\n\nReferences, Sources, and Assumptions\n\n\n\n#\nSource\nWhat it provides\nHow it was used\n\n\n\n\n1\nCity of Toronto Background File (2023)\n2023 pricing structure\nUsed for 2023 casual/annual trip-level pricing rules\n\n\n2\nCity of Toronto Background File (2024)\n2024 updated pricing\nUsed for 2024 unlock fees and per-minute rate rules\n\n\n3\nBike Share Toronto Pricing\nPublic reference pricing\nValidated trip pricing logic for modeling\n\n\n4\nUpcoming: Bike Share Toronto trip-level cost metrics\nVerified system cost-per-trip values\nWill replace placeholder cost/profit KPIs in the next update\n\n\n\n\nAll financial figures reflect trip-level modeling only, based on publicly available pricing.\nMembership fees, overhead costs, rebalancing, repairs, depreciation, and other operational expenses are outside the scope of the dataset.\nA refined version with verified cost-per-trip values will be added once integrated."
   },
   {
-    "objectID": "projects/bikeshare/index.html#repro-notes-and-disclaimer",
-    "href": "projects/bikeshare/index.html#repro-notes-and-disclaimer",
+    "objectID": "projects/bikeshare/index.html#project-note",
+    "href": "projects/bikeshare/index.html#project-note",
     "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
-    "section": "Repro Notes and Disclaimer",
-    "text": "Repro Notes and Disclaimer\n\nAssumptions: local timezone, station names standardized by ID\n\nColor coding: 2023 teal, 2024 orange\n\nArtifacts: data_issues.xlsx, Tableau workbook (.twb), /images folder\n\nThis is a personal educational project.\nData: Bike Share Toronto Open Data Portal.\nLogo used for illustrative purposes."
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Coming soon."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Zain Ghias",
-    "section": "",
-    "text": "Key Metrics\n\n\n\n\n\n3/4 Year\n\n\n75%\n\n\n\nApplied Statistics Degree HBSc\n\n\n\n\n\n\n\n\n3\n\n\nInternships\n\n\n\n\n2\n\n\nAnalytics Projects\nReact · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas"
-  },
-  {
-    "objectID": "index.html#about-me",
-    "href": "index.html#about-me",
-    "title": "Zain Ghias",
-    "section": "About Me",
-    "text": "About Me\nHi, I’m Zain, a third-year Applied Statistics student at the University of Toronto Mississauga, with minors in Computer Science and Mathematics.\nI’m passionate about connecting data, design, and storytelling by using analysis and visualization to make information more human and useful."
-  },
-  {
-    "objectID": "index.html#featured-project-toronto-bike-share-analysis",
-    "href": "index.html#featured-project-toronto-bike-share-analysis",
-    "title": "Zain Ghias",
-    "section": "",
-    "text": "Toronto Bike Share – March 2023 vs March 2024\n\n\n\n\nAnalyzing Bike Share Toronto data to uncover how ridership patterns evolved year over year and whether network growth aligned with actual demand.\nStack: Excel · Tableau · Python (planned)\nKey Question: Are Bike Share Toronto’s growing assets being used efficiently, or are certain stations and times under-utilized?\nView Project"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Zain Ghias",
-    "section": "Experience",
-    "text": "Experience\n3 Active"
-  },
-  {
-    "objectID": "index.html#tools-technologies",
-    "href": "index.html#tools-technologies",
-    "title": "Zain Ghias",
-    "section": "Tools & Technologies",
-    "text": "Tools & Technologies\n12 Skills"
+    "section": "Project Note",
+    "text": "Project Note\nThis financial extension is part of a personal data analytics project.\nIt is designed to demonstrate how trip-level modeling can be applied to an open mobility dataset.\nThe financial section is intentionally limited to fields available in the data.\nA refined version with verified cost-per-trip values will be published soon."
   },
   {
     "objectID": "projects.html",
@@ -131,40 +208,5 @@
     "title": "Projects",
     "section": "",
     "text": "Short highlights from what I’m building and learning. Each project represents a step forward in my data science and analytics journey.\n\n\n Click on any project card to explore the full analysis, methodology, and results."
-  },
-  {
-    "objectID": "index.html#projects",
-    "href": "index.html#projects",
-    "title": "Zain Ghias",
-    "section": "Projects",
-    "text": "Projects\n2 Active"
-  },
-  {
-    "objectID": "projects/customer-profitability/index.html",
-    "href": "projects/customer-profitability/index.html",
-    "title": "Customer & Product Profitability Analytics Dashboard",
-    "section": "",
-    "text": "Project in progress — full write-up coming soon."
-  },
-  {
-    "objectID": "projects/customer-profitability/index.html#overview",
-    "href": "projects/customer-profitability/index.html#overview",
-    "title": "Customer & Product Profitability Analytics Dashboard",
-    "section": "",
-    "text": "Project in progress — full write-up coming soon."
-  },
-  {
-    "objectID": "projects/customer-profitability/index.html#project-details",
-    "href": "projects/customer-profitability/index.html#project-details",
-    "title": "Customer & Product Profitability Analytics Dashboard",
-    "section": "Project Details",
-    "text": "Project Details\nDate: Nov 2025 – Present\nTools: SQL · Power BI"
-  },
-  {
-    "objectID": "projects/customer-profitability/index.html#status",
-    "href": "projects/customer-profitability/index.html#status",
-    "title": "Customer & Product Profitability Analytics Dashboard",
-    "section": "Status",
-    "text": "Status\nThis project is currently in development. A detailed analysis and dashboard walkthrough will be available soon."
   }
 ]

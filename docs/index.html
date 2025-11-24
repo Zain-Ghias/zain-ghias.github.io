@@ -412,9 +412,7 @@ Open to roles focused on <strong>analytics</strong>, <strong>design</strong>, an
 </div>
 <div class="project-card">
 <div class="project-image-container">
-<div class="project-placeholder">
-📊
-</div>
+<p><img src="projects/customer-profitability/images/OverviewStatic.png" class="project-image dashboard-preview img-fluid"></p>
 </div>
 <div class="project-content">
 <p><strong>Customer &amp; Product Profitability Analytics Dashboard</strong></p>
@@ -658,6 +656,40 @@ Open to roles focused on <strong>analytics</strong>, <strong>design</strong>, an
     document.addEventListener('DOMContentLoaded', initFlipCards);
   } else {
     initFlipCards();
+  }
+})();
+// Add lazy loading and loading state to profile image
+(function() {
+  'use strict';
+  function initProfileImage() {
+    const profileImage = document.querySelector('.about-image');
+    if (!profileImage) {
+      // Retry if image isn't loaded yet
+      setTimeout(initProfileImage, 100);
+      return;
+    }
+    // Add lazy loading attribute if not already present
+    if (!profileImage.hasAttribute('loading')) {
+      profileImage.setAttribute('loading', 'lazy');
+    }
+    // Mark as loaded once image finishes loading
+    if (profileImage.complete) {
+      profileImage.classList.add('loaded');
+    } else {
+      profileImage.addEventListener('load', function() {
+        profileImage.classList.add('loaded');
+      });
+      // Fallback: mark as loaded after a timeout
+      setTimeout(function() {
+        profileImage.classList.add('loaded');
+      }, 2000);
+    }
+  }
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProfileImage);
+  } else {
+    initProfileImage();
   }
 })();
 </script>
