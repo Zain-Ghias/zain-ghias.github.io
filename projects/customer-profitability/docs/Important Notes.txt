@@ -1,0 +1,399 @@
+https://www.kaggle.com/datasets/thedevastator/analyzing-customer-spending-habits-to-improve-sa?resource=download
+Analyzing Customer Spending Habits
+_________________________________________________________________________________________________
+
+
+Total revenue is ~$12.9M, with overall profit of ~$1.3M and a 13.37% average profit margin across 18,432 transactions.
+
+_________________________________________________________________________________________________
+
+
+| Category    | Revenue   | Profit  | Avg Margin | Units Sold |
+| ----------- | --------- | ------- | ---------- | ---------- |
+| Accessories | 3,965,546 | 740,630 | 17.23%     | 22,873     |
+| Clothing    | 1,909,173 | 304,852 | 14.80%     | 5,692      |
+| Bikes       | 7,062,327 | 257,559 | 1.49%      | 8,240      |
+
+
+⭐ Key Insights (Use these in your Quarto report)
+1. Accessories is the most profitable category
+
+Generates 740k profit — the highest among all categories
+
+Strong 17.23% average profit margin
+
+Makes less revenue than Bikes, but margins are far better
+
+Likely high-margin accessories (e.g., tools, apparel, add-ons)
+
+2. Clothing is mid-tier
+
+~305k total profit
+
+Margin 14.8%, stable and healthy
+
+Lower volume, but good contribution
+
+3. Bikes generate the most revenue but lowest profit
+
+$7.06M revenue (highest)
+
+Only $257k profit
+
+Margin 1.49% → extremely low
+
+Indicates:
+
+high manufacturing cost
+
+aggressive pricing
+
+promotions/discounting
+
+possibly competitive market pressure
+
+4. Strategic Interpretation
+
+Accessories & Clothing → high-margin cash generators
+
+Bikes → loss leader / low-margin category, drives volume but not profit
+
+This is a VERY realistic pattern in retail & manufacturing datasets.
+
+⭐ Short Version (for your interview)
+
+If someone asks what you found:
+
+“Accessories and Clothing contribute the majority of profit due to higher margins, while Bikes generate the highest revenue but have very thin margins (around 1.5%), indicating a volume-driven but low-margin category.”
+
+Perfect. Clean. Shows business understanding.
+
+
+_________________________________________________________________________________________________
+
+SQL Insight — Top 15 Most Profitable Sub-Categories
+
+| Sub-Category    | Revenue   | Profit     | Avg Margin |
+| --------------- | --------- | ---------- | ---------- |
+| Helmets         | 1,438,293 | 272,057.67 | 17.27%     |
+| Tires and Tubes | 1,361,888 | 244,189.11 | 16.80%     |
+| Jerseys         | 1,014,103 | 165,593.14 | 14.45%     |
+| Mountain Bikes  | 4,020,915 | 129,768.15 | 1.44%      |
+| Bottles & Cages | 377,929   | 70,565.48  | 17.24%     |
+| Touring Bikes   | 935,282   | 65,685.5   | 4.49%      |
+| Fenders         | 300,787   | 63,832.19  | 20.35%     |
+| Road Bikes      | 2,106,130 | 62,105.51  | 0.61%      |
+| Shorts          | 390,164   | 52,134.05  | 12.23%     |
+| Hydration Packs | 265,017   | 45,237.02  | 15.60%     |
+| Vests           | 220,398   | 34,838.94  | 14.08%     |
+| Gloves          | 110,139   | 23,674.03  | 20.18%     |
+| Caps            | 140,652   | 23,499     | 15.25%     |
+| Bike Racks      | 98,139    | 21,893     | 22.68%     |
+| Bike Stands     | 83,539    | 14,374     | 17.08%     |
+
+
+⭐ Key Insights (Summarize These in Your Portfolio)
+1. Helmets, Tires & Tubes, and Jerseys dominate profitability
+
+These three categories lead profit generation:
+
+High margins (14%–17%)
+
+Strong demand
+
+Low production costs (esp. Helmets & Tires)
+
+High accessory sales volume
+
+These align perfectly with real-world cycling/accessory retail economics.
+
+2. Accessories outperform Bikes massively in profit
+
+Even though Bikes generate more revenue, Bikes:
+
+Have very low margins (1%–4%)
+
+Are expensive to manufacture
+
+Often sold with discounts
+
+Face intense competition
+
+Sub-categories like:
+
+Fenders (20.35% margin)
+
+Gloves (20.18% margin)
+
+Bike Racks (22.68% margin)
+
+…are the true profit drivers.
+
+This is a realistic pattern in retail:
+Accessories = high margin. Bikes = high volume.
+
+3. Mountain Bikes have high revenue but extremely low profit
+
+$4M+ revenue
+
+Only $129k profit
+
+Margin ~1.44%
+
+This is a GREAT talking point during your interview:
+
+“High-ticket items can still have razor-thin margins due to competitive pricing, manufacturing costs, or promotional strategies.”
+
+4. Road Bikes are even worse (0.61% margin)
+
+This is your BEST insight so far because it’s counterintuitive:
+
+$2.1M revenue
+
+Profit only ~62k
+
+Margin 0.61%
+
+This indicates:
+
+price pressure
+
+heavy discounts
+
+higher-than-expected costs
+
+5. The highest-margin sub-categories are niche accessories
+
+Profit margin leaders:
+
+Bike Racks — 22.68%
+
+Fenders — 20.35%
+
+Gloves — 20.18%
+
+These small-ticket items are extremely profitable.
+
+This is EXACTLY the kind of insight Kohler expects an analyst intern to discover.
+
+⭐ Short Version (for interview answer)
+
+Use this if asked:
+
+“The most profitable sub-categories were Helmets, Tires & Tubes, and Jerseys, each generating strong margins above 14%. Meanwhile, high-revenue Bike categories — like Mountain and Road Bikes — surprisingly had very low margins (1–2%). This suggests accessories drive profitability, while bikes drive volume. It’s a classic retail pattern: high-ticket items draw customers, but accessories generate profit.”
+
+This answer makes you look like a business-oriented data analyst, not just someone who ran SQL.
+
+_________________________________________________________________________________________________
+
+SQL Insight — Top 4 Countries by Revenue & Profit
+
+| Country            | Revenue   | Profit     | Avg Margin | Transactions |
+| ------------------ | --------- | ---------- | ---------- | ------------ |
+| **Germany**        | 2,632,623 | 577,345.26 | **26.37%** | 2,837        |
+| **United States**  | 5,266,789 | 375,840.40 | **11.36%** | 8,871        |
+| **United Kingdom** | 2,840,082 | 210,084.20 | **12.10%** | 3,826        |
+| **France**         | 2,197,552 | 139,771.93 | **8.49%**  | 2,898        |
+
+
+⭐ Key Insights (You’ll use these in your Quarto write-up)
+1. Germany has the highest profit AND the strongest margins
+
+Even though Germany has fewer transactions than the US, it produces:
+
+$577k profit (highest)
+
+26.37% average margin (highest)
+
+This suggests:
+
+Premium product mix (more accessories, high-margin items)
+
+Less discounting
+
+Possibly higher retail prices or stronger brand loyalty
+
+This is a very mature insight.
+
+2. The United States leads in total revenue but not profit
+
+The US has:
+
+$5.26M revenue (highest)
+
+8,871 transactions (highest)
+
+But only $375k profit
+
+Margin just 11.36%, less than half of Germany
+
+Interpretation:
+
+US shoppers buy more high-ticket, low-margin items (like bikes)
+
+Heavy promotions / competitive pricing reduce margins
+
+Larger volume does not equal larger profitability
+
+🔥 Amazing insight to mention verbally during interviews.
+
+3. United Kingdom has healthy profitability
+
+$210k profit
+
+12.1% margin (much stronger than France)
+
+Likely a balanced mix of:
+
+mid-range bikes
+
+apparel
+
+accessories
+
+4. France has the lowest margin among top countries
+
+8.49% average margin
+
+Despite over $2.19M revenue
+
+Possible explanations:
+
+more discounting
+
+weaker accessory sales
+
+more price sensitivity
+
+different competitive environment
+
+This is real-world analytics thinking.
+
+⭐ Good 2–3 Sentence Summary (Use This in Your Portfolio)
+
+“Germany emerged as the most profitable market with a 26% margin, despite having fewer transactions than the US. The United States drove the highest revenue and volume, but profit margins were significantly lower (11%), suggesting heavier discounting or a product mix skewed toward low-margin categories. The UK and France showed moderate performance, with France having the weakest margin among the top markets.”
+
+_________________________________________________________________________________________________
+
+SQL Insight — State-Level Revenue & Profit (Top States)
+
+| Country            | State               | Revenue   | Profit     |
+| ------------------ | ------------------- | --------- | ---------- |
+| **United Kingdom** | England             | 2,840,082 | 210,084.20 |
+| **United States**  | California          | 2,955,614 | 205,224.40 |
+| **Germany**        | Hessen              | 636,163   | 137,518.16 |
+| **Germany**        | Saarland            | 600,727   | 129,353.28 |
+| **Germany**        | Nordrhein-Westfalen | 520,451   | 119,294.34 |
+| **United States**  | Washington          | 1,568,985 | 118,145.69 |
+| **Germany**        | Hamburg             | 453,333   | 95,437.15  |
+| **Germany**        | Bayern              | 379,383   | 86,196.27  |
+| **United States**  | Oregon              | 717,206   | 50,257.29  |
+| **France**         | Seine (Paris)       | 440,723   | 33,150.16  |
+
+State-Level Performance — Key Insights (short):
+
+England & California are the top profit drivers (~$200k+ each).
+
+Germany has several strong mid-tier states with steady margins.
+
+France lags behind — low revenue & low profit across regions.
+_________________________________________________________________________________________________
+
+Got you — here is the same **Monthly Revenue & Profit** result **cleanly formatted as a Markdown table** (perfect for your notes or Quarto).
+
+---
+
+### **Monthly Revenue & Profit (Excerpt from Your Query)**
+
+*(I included the exact rows shown in your screenshot)*
+
+| Year | Month     | Monthly_Revenue | Monthly_Profit |
+| ---- | --------- | --------------- | -------------- |
+| 2015 | January   | 157,860         | -2,741.87      |
+| 2015 | February  | 157,992         | 1,927.19       |
+| 2015 | March     | 167,886         | -1,048.78      |
+| 2015 | April     | 179,373         | -484.82        |
+| 2015 | May       | 206,505         | -436.69        |
+| 2015 | June      | 243,409         | -3,530.64      |
+| 2015 | July      | 484,449         | 8,978.29       |
+| 2015 | August    | 705,931         | 40,267.32      |
+| 2015 | September | 721,333         | 33,228.21      |
+| 2015 | October   | 758,318         | 29,272.00      |
+| 2015 | November  | 823,455         | 27,895.25      |
+| 2015 | December  | 1,196,429       | 37,447.32      |
+| 2016 | January   | 1,016,294       | 162,339.23     |
+| 2016 | February  | 999,713         | 150,448.25     |
+| 2016 | March     | 1,107,363       | 177,450.50     |
+| 2016 | April     | 1,124,279       | 176,653.45     |
+| 2016 | May       | 1,239,013       | 192,084.73     |
+| 2016 | June      | 1,359,297       | 215,843.81     |
+| 2016 | July      | 262,049         | 57,809.04      |
+
+---
+
+### **Short Insights**
+
+* **Huge seasonal lift:** Revenue and profit explode from **July → December 2015**.
+* **2016 Q1–Q2 is much stronger** than 2015 — clear YoY growth.
+* Early 2015 shows **consistently negative margins**, flips positive mid-year.
+
+
+
+_________________________________________________________________________________________________
+
+Revenue by Customer Age (Top 20 Ages)
+Age	Revenue
+28	563,691
+31	523,433
+29	513,274
+40	480,398
+30	477,304
+33	459,642
+32	459,135
+37	431,673
+39	422,837
+42	422,541
+41	408,944
+36	407,021
+43	395,291
+24	391,220
+38	382,565
+34	378,180
+35	377,573
+44	350,020
+27	338,759
+25	315,785
+
+Short Insights
+
+Ages 28–31 drive the highest revenue (core buyer segment).
+
+Revenue stays strong across late 30s–early 40s, suggesting mature customers also spend heavily.
+
+Very young ages (18–23) and very old ages (60+) contribute very little.
+_________________________________________________________________________________________________
+
+
+## **Avg Profit Margin by Product Category**
+
+| Product Category | Avg Profit Margin (%) |
+| ---------------- | --------------------- |
+| **Accessories**  | **17.23%**            |
+| **Clothing**     | **14.80%**            |
+| **Bikes**        | **1.49%**             |
+
+### **Short Insights**
+
+* **Accessories** = strongest margin category (best ROI).
+* **Clothing** = healthy but slightly lower margin.
+* **Bikes** = extremely low margin — likely high cost structure or competitive pricing.
+
+---
+
+_________________________________________________________________________________________________
+
+_________________________________________________________________________________________________
+
+
+
+

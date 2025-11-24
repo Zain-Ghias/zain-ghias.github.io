@@ -121,7 +121,7 @@ Analyzing ridership patterns year-over-year to assess network efficiency and dem
 
 ::: {.project-card}
 ::: {.project-image-container}
-<div class="project-placeholder">📊</div>
+![](projects/customer-profitability/images/OverviewStatic.png){.project-image .dashboard-preview}
 :::
 
 ::: {.project-content}
@@ -427,6 +427,47 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
     document.addEventListener('DOMContentLoaded', initFlipCards);
   } else {
     initFlipCards();
+  }
+})();
+
+// Add lazy loading and loading state to profile image
+(function() {
+  'use strict';
+  
+  function initProfileImage() {
+    const profileImage = document.querySelector('.about-image');
+    
+    if (!profileImage) {
+      // Retry if image isn't loaded yet
+      setTimeout(initProfileImage, 100);
+      return;
+    }
+    
+    // Add lazy loading attribute if not already present
+    if (!profileImage.hasAttribute('loading')) {
+      profileImage.setAttribute('loading', 'lazy');
+    }
+    
+    // Mark as loaded once image finishes loading
+    if (profileImage.complete) {
+      profileImage.classList.add('loaded');
+    } else {
+      profileImage.addEventListener('load', function() {
+        profileImage.classList.add('loaded');
+      });
+      
+      // Fallback: mark as loaded after a timeout
+      setTimeout(function() {
+        profileImage.classList.add('loaded');
+      }, 2000);
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProfileImage);
+  } else {
+    initProfileImage();
   }
 })();
 </script>

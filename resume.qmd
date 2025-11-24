@@ -1,24 +1,120 @@
 ---
 title: "Resume"
 description: "Zain Ghias's Resume"
-date: 2025-09-07
-format: html
+date: 2025-11-10
+format:
+  html:
+    toc: false
 ---
 
 <style>
+/* Hide default title description */
 #title-block-header .description {
     display: none;
 }
+
+/* Resume header styling - compact */
+.resume-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0 0.5rem 0;
+}
+
+.resume-header h1 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    font-size: 2rem;
+}
+
+.resume-header p {
+    color: #6c757d;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Action buttons container - compact */
+.resume-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+/* Modern button styling */
+.resume-actions .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.resume-actions .btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+}
+
+.resume-actions .btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.resume-actions .btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+    background: transparent;
+}
+
+.resume-actions .btn-outline-primary:hover {
+    background: #007bff;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Info callout - modernized and compact */
+.resume-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-left: 4px solid #007bff;
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.resume-info p {
+    margin: 0;
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+.resume-info strong {
+    color: #2c3e50;
+}
+
+/* PDF embed container - modernized and compact */
 .embed-container {
     position: relative;
     padding-bottom: 129%;
     height: 0;
     overflow: hidden;
     max-width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    margin-top: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    transition: box-shadow 0.3s ease;
 }
+
+.embed-container:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
 .embed-container iframe,
 .embed-container object,
 .embed-container embed {
@@ -27,23 +123,81 @@ format: html
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
+    border: none;
 }
-.resume-header {
+
+/* Footer styling */
+.resume-footer {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
 }
-.resume-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+
+.resume-footer p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
 }
+
+/* Dark mode support */
+html[data-theme='dark'] .resume-header h1 {
+    color: #ffffff !important;
+}
+
+html[data-theme='dark'] .resume-header p {
+    color: #cbd5e0 !important;
+}
+
+html[data-theme='dark'] .resume-info {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    border-left-color: #007bff;
+}
+
+html[data-theme='dark'] .resume-info p {
+    color: #cbd5e0 !important;
+}
+
+html[data-theme='dark'] .resume-info strong {
+    color: #ffffff !important;
+}
+
+html[data-theme='dark'] .embed-container {
+    background: #2d3748;
+    border-color: #4a5568;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .resume-footer {
+    border-top-color: #4a5568;
+}
+
+html[data-theme='dark'] .resume-footer p {
+    color: #a0aec0 !important;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
+    .resume-header h1 {
+        font-size: 2rem;
+    }
+    
+    .resume-header p {
+        font-size: 1rem;
+    }
+    
     .resume-actions {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+    }
+    
+    .resume-actions .btn {
+        width: 100%;
+    }
+    
+    .embed-container {
+        margin: 1.5rem 0;
     }
 }
 </style>
@@ -55,19 +209,17 @@ Applied Statistics | Data Analytics | Software Development
 :::
 
 ::: {.resume-actions}
-[Download PDF](resume/DAResume.pdf){.btn .btn-primary .btn-lg target="_blank"} [Contact Me](mailto:zain.ghias@mail.utoronto.ca){.btn .btn-outline-primary .btn-lg}
+[Download PDF](resume/Zain_Ghias_DResume.pdf){.btn .btn-primary .btn-lg target="_blank"} [Contact Me](mailto:zain.ghias@mail.utoronto.ca){.btn .btn-outline-primary .btn-lg}
 :::
 
-::: {.alert .alert-info}
+::: {.resume-info}
 **Preview:** View the full resume below or download the PDF for the best experience.
 :::
 
 <div class="embed-container">
-  <iframe src="resume/DAResume.pdf" style="border: 0.5px"></iframe>
+  <iframe src="resume/Zain_Ghias_DResume.pdf" style="border: none"></iframe>
 </div>
 
-<div class="mt-4 text-center">
-  <p class="text-muted">
-    <small>Last updated: October 2025</small>
-  </p>
-</div> 
+::: {.resume-footer}
+Last updated: November 10, 2025
+::: 

@@ -14,9 +14,11 @@
    6. KPI Section
    7. Experience Section
    8. About Section Cards
-   9. Project Cards
-   10. Tools Section
-   11. Responsive Design
+   9. Project Cards (Index Page)
+   10. Projects Listing Page (Quarto Grid)
+   11. Tools Section
+   12. Dark Mode Styles
+   13. Responsive Design
    ======================================================== */
 
 /* ========================================================
@@ -189,11 +191,19 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 4px 16px rgba(0, 0, 0, 0.1) !important;
   border: 2px solid rgba(0, 0, 0, 0.1) !important;
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.3s ease;
   cursor: pointer;
   will-change: transform;
   object-fit: cover;
   object-position: center;
+  /* Add loading state - image starts slightly transparent until loaded */
+  opacity: 0.9;
+}
+
+/* Once image is loaded, make it fully opaque */
+.about-image.loaded {
+  opacity: 1;
 }
 
 .about-image:hover {
@@ -235,7 +245,11 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   }
 }
 
-/* Project cards grid tuning */
+/* ========================================================
+   Projects Listing Page (Quarto Grid Cards)
+   ======================================================== */
+
+/* Projects listing page card styling */
 .quarto-listing .card,
 .quarto-grid-item .card {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -248,9 +262,7 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
 
-/* Ensure listing images have consistent aspect and cover */
-/* Smaller project thumbnail */
-/* Project thumbnail height follows listing setting; keep only padding */
+/* Listing page images */
 .quarto-listing .card img,
 .quarto-grid-item .card img {
   width: 100%;
@@ -263,161 +275,53 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   margin: 0 auto;
 }
 
-/* Compact card body */
+/* Listing page card body */
 .quarto-listing .card-body,
 .quarto-grid-item .card-body {
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem;
 }
 
-/* Tighten title and excerpt spacing */
+/* Listing page typography */
 .quarto-listing .card-title,
-.quarto-grid-item .card-title { margin-bottom: 0.35rem; }
+.quarto-grid-item .card-title {
+  margin-bottom: 0.35rem;
+}
+
 .quarto-listing .card-text,
-.quarto-grid-item .card-text { color: #555; }
-
-/* Featured Project Card Styling */
-.featured-project-card {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 2rem 0;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  border: 1px solid #dee2e6;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.quarto-grid-item .card-text {
+  color: #555;
 }
 
-.featured-project-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+/* Dark mode - Projects listing page */
+html[data-theme='dark'] .quarto-listing .card,
+html[data-theme='dark'] .quarto-grid-item .card {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
 }
 
-.featured-project-card h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  font-weight: 600;
+html[data-theme='dark'] .quarto-listing .card-title,
+html[data-theme='dark'] .quarto-grid-item .card-title,
+html[data-theme='dark'] .listing-title {
+  color: #ffffff !important;
 }
 
-.featured-project-card .lead {
-  color: #495057;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+html[data-theme='dark'] .quarto-listing .card-text,
+html[data-theme='dark'] .quarto-grid-item .card-text,
+html[data-theme='dark'] .listing-description,
+html[data-theme='dark'] .listing-description p {
+  color: #ffffff !important;
 }
 
-.featured-project-card img {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+html[data-theme='dark'] .card-attribution,
+html[data-theme='dark'] .listing-date,
+html[data-theme='dark'] .card-text-small {
+  color: #e0e0e0 !important;
 }
 
-.featured-project-card img:hover {
-  transform: scale(1.02);
-}
-
-/* Enhanced Button Styling */
-.btn {
-  border-radius: 8px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  border-width: 2px;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-  border-color: #007bff;
-  box-shadow: 0 4px 12px rgba(0,123,255,0.3);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
-  border-color: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,123,255,0.4);
-}
-
-.btn-outline-primary {
-  border-color: #007bff;
-  color: #007bff;
-  background: transparent;
-}
-
-.btn-outline-primary:hover {
-  background: #007bff;
-  border-color: #007bff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,123,255,0.3);
-}
-
-/* Card Enhancements */
-.card {
-  border-radius: 12px;
-  border: 1px solid #e9ecef;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-  border-color: #007bff;
-}
-
-.card-body {
-  padding: 1.5rem;
-}
-
-.card-title {
-  color: #2c3e50;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.card-text {
-  color: #6c757d;
-  line-height: 1.6;
-}
-
-/* Dark mode adjustments */
-html[data-theme='dark'] .featured-project-card {
-  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  border-color: #4a5568;
-}
-
-html[data-theme='dark'] .featured-project-card h3 {
-  color: #e2e8f0;
-}
-
-html[data-theme='dark'] .featured-project-card .lead {
-  color: #cbd5e0;
-}
-
-html[data-theme='dark'] .card {
-  background-color: #2d3748;
-  border-color: #4a5568;
-}
-
-html[data-theme='dark'] .card-title {
-  color: #e2e8f0;
-}
-
-html[data-theme='dark'] .card-text {
-  color: #a0aec0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .featured-project-card {
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-  }
-  
-  .featured-project-card h3 {
-    font-size: 1.5rem;
-  }
-  
-  .btn-lg {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
+html[data-theme='dark'] .quarto-listing .card:hover,
+html[data-theme='dark'] .quarto-grid-item .card:hover {
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2) !important;
+  border-color: #007bff !important;
 }
 
 /* ========================================================
@@ -1436,11 +1340,11 @@ html[data-theme='dark'] .flip-indicator::after {
 
 /* Flip hint removed - now shown in top indicator */
 
-/* Dark mode experience cards */
+/* Dark mode experience cards - lighter background for contrast */
 html[data-theme='dark'] .experience-card .card-front,
 html[data-theme='dark'] .experience-card .card-back {
-  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  border-color: #4a5568;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
   border-left-color: #007bff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1461,18 +1365,18 @@ html[data-theme='dark'] .experience-card.certificate-card:not(.flipped):hover .c
 
 html[data-theme='dark'] .experience-card .card-front strong,
 html[data-theme='dark'] .experience-card .card-back strong {
-  color: #e2e8f0;
+  color: #ffffff !important;
 }
 
 html[data-theme='dark'] .experience-card .card-front em,
 html[data-theme='dark'] .experience-card .card-back em {
-  color: #a0aec0;
+  color: #e0e0e0 !important;
 }
 
 html[data-theme='dark'] .experience-card .card-front p,
 html[data-theme='dark'] .experience-card .card-back p,
 html[data-theme='dark'] .experience-card .card-back ul {
-  color: #cbd5e0;
+  color: #ffffff !important;
 }
 
 html[data-theme='dark'] .flip-hint {
@@ -1584,12 +1488,12 @@ html[data-theme='dark'] .about-section-card {
 
 html[data-theme='dark'] .about-intro-card h2,
 html[data-theme='dark'] .about-section-card h3 {
-  color: #e2e8f0;
+  color: #ffffff !important;
 }
 
 html[data-theme='dark'] .about-intro-card p,
 html[data-theme='dark'] .about-section-card p {
-  color: #cbd5e0;
+  color: #ffffff !important;
 }
 
 /* ========================================================
@@ -1792,15 +1696,15 @@ html[data-theme='dark'] .project-image-container {
 }
 
 html[data-theme='dark'] .project-content strong {
-  color: #e2e8f0;
+  color: #ffffff !important;
 }
 
 html[data-theme='dark'] .project-content p {
-  color: #cbd5e0;
+  color: #ffffff !important;
 }
 
 html[data-theme='dark'] .project-content em {
-  color: #a0aec0;
+  color: #e0e0e0 !important;
 }
 
 html[data-theme='dark'] .project-btn {
@@ -1824,7 +1728,117 @@ html[data-theme='dark'] .project-card:hover {
   border-color: #007bff;
 }
 
-/* Legacy - keeping for backwards compatibility */
+/* Projects page main content text - dark mode */
+html[data-theme='dark'] #quarto-document-content,
+html[data-theme='dark'] #quarto-document-content p,
+html[data-theme='dark'] #quarto-document-content h1,
+html[data-theme='dark'] #quarto-document-content h2 {
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .text-muted {
+  color: #e0e0e0 !important;
+  opacity: 0.9;
+}
+
+/* Dashboard preview image - slightly larger but uniform with other card */
+.project-image.dashboard-preview {
+  max-width: 85% !important;
+  max-height: 90% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+  object-position: center right;
+  transform: translateX(5%);
+}
+
+.project-card:hover .project-image.dashboard-preview {
+  transform: translateX(5%) scale(1.05);
+}
+
+/* Keep container height same as other cards for uniformity */
+.project-card:has(.project-image.dashboard-preview) .project-image-container {
+  height: 190px !important;
+  padding: 1rem !important;
+  overflow: hidden;
+}
+
+/* ========================================================
+   Dark Mode - Main Index Page Text Colors
+   ======================================================== */
+
+/* All text elements - bright white for readability */
+html[data-theme='dark'] .about-contents,
+html[data-theme='dark'] main,
+html[data-theme='dark'] .about-contents p,
+html[data-theme='dark'] .about-contents li,
+html[data-theme='dark'] .about-contents span,
+html[data-theme='dark'] .section-header,
+html[data-theme='dark'] .section-header h2,
+html[data-theme='dark'] body,
+html[data-theme='dark'] body p,
+html[data-theme='dark'] body li {
+  color: #ffffff !important;
+}
+
+/* Headings - white */
+html[data-theme='dark'] .about-contents h2,
+html[data-theme='dark'] .about-contents h3,
+html[data-theme='dark'] .about-contents h4,
+html[data-theme='dark'] main h2,
+html[data-theme='dark'] main h3,
+html[data-theme='dark'] main h4,
+html[data-theme='dark'] .section-header h2 {
+  color: #ffffff !important;
+}
+
+/* Strong text - white */
+html[data-theme='dark'] .about-contents strong,
+html[data-theme='dark'] .project-content strong,
+html[data-theme='dark'] .experience-card strong {
+  color: #ffffff !important;
+}
+
+/* Emphasized text - light gray */
+html[data-theme='dark'] .about-contents em,
+html[data-theme='dark'] .project-content em,
+html[data-theme='dark'] .experience-card em {
+  color: #e0e0e0 !important;
+}
+
+/* Links - bright cyan */
+html[data-theme='dark'] .about-contents a,
+html[data-theme='dark'] .project-content a {
+  color: #7dd3fc !important;
+}
+
+html[data-theme='dark'] .about-contents a:hover,
+html[data-theme='dark'] .project-content a:hover {
+  color: #4da3ff !important;
+}
+
+/* Card backgrounds - lighter for better contrast */
+html[data-theme='dark'] .about-intro-card,
+html[data-theme='dark'] .about-section-card {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+html[data-theme='dark'] .project-card {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+html[data-theme='dark'] .experience-card .card-front,
+html[data-theme='dark'] .experience-card .card-back {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+/* ========================================================
+   Callout Note Styling (Legacy Support)
+   ======================================================== */
+
 .about-contents .callout-note {
   position: relative;
   overflow: hidden;
@@ -1900,19 +1914,19 @@ html[data-theme='dark'] .project-card:hover {
   height: 100%;
 }
 
-/* Dark mode project card */
+/* Dark mode callout note */
 html[data-theme='dark'] .about-contents .callout-note {
-  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  border-color: #4a5568;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 html[data-theme='dark'] .about-contents .callout-note h3 {
-  color: #e2e8f0;
+  color: #ffffff !important;
 }
 
 html[data-theme='dark'] .about-contents .callout-note p {
-  color: #cbd5e0;
+  color: #ffffff !important;
 }
 
 html[data-theme='dark'] .about-contents .callout-note:hover {
@@ -1942,40 +1956,20 @@ html[data-theme='dark'] .tools-section {
   margin-top: 1.5rem;
 }
 
+/* Tool item container */
 .tool-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.tool-item .tool-icon {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 0.5rem;
-  border-radius: 8px;
-  padding: 0.5rem;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.tool-item .tool-icon:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
-}
-
-.tool-item {
   font-size: 0.85rem;
   color: #495057;
   font-weight: 500;
   margin-top: 0.25rem;
 }
 
-/* Staggered fade-in for tool icons */
+/* Staggered fade-in animation delays for tool icons */
 .tool-item:nth-child(1) .tool-icon { animation-delay: 0.05s; }
 .tool-item:nth-child(2) .tool-icon { animation-delay: 0.1s; }
 .tool-item:nth-child(3) .tool-icon { animation-delay: 0.15s; }
@@ -1989,6 +1983,7 @@ html[data-theme='dark'] .tools-section {
 .tool-item:nth-child(11) .tool-icon { animation-delay: 0.55s; }
 .tool-item:nth-child(12) .tool-icon { animation-delay: 0.6s; }
 
+/* Tool icon fade-in animation */
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -1998,12 +1993,6 @@ html[data-theme='dark'] .tools-section {
     opacity: 1;
     transform: scale(1);
   }
-}
-
-.tool-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .tool-icon {
