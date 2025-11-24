@@ -171,66 +171,96 @@ Key fields used: duration (min), hour, weekday, user type, station names, and `M
 
 ### Why a financial view?
 
-Bike Share Toronto’s open data does not include pricing, ledger, or cost fields. To connect ridership to business outcomes, I built a simple financial layer:
+Bike Share Toronto’s open data does not include pricing, membership fees, taxes, or cost information.  
+To connect ridership trends to business outcomes, I added a **trip-level revenue model** using only publicly available pricing rules from the City of Toronto (2023 and 2024).
 
-- **Trip-level revenue model** using public pricing from City background files (2023/2024) and the current pricing page.  
-- **Cost proxy** of **30% of revenue**, guided by NACTO’s shared micromobility benchmarks (typical range 25–35%).  
-- **Transparent rules**: 2023 annual-member rides are set to $0 per trip (model type and overage billing not available). A small set of 2023 annual trips over 30 minutes (n=806) was flagged and excluded from revenue.  
-- **Scope**: Membership fees, taxes, and non-operational costs are out of scope. Results are modeled estimates to illustrate direction, not accounting figures.
+This keeps the analysis fully transparent:
 
-**What to look for below:**  
-1) YoY **Revenue**, **Cost**, and **Gross Profit** KPI cards.  
-2) **Revenue by day of week** to match commuter patterns.  
-3) **Top 10 trips** by modeled revenue.  
-4) **Bike-type split** (classic vs e-bike) and **member vs casual** contribution.
+- **Revenue is modeled purely at the trip level** (duration × bike model × user type)  
+- **Membership fees, taxes, discounts, and account-level billing are not included**  
+- **Costs and profit are not yet modeled**, because system-wide operational cost data is not available in the open dataset  
+- Any cost/profit KPIs visible in the dashboard are **temporary placeholders**, included only to show what a complete financial dashboard layout could look like
 
-The goal is to turn usage data into a concise business readout that supports decisions on pricing, promotions, and operations.
+I have found **official cost-per-trip figures provided by Bike Share Toronto**, which will allow a more accurate cost model.  
+These will be integrated in a future update.
 
-![](images/FinancialPerformanceDashboard.png){fig-cap="Financial Performance Dashboard: Revenue, Cost (30% proxy), and Gross Profit (Mar 2023 → Mar 2024)"}
+The financial portion of this project will remain **trip-level only**, meaning it will not include external costs such as:
 
-### Findings
-- **Revenue:** $711,804 in Mar 2024 vs $628,748 in Mar 2023 (**+13.2%**)  
-- **Cost (proxy):** $213,541 in 2024 using a 30% operating ratio  
-- **Gross Profit:** $498,263 in 2024 vs $440,124 in 2023 (**+13.2%**)  
-- **Weekday revenue peaks** midweek, matching commuter demand  
-- **Classic bikes** generated ~94% of March 2024 revenue; e-bikes are smaller but a clear upsell
+- bike purchase and depreciation  
+- maintenance and repairs  
+- staff labour  
+- rebalancing/relocation costs  
+- charging infrastructure  
+- administration and overhead  
 
-### Interpretation and Suggestions
-- **Efficiency:** GP growth tracks revenue, suggesting scalable operations rather than cost inflation  
-- **Demand focus:** Wednesday and Thursday are reliable cash-flow days; weekends are an opportunity for promotions or partner offers  
-- **Growth play:** Most per-trip dollars come from casuals; nudge frequent casuals toward annual memberships to stabilize demand and retention
+Those are outside the scope of the ridership dataset, but the trip-level approach provides a realistic and defensible baseline.
+
+![](images/FinancialPerformanceDashboard.png){fig-cap="Financial Performance Dashboard: modeled trip-level revenue (cost/profit placeholders)"}
 
 ---
 
-### How This Was Modeled
+### Revenue Findings (Trip-Level Only)
 
-#### New Excel Fields
+- **March 2023 Revenue:** $628,748  
+- **March 2024 Revenue:** $711,804  
+- **YoY Growth:** **+13.2%**  
+
+Additional observations:
+
+- Midweek (Wed/Thu) shows the strongest revenue, matching commuter behaviour  
+- Classic bikes contribute ~94 percent of total revenue due to their volume  
+- Casual riders generate the highest per-trip revenue and represent a strong conversion opportunity  
+
+### Interpretation
+
+- Ridership and revenue increased year-over-year across both commuter and leisure segments  
+- Longer trip durations in 2024 suggest stronger leisure/tourism momentum  
+- Casual riders remain the key source of per-trip dollars  
+- Midweek revenue stability demonstrates reliable commuter demand  
+
+> **Note:** Revenue is modeled accurately using official rate rules.  
+> Cost and profit values shown in the dashboard are placeholders and will be replaced by a trip-level cost model using verified figures from Bike Share Toronto.
+
+---
+
+## How the Trip-Level Revenue Model Works
+
+### New Excel Fields
+
 | New Field | Purpose | Description |
 |:--|:--|:--|
-| **Est. Trip Revenue ($)** | Calculate revenue per row | Applies the correct pricing rule by user type, duration, and bike model when available |
-| **Pricing Basis** | Keep logic transparent | Label such as “Casual classic unlock + per-min” or “Member classic ≤ 30 min” |
+| **Est. Trip Revenue ($)** | Revenue per trip | Applies rate rules by year, duration, bike model, and user type |
+| **Pricing Basis** | Transparency | Labels such as “2024 casual classic per-min rate” |
 
-#### Pricing Framework
-![](images/Pricing_Constants.png){fig-cap="Pricing constants from City of Toronto background files, 2023 and 2024"}
+---
 
-| Year | User Type | Bike Type | Pricing Rule | Formula / Rate | Notes |
-|:--:|:--:|:--:|:--|:--|:--|
-| 2023 | Casual | Classic | Base 30 min | $3.25 flat | +$4 for each additional 30-min block |
-| 2023 | Annual | Classic | Included | $0 per trip | Overage not identifiable in the dataset |
-| 2024 | Casual | Classic | Unlock + per-min | $1 + $0.12 × minutes | 2024 model |
-| 2024 | Casual | E-bike | Unlock + per-min | $1 + $0.20 × minutes | Higher e-bike rate |
-| 2024 | Annual | Classic | Included + overage | MAX(0, minutes − 30) × $0.12 | Conservative |
-| 2024 | Annual | E-bike | Per-min | $0.10 × minutes | Applies to all durations |
+### Pricing Framework (Validated)
 
-Annual member rides in 2023 were treated as **$0** because the dataset lacks overage billing and bike model detail.
+![](images/Pricing_Constants.png){fig-cap="Pricing constants sourced from City of Toronto background files"}
 
-#### Additional Data Issue
-| Issue | Year | Count | Likely cause | Fix |
+**2023 Pricing**
+
+| User Type | Bike | Rule | Formula |
+|--|--|--|--|
+| Casual | Classic | Base 30 min | $3.25 flat + $4 per extra 30-min block |
+| Annual | Classic | Included | $0 per trip (overage not identifiable) |
+
+**2024 Pricing**
+
+| User Type | Bike | Rule | Formula |
+|--|--|--|--|
+| Casual | Classic | Unlock + per-min | $1 + $0.12 × minutes |
+| Casual | E-bike | Unlock + per-min | $1 + $0.20 × minutes |
+| Annual | Classic | Overage only | MAX(0, minutes − 30) × $0.12 |
+| Annual | E-bike | Per-min | $0.10 × minutes |
+
+---
+
+### Additional Data Issue
+
+| Issue | Year | Count | Likely Cause | Action |
 |:--|:--:|--:|--|--|
-| Annual member trips > 30 min | 2023 | **806** | Overage billing not present in dataset | Excluded from revenue and noted in assumptions |
-
-#### Cost Proxy
-A **30% operating cost** ratio was applied to revenue to estimate costs. This aligns with the *NACTO 2023 Shared Micromobility Report*, which places typical cost shares in the **25–35%** range for comparable systems.
+| Annual member trips > 30 minutes | 2023 | **806** | Billing data not available | Excluded from revenue (cannot be priced reliably) |
 
 ---
 
@@ -238,30 +268,20 @@ A **30% operating cost** ratio was applied to revenue to estimate costs. This al
 
 | # | Source | What it provides | How it was used |
 |:-:|--|--|--|
-| 1 | [NACTO 2023 Shared Micromobility Report](https://nacto.org/publication/shared-micromobility-report-2023/?utm_source=chatgpt.com) | Cost and revenue benchmarks | Basis for the **30% operating cost** proxy (within a 25–35% range) |
-| 2 | [City of Toronto Background File (2023)](https://www.toronto.ca/legdocs/mmis/2023/ie/bgrd/backgroundfile-234851.pdf?utm_source=chatgpt.com) | 2023 pricing structure | Constants for 2023 casual pricing ($3.25 base, $4 per 30-min overage) |
-| 3 | [City of Toronto Background File (2024)](https://www.toronto.ca/legdocs/mmis/2024/ie/bgrd/backgroundfile-241790.pdf?utm_source=chatgpt.com) | 2024 pricing and rate changes | Constants for 2024 unlock and per-minute rates |
-| 4 | [Bike Share Toronto Pricing](https://bikesharetoronto.com/pricing/?utm_source=chatgpt.com) | Public reference | Validation and a clear reader link |
+| 1 | [City of Toronto Background File (2023)](https://www.toronto.ca/legdocs/mmis/2023/ie/bgrd/backgroundfile-234851.pdf) | 2023 pricing structure | Used for 2023 casual/annual trip-level pricing rules |
+| 2 | [City of Toronto Background File (2024)](https://www.toronto.ca/legdocs/mmis/2024/ie/bgrd/backgroundfile-241790.pdf) | 2024 updated pricing | Used for 2024 unlock fees and per-minute rate rules |
+| 3 | [Bike Share Toronto Pricing](https://bikesharetoronto.com/pricing/) | Public reference pricing | Validated trip pricing logic for modeling |
+| 4 | *Upcoming: Bike Share Toronto trip-level cost metrics* | Verified system cost-per-trip values | Will replace placeholder cost/profit KPIs in the next update |
 
-> All financial figures are modeled estimates for learning and portfolio display. When account-level data was unavailable, assumptions were applied and documented.
-
----
-
-## Next Steps
-
-- Automate cleaning and revenue logic in **Python (Pandas)**  
-- Add February and April to test seasonal stability  
-- Use weather and event data for richer explanations  
-- Publish interactive dashboards with filters on Tableau Public
+> All financial figures reflect **trip-level modeling only**, based on publicly available pricing.  
+> Membership fees, overhead costs, rebalancing, repairs, depreciation, and other operational expenses are **outside the scope** of the dataset.  
+> A refined version with verified cost-per-trip values will be added once integrated.
 
 ---
 
-## Repro Notes and Disclaimer
+## Project Note
 
-- **Assumptions:** local timezone, station names standardized by ID  
-- **Color coding:** 2023 teal, 2024 orange  
-- **Artifacts:** `data_issues.xlsx`, Tableau workbook (`.twb`), `/images` folder
-
-This is a personal educational project.  
-Data: [Bike Share Toronto Open Data Portal](https://open.toronto.ca/).  
-Logo used for illustrative purposes.
+This financial extension is part of a **personal data analytics project**.  
+It is designed to demonstrate how trip-level modeling can be applied to an open mobility dataset.  
+The financial section is intentionally limited to fields available in the data.  
+A refined version with verified cost-per-trip values will be published soon.
