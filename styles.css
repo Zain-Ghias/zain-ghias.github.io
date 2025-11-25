@@ -196,7 +196,7 @@ html[data-theme='dark'] .navbar-nav .nav-link {
   cursor: pointer;
   will-change: transform;
   object-fit: cover;
-  object-position: center;
+  object-position: center 75%;
   /* Add loading state - image starts slightly transparent until loaded */
   opacity: 0.9;
 }

@@ -3,7 +3,7 @@ title: "Zain Ghias"
 about:
   id: main-content
   template: trestles
-  image: images/IMG_8377.jpg
+  image: images/IMG_8377.png
   image-shape: round
   links:
     - icon: envelope
