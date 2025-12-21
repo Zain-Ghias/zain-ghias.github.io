@@ -66,34 +66,25 @@ Analytics Projects
 ::: {.about-intro-card}
 ## About Me
 
-Hi, I'm **Zain**, a third-year **Applied Statistics** student at the **University of Toronto Mississauga**, with minors in **Computer Science** and **Mathematics**.  
-
-I'm passionate about connecting **data, design, and storytelling** by using analysis and visualization to make information more human and useful.
+I'm **Zain**, an **Applied Statistics** student at the **University of Toronto**, with minors in **Computer Science** and **Mathematics**. I focus on **Data Analytics** and **Data Visualization**, applying statistical methods and analytical tools to extract insights and support data-driven decisions. I'm building toward a career in **Data Science** and applied analytics.
 :::
 
 ::: {.about-section-card}
 ### Current Work
 
-I'm currently a **Software Engineer Intern** at **Wholeviz**, a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on **React**, **Next.js**, **Tailwind**, and **Plotly**, where I design intuitive front-end interfaces and experiment with **AI-assisted data visualization** features.
-
-Recently, I was selected for the **Skills for the Future Program** with **IBM SkillsBuild × Riipen**, collaborating with **Digital Placemaking Canada** on website redesign and data-driven dashboards.
-
-My startup experience has taught me to be adaptable, communicate effectively across different teams, and deliver results in fast-paced environments.
+I'm currently a **Data Analyst Intern** at **African Geospace**, working on the **Wholeviz** project—a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on **data quality, validation, and QA** for data pipelines, ensuring analytical correctness and proper handling of edge cases in joins and transformations. I collaborate with analysts and engineers to bridge data logic with user-facing behavior, using frontend skills to enhance the visualization experience.
 :::
 
 ::: {.about-section-card}
 ### More About Me
 
-Alongside my work, I'm completing the **IBM Data Analytics Professional Certificate** on Coursera and the **IBM SkillsBuild Digital Credential in User Experience Design Fundamentals**. Through these programs, I'm deepening my skills in **Excel, SQL, Python (Pandas)**, and **IBM Cognos Analytics**, while learning to bridge **analytical storytelling** with **UI and UX design thinking**.
-
-Outside of code and coursework, I recharge through **volleyball**, **table tennis**, and long walks around Mississauga. I'm naturally curious about how things work, whether that's a dataset, a business model, or a React component, and I like turning that curiosity into projects that make data actually mean something.
+I'm completing the **IBM Data Analytics Professional Certificate** on Coursera, deepening my skills in **Excel, SQL, Python (Pandas)**, and **IBM Cognos Analytics** for business intelligence and data visualization.
 
 **Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
 :::
 
 ::: {.callout-tip title="Currently Open to Summer 2026 Internships"}
-Looking for opportunities in **Data Analytics**, **Business Analysis**, **Frontend / UI-UX Development**, or **Software Engineering / Data Visualization**.  
-Open to roles focused on **analytics**, **design**, and **problem-solving**.
+Looking for opportunities in **Data Analytics**, **Business Analysis**, or **Data Science**. Open to roles focused on **analytical problem-solving**, **data pipelines**, and **insight generation**.
 :::
 
 
@@ -111,7 +102,7 @@ Open to roles focused on **analytics**, **design**, and **problem-solving**.
 ::: {.project-content}
 **Bike Share Toronto Analysis**
 
-Analyzing ridership patterns year-over-year to assess network efficiency and demand alignment. Conducting financial estimation analysis for trips to evaluate operational performance and resource allocation.
+Analyzing ridership patterns year-over-year to assess network efficiency and demand alignment. Financial estimation analysis for trips to evaluate operational performance and resource allocation.
 
 **Stack:** Excel · Tableau
 
@@ -127,7 +118,7 @@ Analyzing ridership patterns year-over-year to assess network efficiency and dem
 ::: {.project-content}
 **Customer & Product Profitability Analytics Dashboard**
 
-End-to-end analytics project: SQL data cleaning, transformation, and Power BI dashboards revealing revenue trends, profitability, and customer behavior insights.
+End-to-end analytics project using SQL for data cleaning and transformation, with Power BI dashboards revealing revenue trends, profitability, and customer behavior insights.
 
 **Stack:** SQL · Power BI · Python
 
@@ -148,23 +139,23 @@ End-to-end analytics project: SQL data cleaning, transformation, and Power BI da
 <div class="flip-indicator"></div>
 ::: {.card-inner}
 ::: {.card-front}
-**Software Engineer Intern**  
-*Wholeviz*  
+**Data Analyst Intern**  
+*African Geospace (Wholeviz Project)*  
 *Sep 2025 – Ongoing*
 
-Building data visualization platform with React, Next.js, and Plotly.
+Data quality, validation, and pipeline QA for analytics platform.
 :::
 
 ::: {.card-back}
 **Key Responsibilities**
 
-Building interactive dashboards using React, Next.js, and Plotly. Developing AI-assisted data visualization features to enhance user experience.
+Ensuring data quality and validation across data pipelines, handling joins, edge cases, and analytical correctness. Collaborating with analysts and engineers to validate user-facing behavior and metrics.
 
-Collaborating with cross-functional teams on platform improvements and implementing responsive designs with Tailwind CSS.
+Supporting the Wholeviz data visualization platform through data pipeline QA, transformation validation, and ensuring reliable analytical outputs for NGOs, journalists, and public teams.
 
 **Technologies**
 
-React · Next.js · Tailwind · Plotly · Python · Git
+Python · SQL · React · Next.js · Plotly · Git
 
 <span class="flip-hint">← Click to flip back</span>
 :::
@@ -179,21 +170,21 @@ React · Next.js · Tailwind · Plotly · Python · Git
 *Digital Placemaking Canada*  
 *Nov 2025 – Present*
 
-Selected for Skills for the Future program (IBM SkillsBuild × Riipen). Redesigning website interface and creating data-driven dashboards.
+Selected for Skills for the Future program (IBM SkillsBuild × Riipen). Creating data-driven dashboards and responsive interfaces.
 :::
 
 ::: {.card-back}
 **Key Responsibilities**
 
-Selected for a paid experiential internship through the Skills for the Future program (IBM SkillsBuild × Riipen), collaborating with the startup team at Digital Placemaking Canada to redesign and develop a responsive website for their AI-driven platform, KinesisIQ.
+Selected for a paid experiential internship through the Skills for the Future program (IBM SkillsBuild × Riipen), collaborating with Digital Placemaking Canada to redesign their website and develop interactive data visualizations for KinesisIQ's civic-intelligence platform.
 
-Contributing to UX research, front-end development, and interactive data visualizations that showcase KinesisIQ's civic-intelligence insights. Supporting the creation of analytical dashboards, demo flows, and user-centric features that enhance storytelling and engagement.
-
-This project bridges UI/UX design, software development, and analytical visualization, strengthening data-driven thinking and cross-functional collaboration skills in a dynamic startup environment.
+Contributing to analytical dashboards and user-centric features that enhance data storytelling and engagement.
 
 **Technologies**
 
-UX Design · Responsive Web Design · HTML · CSS · JavaScript · Data Visualization
+HTML · CSS · JavaScript · Data Visualization · UX Design
+
+<span class="flip-hint">← Click to flip back</span>
 :::
 :::
 :::
@@ -206,23 +197,32 @@ UX Design · Responsive Web Design · HTML · CSS · JavaScript · Data Visualiz
 *Quor*  
 *May 2025 – Aug 2025*
 
-Designed and built cross-platform mobile app in React Native.
+Developed cross-platform mobile application with React Native.
 :::
 
 ::: {.card-back}
 **Key Responsibilities**
 
-Designed and developed cross-platform mobile application with responsive UI components in React Native.
-
-Collaborated with startup team in fast-paced environment and delivered production-ready features on tight deadlines.
+Designed and developed cross-platform mobile application with responsive UI components in React Native. Collaborated with startup team in fast-paced environment and delivered production-ready features on tight deadlines.
 
 **Technologies**
 
-React Native · JavaScript · TypeScript · Mobile Development · Git
+React Native · JavaScript · TypeScript · Git
+
+<span class="flip-hint">← Click to flip back</span>
+:::
 :::
 :::
 :::
 
+---
+
+::: {.section-header}
+## Certifications & Professional Training
+<span class="section-badge">1 Active</span>
+:::
+
+::: {.experience-grid}
 ::: {.experience-card .certificate-card}
 <div class="flip-indicator"></div>
 ::: {.card-inner}
@@ -231,19 +231,19 @@ React Native · JavaScript · TypeScript · Mobile Development · Git
 *IBM via Coursera*  
 *Oct 2025 – Ongoing*
 
-Comprehensive data analytics training covering Excel, SQL, Python, and IBM Cognos Analytics.
+Comprehensive training in Excel, SQL, Python, and business intelligence.
 :::
 
 ::: {.card-back}
 **Coursework**
 
-Excel fundamentals and advanced data analysis. SQL for data extraction and manipulation. Python programming with Pandas for data science.
-
-IBM Cognos Analytics for business intelligence and data visualization and storytelling techniques.
+Excel fundamentals and advanced data analysis. SQL for data extraction and manipulation. Python programming with Pandas for data science. IBM Cognos Analytics for business intelligence and data visualization.
 
 **Skills Gained**
 
-Data Analysis · Statistical Methods · Business Intelligence
+Data Analysis · Statistical Methods · Business Intelligence · Data Visualization
+
+<span class="flip-hint">← Click to flip back</span>
 :::
 :::
 :::
@@ -256,18 +256,25 @@ Data Analysis · Statistical Methods · Business Intelligence
 <span class="section-badge">12 Skills</span>
 :::
 
-React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript · Tailwind · Plotly · Git · Pandas
+Python · SQL · Pandas · Tableau · Power BI · Excel · React · Next.js · JavaScript · Plotly · Git · Tailwind
 
 <script>
-// Scroll-triggered card entrance + border animation
-// Cards fade in and slide up first, then border fills down
+/**
+ * Card Entrance Animation
+ * 
+ * Handles scroll-triggered animations for content cards:
+ * 1. Cards fade in and slide up when they enter the viewport
+ * 2. Border animation follows after a short delay
+ * 
+ * Uses IntersectionObserver for performance and smooth animations
+ */
 (function() {
   'use strict';
   
   const cards = document.querySelectorAll('.about-intro-card, .about-section-card, .experience-card, .project-card');
   
+  // Fallback for browsers without IntersectionObserver support
   if (!('IntersectionObserver' in window)) {
-    // Fallback: show all cards immediately
     cards.forEach(function(card) {
       card.classList.add('card-visible', 'border-animated');
     });
@@ -302,10 +309,16 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
   });
 })();
 
-// Scroll-triggered progress bar animation
+/**
+ * Progress Bar Animation
+ * 
+ * Animates the degree progress bar when it enters the viewport.
+ * Delayed to start after the first KPI card animation completes for better visual flow.
+ */
 (function() {
   'use strict';
   
+  // Fallback for browsers without IntersectionObserver support
   if (!('IntersectionObserver' in window)) {
     document.querySelectorAll('.progress-bar').forEach(function(bar) {
       const progress = bar.getAttribute('data-progress');
@@ -326,9 +339,11 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
         
         if (progress && !bar.classList.contains('animated')) {
           bar.classList.add('animated');
+          // Delay progress bar to start after first card entrance animation completes
+          // First card delay (300ms) + card animation (600ms) = 900ms, then add small delay
           setTimeout(function() {
             bar.style.width = progress + '%';
-          }, 100);
+          }, 1000); // Start after first card animation completes with small delay
         }
         
         progressObserver.unobserve(bar);
@@ -343,12 +358,37 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
     progressObserver.observe(bar);
   });
   
+  /**
+   * KPI Card Entrance Animation
+   * 
+   * Handles staggered entrance animations for KPI cards:
+   * 1. Cards fade in and slide up with staggered delays (300ms base + 200ms per card)
+   * 2. Shimmer effect sweeps across each card after the fade-in completes
+   * 3. Hover effects are enabled after all animations complete
+   */
   const kpiObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        kpiObserver.unobserve(entry.target);
+        const card = entry.target;
+        const index = Array.from(document.querySelectorAll('.kpi-card')).indexOf(card);
+        
+        // Add initial state class (invisible, slightly below)
+        card.classList.add('kpi-initial');
+        
+        // Trigger entrance animation with staggered delay
+        // Base delay (300ms) + staggered delay per card (200ms)
+        setTimeout(function() {
+          card.classList.remove('kpi-initial');
+          card.classList.add('kpi-animating');
+          
+          // Remove animating class after all animations complete to allow hover
+          // Card animation (0.6s) + shimmer delay (1.1s) + shimmer duration (0.8s) = 2.5s total
+          setTimeout(function() {
+            card.classList.remove('kpi-animating');
+          }, 2500); // Wait for shimmer to complete
+        }, 300 + (index * 200)); // Base 300ms delay + 200ms stagger between each card
+        
+        kpiObserver.unobserve(card);
       }
     });
   }, {
@@ -356,15 +396,20 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
     rootMargin: '0px 0px -30px 0px'
   });
   
-  document.querySelectorAll('.kpi-card').forEach(function(card, index) {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ' + (index * 0.1) + 's, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ' + (index * 0.1) + 's';
+  // Initialize all KPI cards in initial state
+  document.querySelectorAll('.kpi-card').forEach(function(card) {
+    card.classList.add('kpi-initial');
     kpiObserver.observe(card);
   });
 })();
 
-// Flip card functionality for experience cards
+/**
+ * Experience Card Flip Functionality
+ * 
+ * Enables click/tap to flip experience cards, revealing additional details on the back.
+ * Handles both mouse clicks and touch events for mobile devices.
+ * Prevents accidental flips from swipes or long presses.
+ */
 (function() {
   'use strict';
   
@@ -392,7 +437,7 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
         }
       }
       
-      // Click event
+      // Click event for desktop
       card.addEventListener('click', handleFlip);
       
       // Touch event for mobile (prevent double-tap zoom)
@@ -430,7 +475,52 @@ React · Next.js · Python · SQL · Tableau · Excel · Power BI · JavaScript 
   }
 })();
 
-// Add lazy loading and loading state to profile image
+/**
+ * Profile Headline Injection
+ * 
+ * Dynamically adds a professional headline/subtitle under the profile name.
+ * Styled similar to LinkedIn profile headlines for a professional appearance.
+ */
+(function() {
+  'use strict';
+  
+  function addProfileHeadline() {
+    const titleBlock = document.querySelector('.quarto-title-block');
+    const titleMeta = document.querySelector('.quarto-title-meta');
+    
+    if (!titleBlock || !titleMeta) {
+      setTimeout(addProfileHeadline, 100);
+      return;
+    }
+    
+    // Check if headline already exists
+    if (titleMeta.querySelector('.about-headline')) {
+      return;
+    }
+    
+    // Create headline element
+    const headline = document.createElement('div');
+    headline.className = 'about-headline';
+    headline.textContent = 'Data Analyst Intern at African Geospace';
+    
+    // Insert after title, before links
+    titleMeta.appendChild(headline);
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addProfileHeadline);
+  } else {
+    addProfileHeadline();
+  }
+})();
+
+/**
+ * Profile Image Lazy Loading
+ * 
+ * Implements lazy loading and fade-in animation for the profile image.
+ * Improves initial page load performance and provides smooth visual feedback.
+ */
 (function() {
   'use strict';
   
