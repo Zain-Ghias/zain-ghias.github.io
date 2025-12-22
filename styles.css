@@ -410,8 +410,8 @@ html[data-theme='dark'] .navbar button[aria-label*="light"] i {
 .quarto-title-meta .about-headline,
 .about-headline {
   font-size: 0.95rem;
-  color: #6c757d;
-  font-weight: 400;
+  color: #6c757d; /* Medium gray - readable in both light and dark mode */
+  font-weight: 500; /* Medium weight for better readability */
   margin-top: 0.5rem;
   margin-bottom: 0;
   line-height: 1.5;
@@ -442,32 +442,34 @@ html[data-theme='dark'] .navbar button[aria-label*="light"] i {
   gap: 0.4rem;
   white-space: nowrap;
   flex-wrap: nowrap;
+  color: #6c757d; /* Medium gray - readable in both light and dark mode */
+  font-weight: 500; /* Medium weight for better readability */
 }
 
 .headline-icon {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 20px; /* Increased from 16px */
+  height: 20px; /* Increased from 16px */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.7;
+  opacity: 1; /* Full opacity for better visibility */
   flex-shrink: 0;
-  margin-right: 0.4rem; /* Space before text (icon on left) */
+  margin-right: 0.5rem; /* Slightly increased spacing */
 }
 
 html[data-theme='dark'] .headline-icon {
-  opacity: 0.9;
+  opacity: 1; /* Full opacity in dark mode too */
 }
 
-/* Work icon (briefcase) */
+/* Work icon (briefcase) - blue color for better visibility */
 .work-icon {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236c757d'%3E%3Cpath d='M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007bff'%3E%3Cpath d='M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z'/%3E%3C/svg%3E");
 }
 
-/* Education icon (graduation cap) */
+/* Education icon (graduation cap) - purple/indigo color for better visibility */
 .education-icon {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236c757d'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236633cc'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E");
 }
 
 html[data-theme='dark'] .headline-icon {
@@ -486,12 +488,10 @@ html[data-theme='dark'] .education-icon {
   filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.3));
 }
 
-html[data-theme='dark'] .about-headline {
-  color: #f1f5f9;
-}
-
+/* Dark mode - use a lighter gray that's visible on dark background */
+html[data-theme='dark'] .about-headline,
 html[data-theme='dark'] .headline-line {
-  color: #f1f5f9;
+  color: #cbd5e1 !important; /* Light gray - visible on dark background, readable */
 }
 
 @media (max-width: 768px) {
@@ -507,10 +507,10 @@ html[data-theme='dark'] .headline-line {
   }
   
   .headline-icon {
-    margin-right: 0.25rem;
+    margin-right: 0.35rem;
     flex-shrink: 0;
-    width: 14px;
-    height: 14px;
+    width: 18px; /* Slightly smaller on tablet but still larger than before */
+    height: 18px;
   }
 }
 
@@ -527,9 +527,9 @@ html[data-theme='dark'] .headline-line {
   }
   
   .headline-icon {
-    width: 12px;
-    height: 12px;
-    margin-right: 0.2rem;
+    width: 16px; /* Larger on phone too */
+    height: 16px;
+    margin-right: 0.3rem;
   }
   
   /* KPI cards - phone optimizations */
@@ -555,6 +555,28 @@ html[data-theme='dark'] .headline-line {
   
   .kpi-section-top .kpi-card:first-child {
     padding-top: 0.8rem; /* Reduced top padding for first card */
+  }
+  
+  /* Section header icons - mobile adjustments */
+  .cert-icon,
+  .projects-icon,
+  .experience-icon,
+  .tools-icon {
+    padding-left: 1.5rem; /* Reduced padding on mobile */
+    display: inline-flex; /* Better alignment */
+    align-items: center; /* Center align icon with text */
+  }
+  
+  .cert-icon::before,
+  .projects-icon::before,
+  .experience-icon::before,
+  .tools-icon::before {
+    width: 1.2rem; /* Slightly smaller icon on mobile */
+    height: 1.2rem;
+  }
+  
+  .section-header h2 {
+    min-width: auto; /* Remove min-width constraint on mobile */
   }
 }
 
@@ -2502,7 +2524,8 @@ html[data-theme='dark'] .section-header,
 html[data-theme='dark'] .section-header h2,
 html[data-theme='dark'] body,
 html[data-theme='dark'] body p,
-html[data-theme='dark'] body li {
+html[data-theme='dark'] body li,
+html[data-theme='dark'] .quarto-title-meta {
   color: #ffffff !important;
 }
 
