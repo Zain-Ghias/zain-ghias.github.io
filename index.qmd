@@ -43,10 +43,10 @@ Applied Statistics Degree
 
 ::: {.kpi-card}
 ::: {.kpi-value}
-3
+4
 :::
 ::: {.kpi-label}
-Internships
+Work Experience
 :::
 :::
 
@@ -66,19 +66,29 @@ Analytics Projects
 ::: {.about-intro-card}
 ## About Me
 
-I'm **Zain**, an **Applied Statistics** student at the **University of Toronto**, with minors in **Computer Science** and **Mathematics**. I focus on **Data Analytics** and **Data Visualization**, applying statistical methods and analytical tools to extract insights and support data-driven decisions. I'm building toward a career in **Data Science** and applied analytics.
+I'm Zain, a third year **Honours Bachelor of Science** student in **Applied Statistics** at the **University of Toronto**, with minors in **Computer Science** and **Mathematics**.
+
+I'm focused on **data analytics** and **data visualization**, and I enjoy working with real datasets through projects and applied work. I like understanding how data is generated, cleaning and validating it, and making sure results are reasonable before using them to support decisions. Over time, I'm aiming to move deeper into **data science**, **automation**, and more model driven work.
 :::
 
 ::: {.about-section-card}
 ### Current Work
 
-I'm currently a **Data Analyst Intern** at **African Geospace**, working on the **Wholeviz** project—a data visualization platform helping NGOs, journalists, and public teams turn datasets into interactive dashboards. My work focuses on **data quality, validation, and QA** for data pipelines, ensuring analytical correctness and proper handling of edge cases in joins and transformations. I collaborate with analysts and engineers to bridge data logic with user-facing behavior, using frontend skills to enhance the visualization experience.
+I'm currently a **Data Analyst Intern** at **African Geospace**, contributing to **Wholeviz**, an AI powered data visualization project designed to make data exploration and chart creation easier for non technical users such as NGOs, journalists, and public sector teams.
+
+My work focuses on **data quality** and **validation** across data processing workflows. I review dataset joins, edge cases, and analytical outputs to ensure pipelines behave correctly and results are accurate and understandable for users. I also work closely with analysts and engineers to document data flows and make sure backend logic aligns with what is ultimately shown in the product.
+
+Being involved in an **AI assisted, real world product** has given me practical exposure to how data, analytics, and software come together in a production environment, especially when building tools for non technical audiences.
 :::
 
 ::: {.about-section-card}
 ### More About Me
 
-I'm completing the **IBM Data Analytics Professional Certificate** on Coursera, deepening my skills in **Excel, SQL, Python (Pandas)**, and **IBM Cognos Analytics** for business intelligence and data visualization.
+Alongside my internship, I'm completing the **IBM Data Analytics Professional Certificate** and continuing to build my skills in **Excel**, **SQL**, **Python with Pandas**, and **business intelligence tools**. I regularly work on analytics projects outside of coursework to practice working end to end with data, from cleaning and analysis to presentation.
+
+My academic background in **statistics** helps me reason more carefully about data, and I'm gradually building toward more advanced **analytics** and **machine learning** topics.
+
+Outside of work, I enjoy volleyball, table tennis, and long walks around Mississauga. I'm generally curious about how systems work, whether that's a dataset, a business process, or an analytical workflow, and I like turning that curiosity into practical projects.
 
 **Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
 :::
@@ -89,7 +99,7 @@ Looking for opportunities in **Data Analytics**, **Business Analysis**, or **Dat
 
 
 ::: {.section-header}
-## Projects
+## <span class="projects-icon">Projects</span>
 <span class="section-badge">2 Active</span>
 :::
 
@@ -130,32 +140,34 @@ End-to-end analytics project using SQL for data cleaning and transformation, wit
 ---
 
 ::: {.section-header}
-## Experience
-<span class="section-badge">3 Active</span>
+## <span class="experience-icon">Experience</span>
+<span class="section-badge">2 Active</span>
 :::
 
 ::: {.experience-grid}
-::: {.experience-card}
+::: {.experience-card .experience-active}
 <div class="flip-indicator"></div>
 ::: {.card-inner}
 ::: {.card-front}
 **Data Analyst Intern**  
-*African Geospace (Wholeviz Project)*  
-*Sep 2025 – Ongoing*
+*African Geospace*  
+*Dec 2025 – Present · Remote*
 
-Data quality, validation, and pipeline QA for analytics platform.
+QA, validation, and documentation for cloud-based data visualization platform.
 :::
 
 ::: {.card-back}
 **Key Responsibilities**
 
-Ensuring data quality and validation across data pipelines, handling joins, edge cases, and analytical correctness. Collaborating with analysts and engineers to validate user-facing behavior and metrics.
+• Contributing to QA, validation, and documentation for Wholeviz, a cloud-based data visualization platform that enables no-code chart creation and data exploration, with a focus on user clarity and correctness.
 
-Supporting the Wholeviz data visualization platform through data pipeline QA, transformation validation, and ensuring reliable analytical outputs for NGOs, journalists, and public teams.
+• Reviewing and testing data processing pipelines, including dataset joins, data quality checks, and evaluation outputs, using metrics such as accuracy, precision, and recall to ensure correctness and clear user-facing behavior.
+
+• Collaborating with data analysts and engineers to document data flows, edge cases, and backend integration notes, ensuring analytical logic and user-facing behavior are well aligned.
 
 **Technologies**
 
-Python · SQL · React · Next.js · Plotly · Git
+Data Pipelines · Quality Assurance · Python · SQL · Git
 
 <span class="flip-hint">← Click to flip back</span>
 :::
@@ -166,23 +178,54 @@ Python · SQL · React · Next.js · Plotly · Git
 <div class="flip-indicator"></div>
 ::: {.card-inner}
 ::: {.card-front}
-**UX and Frontend Developer Intern**  
-*Digital Placemaking Canada*  
-*Nov 2025 – Present*
+**Software Engineer Intern**  
+*African Geospace*  
+*Sep 2025 – Dec 2025 · 4 mos*
 
-Selected for Skills for the Future program (IBM SkillsBuild × Riipen). Creating data-driven dashboards and responsive interfaces.
+Developing AI-powered no-code data visualization platform at early-stage startup.
 :::
 
 ::: {.card-back}
 **Key Responsibilities**
 
-Selected for a paid experiential internship through the Skills for the Future program (IBM SkillsBuild × Riipen), collaborating with Digital Placemaking Canada to redesign their website and develop interactive data visualizations for KinesisIQ's civic-intelligence platform.
+• Developing an AI-powered no-code data visualization platform at an early-stage startup that supports NGOs, journalists, and public teams in creating accessible dashboards and visual stories.
 
-Contributing to analytical dashboards and user-centric features that enhance data storytelling and engagement.
+• Worked on UI/UX design and front-end implementation of the Visualize page, the main interface where users create charts and receive AI chart suggestions. Contributed to building the platform's MVP by designing and implementing the workflow for creating, refining, and sharing visualizations.
+
+• Collaborated with engineers and data analysts to enhance design consistency, improve performance, and expand visualization features using React, Next.js, Tailwind, TypeScript, and Plotly.
 
 **Technologies**
 
-HTML · CSS · JavaScript · Data Visualization · UX Design
+React · Next.js · TypeScript · Tailwind · Plotly · Data Visualization · Git
+
+<span class="flip-hint">← Click to flip back</span>
+:::
+:::
+:::
+
+::: {.experience-card .experience-active}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
+**Frontend Developer**  
+*Digital Placemaking Canada*  
+*Nov 2025 – Present · Contract Part-time*
+
+Frontend development and UX redesign for AI-driven civic-intelligence platform.
+:::
+
+::: {.card-back}
+**Key Responsibilities**
+
+• Contributing to the frontend development and UX redesign of KinesisIQ, an AI-driven civic-intelligence platform used by public-sector and community organizations. Building responsive web pages, dashboard layouts, and interactive data visualizations that support insight generation and storytelling.
+
+• Collaborating with designers, developers, and stakeholders to refine user flows, improve usability, and align the platform's interface with project goals. Developing reusable React components and user-centric features that enhance engagement.
+
+• This contract project is completed through the IBM SkillsBuild × Riipen program.
+
+**Technologies**
+
+React · HTML · CSS · JavaScript · UX Design · Responsive Web Design · Data Visualization
 
 <span class="flip-hint">← Click to flip back</span>
 :::
@@ -195,19 +238,25 @@ HTML · CSS · JavaScript · Data Visualization · UX Design
 ::: {.card-front}
 **Frontend Developer Intern**  
 *Quor*  
-*May 2025 – Aug 2025*
+*May 2025 – Aug 2025 · 4 mos*
 
-Developed cross-platform mobile application with React Native.
+Built and refined cross-platform mobile app with small startup team.
 :::
 
 ::: {.card-back}
 **Key Responsibilities**
 
-Designed and developed cross-platform mobile application with responsive UI components in React Native. Collaborated with startup team in fast-paced environment and delivered production-ready features on tight deadlines.
+• Worked with a small startup team to build and refine a cross-platform mobile app. Designed and developed app screens and navigation flows using React Native (Expo) and TypeScript.
+
+• Created reusable UI components for consistent styling and faster development. Used Android Studio virtual devices to test layouts across multiple screen sizes, ensuring responsive design.
+
+• Built a dynamic map component with location pins and styled overlay. Added search bar, user cards, and filter options to enhance user experience. Helped keep the code organized, modular, and easy to update while building from the ground up.
+
+• Contributed to a shared codebase on GitHub, using pull requests, code reviews, and version control to coordinate development with the team.
 
 **Technologies**
 
-React Native · JavaScript · TypeScript · Git
+React Native · TypeScript · JavaScript · Android Studio · Git · Mobile Development
 
 <span class="flip-hint">← Click to flip back</span>
 :::
@@ -218,12 +267,12 @@ React Native · JavaScript · TypeScript · Git
 ---
 
 ::: {.section-header}
-## Certifications & Professional Training
+## <span class="cert-icon">Certifications & Professional Training</span>
 <span class="section-badge">1 Active</span>
 :::
 
 ::: {.experience-grid}
-::: {.experience-card .certificate-card}
+::: {.experience-card .certificate-card .certificate-ongoing}
 <div class="flip-indicator"></div>
 ::: {.card-inner}
 ::: {.card-front}
@@ -247,16 +296,108 @@ Data Analysis · Statistical Methods · Business Intelligence · Data Visualizat
 :::
 :::
 :::
+
+::: {.experience-card .certificate-card .certificate-completed}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
+**Data Analysis | SQL, Tableau, Power BI & Excel**  
+*Udemy*  
+*Oct 2025*
+
+Real projects covering data cleaning, business intelligence, and data visualization.
+:::
+
+::: {.card-back}
+**Coursework**
+
+Comprehensive data analysis training with hands-on projects. SQL for data extraction and manipulation. Tableau and Power BI for business intelligence and data visualization. Excel for data cleaning and analysis.
+
+**Skills Gained**
+
+Data Cleaning · Business Intelligence · MySQL · SQL · Tableau · Power BI · Data Visualization · Statistics · Data Analytics
+
+<span class="flip-hint">← Click to flip back</span>
+:::
+:::
+:::
+
+::: {.experience-card .certificate-card .certificate-completed}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
+**The Web Developer Bootcamp 2024**  
+*Udemy*  
+*Aug 2024*
+
+74-hour comprehensive full-stack web development course.
+:::
+
+::: {.card-back}
+**Coursework**
+
+Full-stack web development covering frontend and backend technologies. React.js for frontend development. Node.js, Express.js, and MongoDB for backend. HTML5, CSS3, and JavaScript fundamentals.
+
+**Skills Gained**
+
+React.js · Node.js · MongoDB · Express.js · JavaScript · HTML5 · CSS3 · Full-Stack Development · Responsive Web Design
+
+<span class="flip-hint">← Click to flip back</span>
+:::
+:::
+:::
+
+::: {.experience-card .certificate-card .certificate-completed}
+<div class="flip-indicator"></div>
+::: {.card-inner}
+::: {.card-front}
+**User Experience Design Fundamentals**  
+*IBM SkillsBuild*  
+*Nov 2025*
+
+UX design concepts, processes, and tools for creating user-centered designs.
+:::
+
+::: {.card-back}
+**Coursework**
+
+Demonstrates knowledge of UX design concepts, processes, and tools. Understanding of user personas, wireframes, prototypes, usability testing, and collaborative UX design workflows. Experience reviewing UX design case studies and making conclusions about website redesigns.
+
+**Skills Gained**
+
+User Experience Design · User Interface Design · Wireframing · Prototyping · Usability Testing · User Personas · User Stories · Design Research · Information Architecture · Web Accessibility
+
+<span class="flip-hint">← Click to flip back</span>
+:::
+:::
+:::
 :::
 
 ---
 
 ::: {.section-header}
-## Tools & Technologies
-<span class="section-badge">12 Skills</span>
+## <span class="tools-icon">Tools & Technologies</span>
+<span class="section-badge">16 Skills</span>
 :::
 
-Python · SQL · Pandas · Tableau · Power BI · Excel · React · Next.js · JavaScript · Plotly · Git · Tailwind
+<div class="tools-list">
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" class="tool-icon"> Python</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="SQL" class="tool-icon"> SQL</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt="Pandas" class="tool-icon"> Pandas</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/numpy.svg" alt="NumPy" class="tool-icon"> NumPy</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/r.svg" alt="R" class="tool-icon"> R</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg" alt="Tableau" class="tool-icon"> Tableau</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powerbi.svg" alt="Power BI" class="tool-icon"> Power BI</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" class="tool-icon"> Excel</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg" alt="React" class="tool-icon"> React</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nextdotjs.svg" alt="Next.js" class="tool-icon"> Next.js</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/typescript.svg" alt="TypeScript" class="tool-icon"> TypeScript</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg" alt="JavaScript" class="tool-icon"> JavaScript</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tailwindcss.svg" alt="Tailwind" class="tool-icon"> Tailwind</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg" alt="HTML" class="tool-icon"> HTML</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg" alt="CSS" class="tool-icon"> CSS</span>
+  <span class="tool-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" class="tool-icon"> Git</span>
+</div>
 
 <script>
 /**
@@ -401,6 +542,33 @@ Python · SQL · Pandas · Tableau · Power BI · Excel · React · Next.js · J
     card.classList.add('kpi-initial');
     kpiObserver.observe(card);
   });
+  
+  /**
+   * Tools Section Fade-in Animation
+   * 
+   * Animates the tools list when it enters the viewport
+   */
+  const toolsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const toolsList = entry.target;
+        // Add visible class with a small delay for smooth entrance
+        setTimeout(function() {
+          toolsList.classList.add('tools-visible');
+        }, 200);
+        toolsObserver.unobserve(toolsList);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  // Observe tools list if it exists
+  const toolsList = document.querySelector('.tools-list');
+  if (toolsList) {
+    toolsObserver.observe(toolsList);
+  }
 })();
 
 /**
@@ -498,10 +666,10 @@ Python · SQL · Pandas · Tableau · Power BI · Excel · React · Next.js · J
       return;
     }
     
-    // Create headline element
+    // Create headline element with two separate lines
     const headline = document.createElement('div');
     headline.className = 'about-headline';
-    headline.textContent = 'Data Analyst Intern at African Geospace';
+    headline.innerHTML = '<span class="headline-line">Data Analyst Intern • African Geospace<span class="headline-icon work-icon"></span></span><br><span class="headline-line">HBSc Applied Statistics • UofT<span class="headline-icon education-icon"></span></span>';
     
     // Insert after title, before links
     titleMeta.appendChild(headline);
