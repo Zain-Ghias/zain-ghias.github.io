@@ -453,7 +453,7 @@ html[data-theme='dark'] .navbar button[aria-label*="light"] i {
   background-position: center;
   opacity: 0.7;
   flex-shrink: 0;
-  margin-left: 0.4rem;
+  margin-right: 0.4rem; /* Space before text (icon on left) */
 }
 
 html[data-theme='dark'] .headline-icon {
@@ -496,18 +496,82 @@ html[data-theme='dark'] .headline-line {
 
 @media (max-width: 768px) {
   .about-headline {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin-top: 0.4rem;
   }
   
   .headline-line {
     gap: 0.3rem;
     white-space: normal;
+    font-size: 0.85rem;
   }
   
   .headline-icon {
-    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-headline {
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+  
+  .headline-line {
+    gap: 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  .headline-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 0.2rem;
+  }
+  
+  /* KPI cards - phone optimizations */
+  .kpi-section-top .kpi-grid {
+    gap: 0.5rem; /* Tighter gap on phones */
+  }
+  
+  .kpi-section-top .kpi-card {
+    padding: 0.6rem 0.5rem; /* Reduced padding */
+    min-height: 110px; /* Slightly smaller min-height */
+  }
+  
+  .kpi-section-top .kpi-value {
+    font-size: 1.5rem; /* Smaller value font */
+    margin-bottom: 0.2rem;
+  }
+  
+  .kpi-section-top .kpi-label {
+    font-size: 0.7rem; /* Smaller label font */
+    margin-top: 0.2rem;
+    line-height: 1.2;
+  }
+  
+  .kpi-section-top .kpi-card:first-child {
+    padding-top: 0.8rem; /* Reduced top padding for first card */
+  }
+}
+
+/* Mobile navbar active indicator adjustments */
+@media (max-width: 768px) {
+  .navbar-nav .nav-link.active::after {
+    width: 80%; /* Wider on mobile for better visibility */
+    bottom: 0.15rem; /* Slightly higher */
+    height: 2.5px; /* Slightly thicker */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-nav .nav-link.active::after {
+    width: 90%; /* Even wider on small phones */
+    bottom: 0.1rem;
+    height: 2.5px;
   }
 }
 

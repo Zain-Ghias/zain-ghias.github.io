@@ -36,6 +36,7 @@ format:
     css: styles.css
     toc: true
     page-layout: full
+    favicon: images/favicon.svg
 
 editor: visual
 

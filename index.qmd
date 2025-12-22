@@ -666,10 +666,10 @@ User Experience Design · User Interface Design · Wireframing · Prototyping ·
       return;
     }
     
-    // Create headline element with two separate lines
+    // Create headline element with two separate lines (icons on the left)
     const headline = document.createElement('div');
     headline.className = 'about-headline';
-    headline.innerHTML = '<span class="headline-line">Data Analyst Intern • African Geospace<span class="headline-icon work-icon"></span></span><br><span class="headline-line">HBSc Applied Statistics • UofT<span class="headline-icon education-icon"></span></span>';
+    headline.innerHTML = '<span class="headline-line"><span class="headline-icon work-icon"></span>Data Analyst Intern • African Geospace</span><br><span class="headline-line"><span class="headline-icon education-icon"></span>HBSc Applied Statistics • UofT</span>';
     
     // Insert after title, before links
     titleMeta.appendChild(headline);
