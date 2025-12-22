@@ -405,6 +405,26 @@ html[data-theme='dark'] .navbar button[aria-label*="light"] i {
   align-items: center !important;
 }
 
+/* Left-align headers for non-index pages (resume, projects, blog) */
+/* Override center alignment for pages that aren't the main index */
+.quarto-title-block:not(.about-entity .quarto-title-block) {
+  text-align: left !important;
+  align-items: flex-start !important;
+}
+
+.quarto-title-block:not(.about-entity .quarto-title-block) .quarto-title,
+.quarto-title-block:not(.about-entity .quarto-title-block) .quarto-title h1.title {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.quarto-title-block:not(.about-entity .quarto-title-block) .quarto-title-meta {
+  text-align: left !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
 /* Force headline centering with maximum specificity */
 .about-entity .quarto-title-meta .about-headline,
 .quarto-title-meta .about-headline,
@@ -2675,6 +2695,89 @@ html[data-theme='dark'] .about-contents .callout-note h3 {
 
 html[data-theme='dark'] .about-contents .callout-note p {
   color: #ffffff !important;
+}
+
+/* ========================================================
+   Professional Animated Callout for About Page
+   ======================================================== */
+
+.about-contents .callout-tip {
+  position: relative;
+  animation: professionalPulse 3.5s ease-in-out infinite;
+  border-left: 4px solid #ffb800 !important;
+  box-shadow: 0 3px 16px rgba(255, 184, 0, 0.25);
+  margin: 1.5rem 0 !important;
+  overflow: visible;
+  transition: box-shadow 0.3s ease;
+}
+
+.about-contents .callout-tip .callout-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.about-contents .callout-tip .callout-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.about-contents .callout-tip .callout-icon-container::before {
+  content: '💡';
+  font-size: 1.5rem;
+  line-height: 1;
+  animation: professionalBulbGlow 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.5));
+  display: block;
+}
+
+.about-contents .callout-tip .callout-icon-container i {
+  display: none;
+}
+
+@keyframes professionalPulse {
+  0%, 100% {
+    box-shadow: 0 3px 16px rgba(255, 184, 0, 0.25);
+  }
+  50% {
+    box-shadow: 0 5px 24px rgba(255, 184, 0, 0.4);
+  }
+}
+
+@keyframes professionalBulbGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.5));
+  }
+  25% {
+    opacity: 0.85;
+    transform: scale(0.97);
+    filter: drop-shadow(0 0 10px rgba(255, 184, 0, 0.65));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 14px rgba(255, 184, 0, 0.8));
+  }
+  75% {
+    opacity: 0.92;
+    transform: scale(1.01);
+    filter: drop-shadow(0 0 11px rgba(255, 184, 0, 0.7));
+  }
+}
+
+html[data-theme='dark'] .about-contents .callout-tip {
+  border-left-color: #ffb800 !important;
+  box-shadow: 0 3px 16px rgba(255, 184, 0, 0.35);
+}
+
+html[data-theme='dark'] .about-contents .callout-tip .callout-icon-container::before {
+  filter: drop-shadow(0 0 10px rgba(255, 184, 0, 0.6));
 }
 
 html[data-theme='dark'] .about-contents .callout-note:hover {

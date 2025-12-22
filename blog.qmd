@@ -2,4 +2,27 @@
 title: "Blog"
 ---
 
+<style>
+/* Override global center alignment for blog page */
+#title-block-header {
+    text-align: left !important;
+}
+
+#title-block-header .quarto-title {
+    text-align: left !important;
+}
+
+#title-block-header .quarto-title h1.title {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+#title-block-header .quarto-title-meta {
+    text-align: left !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+}
+</style>
+
 Coming soon. 
