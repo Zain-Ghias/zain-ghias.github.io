@@ -66,29 +66,31 @@ Analytics Projects
 ::: {.about-intro-card}
 ## About Me
 
-I'm Zain, a third year **Honours Bachelor of Science** student in **Applied Statistics** at the **University of Toronto**, with minors in **Computer Science** and **Mathematics**.
+Hey, I'm Zain. I'm a third year **Honours Bachelor of Science** student in **Applied Statistics** at the **University of Toronto**, with minors in **Computer Science** and **Mathematics**.
 
-I'm focused on **data analytics** and **data visualization**, and I enjoy working with real datasets through projects and applied work. I like understanding how data is generated, cleaning and validating it, and making sure results are reasonable before using them to support decisions. Over time, I'm aiming to move deeper into **data science**, **automation**, and more model driven work.
+I love turning messy data into clear stories. There's something satisfying about cleaning up raw numbers, validating what makes sense, and creating those eye catching visualizations that make people stop and think. I'm focused on **data analytics** and **data visualization**, working with real datasets that actually matter.
+
+I'm curious by nature, always learning, and I enjoy understanding how data flows from collection to insight. I'm the kind of person who digs in and helps the team get it right. Over time, I'm aiming to go deeper into **data science**, **automation**, and more model driven work.
 :::
 
 ::: {.about-section-card}
 ### Current Work
 
-I'm currently a **Data Analyst Intern** at **African Geospace**, contributing to **Wholeviz**, an AI powered data visualization project designed to make data exploration and chart creation easier for non technical users such as NGOs, journalists, and public sector teams.
+I'm currently a **Data Analyst Intern** at **African Geospace**, working on **Wholeviz**, an AI powered data visualization platform that makes data exploration and chart creation accessible for non technical users like NGOs, journalists, and public sector teams.
 
-My work focuses on **data quality** and **validation** across data processing workflows. I review dataset joins, edge cases, and analytical outputs to ensure pipelines behave correctly and results are accurate and understandable for users. I also work closely with analysts and engineers to document data flows and make sure backend logic aligns with what is ultimately shown in the product.
-
-Being involved in an **AI assisted, real world product** has given me practical exposure to how data, analytics, and software come together in a production environment, especially when building tools for non technical audiences.
+My work focuses on **data quality** and **validation** across data processing workflows. I dig into dataset joins, hunt down edge cases, and verify analytical outputs are accurate before they reach users. I also collaborate with analysts and engineers to document data flows and ensure backend logic matches what users see. Working on an **AI assisted, real world product** has taught me how data, analytics, and software come together in production, especially when building for non technical audiences.
 :::
 
 ::: {.about-section-card}
 ### More About Me
 
-Alongside my internship, I'm completing the **IBM Data Analytics Professional Certificate** and continuing to build my skills in **Excel**, **SQL**, **Python with Pandas**, and **business intelligence tools**. I regularly work on analytics projects outside of coursework to practice working end to end with data, from cleaning and analysis to presentation.
+I'm always learning. Right now, I'm working through the **IBM Data Analytics Professional Certificate** while building my skills in **Excel**, **SQL**, **Python with Pandas**, and **business intelligence tools**. I regularly take on analytics projects outside of coursework to practice the full cycle: cleaning data, running analysis, and presenting findings that actually make sense.
 
-My academic background in **statistics** helps me reason more carefully about data, and I'm gradually building toward more advanced **analytics** and **machine learning** topics.
+My background in **statistics** helps me think carefully about what data actually means. I'm gradually moving toward more advanced **analytics** and **machine learning** topics, but I'd rather understand the fundamentals deeply than rush ahead.
 
-Outside of work, I enjoy volleyball, table tennis, and long walks around Mississauga. I'm generally curious about how systems work, whether that's a dataset, a business process, or an analytical workflow, and I like turning that curiosity into practical projects.
+Off the clock, I'm playing volleyball or table tennis, taking long walks around Mississauga, or grabbing coffee with friends. I have to **touch grass** and take those long walks to **stay sane**. I'm genuinely curious about how things work and enjoy turning that curiosity into practical projects.
+
+I'm always open to collaborating on interesting projects. If you think I'd be useful on your team, let's talk.
 
 **Get in touch:** [zain.ghias@mail.utoronto.ca](mailto:zain.ghias@mail.utoronto.ca)
 :::

@@ -2173,12 +2173,13 @@ html[data-theme='dark'] .experience-card .card-back::-webkit-scrollbar-thumb:hov
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 1px solid #dee2e6;
   border-left: 0;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
+              0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
   will-change: transform, box-shadow, opacity;
@@ -2187,7 +2188,28 @@ html[data-theme='dark'] .experience-card .card-back::-webkit-scrollbar-thumb:hov
   transform: translateY(30px);
   transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Subtle background pattern overlay */
+.about-intro-card::after,
+.about-section-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0.03) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-intro-card:hover::after,
+.about-section-card:hover::after {
+  opacity: 1;
 }
 
 /* Card visible state - applied by JavaScript */
@@ -2219,8 +2241,9 @@ html[data-theme='dark'] .experience-card .card-back::-webkit-scrollbar-thumb:hov
 
 .about-intro-card:hover,
 .about-section-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.12);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15),
+              0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .about-intro-card.border-animated:hover::before,
@@ -2231,17 +2254,65 @@ html[data-theme='dark'] .experience-card .card-back::-webkit-scrollbar-thumb:hov
 
 .about-intro-card h2,
 .about-section-card h3 {
-  color: #2c3e50;
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-weight: 600;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #2c3e50 0%, #007bff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Add subtle accent line under headers */
+.about-intro-card h2::after,
+.about-section-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff 0%, rgba(0, 123, 255, 0.3) 100%);
+  border-radius: 2px;
+  animation: accentLineExpand 0.8s ease-out 0.5s forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@keyframes accentLineExpand {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .about-intro-card p,
 .about-section-card p {
   color: #495057;
-  line-height: 1.7;
-  margin-bottom: 0.75rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+/* Enhanced bold text with subtle gradient highlight */
+.about-intro-card p strong,
+.about-section-card p strong {
+  color: #007bff;
+  font-weight: 700;
+  position: relative;
+  background: linear-gradient(120deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.05) 100%);
+  padding: 0 2px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.about-intro-card:hover p strong,
+.about-section-card:hover p strong {
+  background: linear-gradient(120deg, rgba(0, 123, 255, 0.15) 0%, rgba(0, 123, 255, 0.08) 100%);
 }
 
 /* Dark mode about cards */
@@ -2255,12 +2326,31 @@ html[data-theme='dark'] .about-section-card {
 
 html[data-theme='dark'] .about-intro-card h2,
 html[data-theme='dark'] .about-section-card h3 {
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme='dark'] .about-intro-card h2::after,
+html[data-theme='dark'] .about-section-card h3::after {
+  background: linear-gradient(90deg, #60a5fa 0%, rgba(96, 165, 250, 0.3) 100%);
 }
 
 html[data-theme='dark'] .about-intro-card p,
 html[data-theme='dark'] .about-section-card p {
-  color: #ffffff !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-theme='dark'] .about-intro-card p strong,
+html[data-theme='dark'] .about-section-card p strong {
+  color: #60a5fa;
+  background: linear-gradient(120deg, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0.08) 100%);
+}
+
+html[data-theme='dark'] .about-intro-card:hover p strong,
+html[data-theme='dark'] .about-section-card:hover p strong {
+  background: linear-gradient(120deg, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0.12) 100%);
 }
 
 /* ========================================================
@@ -2809,17 +2899,24 @@ html[data-theme='dark'] .tools-section {
   gap: 1rem;
   margin-top: 1.75rem;
   font-size: 0.95rem;
-  /* Initial hidden state for fade-in animation */
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Visible state - applied by JavaScript */
-.tools-list.tools-visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Individual tool items will animate when parent has .tools-visible class */
+
+/* Pop-up animation keyframes for tool items */
+@keyframes toolPopUp {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(20px);
+  }
+  60% {
+    transform: scale(1.1) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .tool-item {
@@ -2838,7 +2935,37 @@ html[data-theme='dark'] .tools-section {
   position: relative;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  user-select: none;
+  /* Initial hidden state for pop-up animation */
+  opacity: 0;
+  transform: scale(0);
 }
+
+/* Only animate when parent is visible */
+.tools-list.tools-visible .tool-item {
+  animation: toolPopUp 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Staggered animation delays - each item pops up slightly after the previous */
+.tools-list.tools-visible .tool-item:nth-child(1) { animation-delay: 0s; }
+.tools-list.tools-visible .tool-item:nth-child(2) { animation-delay: 0.06s; }
+.tools-list.tools-visible .tool-item:nth-child(3) { animation-delay: 0.12s; }
+.tools-list.tools-visible .tool-item:nth-child(4) { animation-delay: 0.18s; }
+.tools-list.tools-visible .tool-item:nth-child(5) { animation-delay: 0.24s; }
+.tools-list.tools-visible .tool-item:nth-child(6) { animation-delay: 0.3s; }
+.tools-list.tools-visible .tool-item:nth-child(7) { animation-delay: 0.36s; }
+.tools-list.tools-visible .tool-item:nth-child(8) { animation-delay: 0.42s; }
+.tools-list.tools-visible .tool-item:nth-child(9) { animation-delay: 0.48s; }
+.tools-list.tools-visible .tool-item:nth-child(10) { animation-delay: 0.54s; }
+.tools-list.tools-visible .tool-item:nth-child(11) { animation-delay: 0.6s; }
+.tools-list.tools-visible .tool-item:nth-child(12) { animation-delay: 0.66s; }
+.tools-list.tools-visible .tool-item:nth-child(13) { animation-delay: 0.72s; }
+.tools-list.tools-visible .tool-item:nth-child(14) { animation-delay: 0.78s; }
+.tools-list.tools-visible .tool-item:nth-child(15) { animation-delay: 0.84s; }
+.tools-list.tools-visible .tool-item:nth-child(16) { animation-delay: 0.9s; }
+.tools-list.tools-visible .tool-item:nth-child(17) { animation-delay: 0.96s; }
+.tools-list.tools-visible .tool-item:nth-child(18) { animation-delay: 1.02s; }
 
 .tool-item::before {
   content: '';
@@ -2869,6 +2996,13 @@ html[data-theme='dark'] .tools-section {
   vertical-align: middle;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   flex-shrink: 0;
+}
+
+/* Make MySQL/SQL icon slightly larger */
+.tool-item:has(img[alt="SQL"]) .tool-icon,
+.tool-item img[alt="SQL"] {
+  width: 32px;
+  height: 32px;
 }
 
 .tool-item:hover .tool-icon {
