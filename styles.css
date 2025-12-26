@@ -53,8 +53,8 @@ body::before {
   width: 100%;
   height: 100%;
   background-image: 
-    /* Radial gradient - more visible at edges, fading to center */
-    radial-gradient(ellipse at center, transparent 0%, transparent 35%, rgba(0, 123, 255, 0.02) 50%, rgba(0, 123, 255, 0.06) 70%, rgba(0, 123, 255, 0.08) 100%),
+    /* Radial gradient - more visible at edges, fading to center - pushed more to edges */
+    radial-gradient(ellipse at center, transparent 0%, transparent 45%, rgba(0, 123, 255, 0.015) 55%, rgba(0, 123, 255, 0.05) 75%, rgba(0, 123, 255, 0.07) 100%),
     /* Subtle diagonal lines - blue tint */
     repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 123, 255, 0.05) 2px, rgba(0, 123, 255, 0.05) 4px),
     /* Horizontal grid lines - blue tint */
@@ -65,46 +65,60 @@ body::before {
   pointer-events: none;
   z-index: 0;
   opacity: 1;
+  /* Ensure no animation or transition */
+  animation: none !important;
+  transition: none !important;
+  will-change: auto;
 }
 
 /* Mobile optimization - reduce grid density and visibility */
 @media (max-width: 768px) {
   body::before {
     background-image: 
-      /* Lighter radial gradient on mobile */
-      radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0, 123, 255, 0.015) 60%, rgba(0, 123, 255, 0.04) 85%, rgba(0, 123, 255, 0.06) 100%),
+      /* Lighter radial gradient on mobile - pushed to edges */
+      radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0, 123, 255, 0.01) 65%, rgba(0, 123, 255, 0.035) 85%, rgba(0, 123, 255, 0.055) 100%),
       /* Less dense diagonal lines */
       repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0, 123, 255, 0.03) 3px, rgba(0, 123, 255, 0.03) 6px),
       /* Larger grid spacing for mobile */
       repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(0, 123, 255, 0.04) 60px, rgba(0, 123, 255, 0.04) 61px),
       repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0, 123, 255, 0.04) 60px, rgba(0, 123, 255, 0.04) 61px);
+    /* Ensure no animation on mobile */
+    animation: none !important;
+    transition: none !important;
   }
 }
 
 /* Dark mode background pattern - same structure with blue tint */
 html[data-theme='dark'] body::before {
   background-image: 
-    /* Radial gradient - more visible at edges, fading to center */
-    radial-gradient(ellipse at center, transparent 0%, transparent 35%, rgba(96, 165, 250, 0.03) 50%, rgba(96, 165, 250, 0.08) 70%, rgba(96, 165, 250, 0.12) 100%),
+    /* Radial gradient - more visible at edges, fading to center - pushed more to edges */
+    radial-gradient(ellipse at center, transparent 0%, transparent 45%, rgba(96, 165, 250, 0.025) 55%, rgba(96, 165, 250, 0.07) 75%, rgba(96, 165, 250, 0.11) 100%),
     /* Diagonal lines - blue tint */
     repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(96, 165, 250, 0.05) 2px, rgba(96, 165, 250, 0.05) 4px),
     /* Horizontal grid lines - blue tint */
     repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(96, 165, 250, 0.06) 40px, rgba(96, 165, 250, 0.06) 41px),
     /* Vertical grid lines - blue tint */
     repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(96, 165, 250, 0.06) 40px, rgba(96, 165, 250, 0.06) 41px);
+  /* Ensure no animation or transition */
+  animation: none !important;
+  transition: none !important;
+  will-change: auto;
 }
 
 /* Mobile optimization for dark mode */
 @media (max-width: 768px) {
   html[data-theme='dark'] body::before {
     background-image: 
-      /* Lighter radial gradient on mobile */
-      radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(96, 165, 250, 0.02) 60%, rgba(96, 165, 250, 0.06) 85%, rgba(96, 165, 250, 0.08) 100%),
+      /* Lighter radial gradient on mobile - pushed to edges */
+      radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(96, 165, 250, 0.015) 65%, rgba(96, 165, 250, 0.055) 85%, rgba(96, 165, 250, 0.075) 100%),
       /* Less dense diagonal lines */
       repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(96, 165, 250, 0.04) 3px, rgba(96, 165, 250, 0.04) 6px),
       /* Larger grid spacing for mobile */
       repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(96, 165, 250, 0.05) 60px, rgba(96, 165, 250, 0.05) 61px),
       repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(96, 165, 250, 0.05) 60px, rgba(96, 165, 250, 0.05) 61px);
+    /* Ensure no animation on mobile */
+    animation: none !important;
+    transition: none !important;
   }
 }
 
@@ -1556,37 +1570,6 @@ html[data-theme='dark'] .kpi-card:not(.kpi-animating):hover .kpi-value {
   color: #60a5fa;
 }
 
-/* Dark mode background pattern - same as light mode for consistency */
-html[data-theme='dark'] body::before {
-  background-image: 
-    /* Radial gradient - more visible at edges, fading to center - same as light mode */
-    radial-gradient(ellipse at center, transparent 0%, transparent 35%, rgba(96, 165, 250, 0.03) 50%, rgba(96, 165, 250, 0.08) 70%, rgba(96, 165, 250, 0.12) 100%),
-    /* Diagonal lines - blue tint, same visibility */
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      rgba(96, 165, 250, 0.05) 2px,
-      rgba(96, 165, 250, 0.05) 4px
-    ),
-    /* Horizontal grid lines - blue tint, same visibility */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 40px,
-      rgba(96, 165, 250, 0.06) 40px,
-      rgba(96, 165, 250, 0.06) 41px
-    ),
-    /* Vertical grid lines - blue tint, same visibility */
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 40px,
-      rgba(96, 165, 250, 0.06) 40px,
-      rgba(96, 165, 250, 0.06) 41px
-    );
-  opacity: 1;
-}
 
 /* Section Header with Badge */
 .section-header {
