@@ -1,5 +1,5 @@
 ---
-title: "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension"
+title: "Bike Share Toronto Analysis"
 date: 2025-10-15
 image: images/Bike_Share_Toronto_logo.png
 description: "Ridership trends for March 2023 and March 2024 with an estimated financial extension. Cleaned in Excel and visualized in Tableau."

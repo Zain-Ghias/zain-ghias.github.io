@@ -135,70 +135,70 @@
   {
     "objectID": "projects/bikeshare/index.html",
     "href": "projects/bikeshare/index.html",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "",
     "text": "This analysis explores how Bike Share Toronto usage changed between March 2023 and March 2024, focusing on hourly ridership, weekday vs weekend, and member vs casual mix.\nThe project shows a clear workflow from Excel cleaning to Tableau dashboards, with decisions logged for transparency. The new Financial Extension adds a simple revenue–cost–profit view based on public pricing and documented assumptions."
   },
   {
     "objectID": "projects/bikeshare/index.html#overview",
     "href": "projects/bikeshare/index.html#overview",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "",
     "text": "This analysis explores how Bike Share Toronto usage changed between March 2023 and March 2024, focusing on hourly ridership, weekday vs weekend, and member vs casual mix.\nThe project shows a clear workflow from Excel cleaning to Tableau dashboards, with decisions logged for transparency. The new Financial Extension adds a simple revenue–cost–profit view based on public pricing and documented assumptions."
   },
   {
     "objectID": "projects/bikeshare/index.html#project-purpose",
     "href": "projects/bikeshare/index.html#project-purpose",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "Project Purpose",
     "text": "Project Purpose\n\nMotivation\nLiving in Mississauga, I rarely saw Lime scooters or shared bikes in active use. Many looked idle or abandoned mid-trip.\nThat raised a question: are these systems being used effectively, or just growing in size?\nI tried to access Lime GBFS but the process stalled, so I pivoted to Bike Share Toronto open data, which is clean and well structured. The work evolved into a business-style analysis that checks if ridership growth kept pace with network expansion.\n\n\nCore Question\n\nHow did Bike Share Toronto usage differ between March 2023 and March 2024 by hour, by weekday vs weekend, and by user type?\n\n\n\nWhy These Months?\nEach monthly file has hundreds of thousands of trips, so a single month can be representative.\nI chose March 2023 and March 2024 to keep scope focused while allowing a true year-over-year comparison.\n\n\nTools & Stack\nExcel (cleaning and validation) · Tableau (visualization) · Python/SQL (planned automation)"
   },
   {
     "objectID": "projects/bikeshare/index.html#data-summary",
     "href": "projects/bikeshare/index.html#data-summary",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "Data Summary",
     "text": "Data Summary\n\nSource: Bike Share Toronto Open Data\nMonths analyzed: March 2023 and March 2024\n\nVolume: ~537k trips combined\n\nKey fields: Trip ID, duration, start/end stations, times, bike ID, user type\n\n2024 addition: Model (bike type)\n\nSupplement: Station reference CSV with IDs, names, and coordinates for mapping\n\n\nMarch vs March gives comparable seasonal conditions at high volume."
   },
   {
     "objectID": "projects/bikeshare/index.html#cleaning-validation-excel",
     "href": "projects/bikeshare/index.html#cleaning-validation-excel",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "Cleaning & Validation (Excel)",
     "text": "Cleaning & Validation (Excel)\nI used a Data Issues Log rather than ad-hoc fixes.\n\nCleaning Steps\n\nCoerced types (timestamps to datetime, duration to minutes)\n\nDropped incomplete rows with missing start/end station or time\n\nRemoved duplicates with (start_time, end_time, bike_id)\n\nCreated Start Hour, Day of Week, Same Station?, Mappable\n\nJoined station IDs to a reference file and flagged missing IDs as Unmapped\n\n\n\nSchema Notes (2023 vs 2024)\n\n\n\nField\n2023\n2024\nNotes\n\n\n\n\nTrip Id\n✓\n✓\nUnique per trip\n\n\nTrip Duration (sec)\n✓\n✓\nConverted to minutes\n\n\nStart/End Station Id & Name\n✓\n✓\nSome IDs updated\n\n\nStart/End Time\n✓\n✓\nDatetime\n\n\nBike Id\n✓\n✓\n\n\n\nUser Type\n✓\n✓\nAnnual or Casual\n\n\nModel (bike type)\n—\n✓\nNew in 2024\n\n\nDerived columns\n✓\n✓\nCreated during cleaning\n\n\n\n\nSome 2024 station IDs were not in the 2023 map file. They are kept for totals and flagged Unmapped for maps.\n\n\n\nDerived Columns\n\n\n\n\n\n\n\n\n\nColumn\nType\nHow it’s computed\nWhy it matters\n\n\n\n\nTrip Duration (min)\nNumeric\nduration_sec / 60\nConsistent time comparison\n\n\nStart Date\nDate\ndate(Start Time)\nDay-level grouping\n\n\nStart Hour\nInteger\nhour(Start Time)\nHourly patterns\n\n\nDay of Week\nText\nweekday(Start Time)\nWeekday vs weekend\n\n\nSame Station?\nBoolean\nStart Station Id == End Station Id\nLoops vs A→B\n\n\nMappable\nBoolean\nIn station reference\nMap readiness\n\n\n\n\n\nData Issues (logged)\n\n\n\nIssue\nFix / Decision\nKept?\nExample Count\n\n\n\n\nEnd Station = NULL\nDrop row\n✗\n80\n\n\nTrip duration &lt; 1 min\nDrop row\n✗\n417\n\n\nTrip duration &gt; 24 hr\nDrop row\n✗\n43\n\n\nStart = End station\nKeep, flag as Same Station\n✓\n6,835\n\n\nInconsistent station names\nStandardize by ID\n✓\n15,942\n\n\nStation ID missing (new)\nKeep, mark Unmapped\n✓\n22,000"
   },
   {
     "objectID": "projects/bikeshare/index.html#from-excel-to-tableau",
     "href": "projects/bikeshare/index.html#from-excel-to-tableau",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "From Excel to Tableau",
     "text": "From Excel to Tableau\nThe two months were unioned and joined to the station reference. Trips with missing reference stayed in totals but were marked Unmapped for mapping.\nKey fields used: duration (min), hour, weekday, user type, station names, and Model for 2024."
   },
   {
     "objectID": "projects/bikeshare/index.html#dashboards-insights",
     "href": "projects/bikeshare/index.html#dashboards-insights",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "Dashboards & Insights",
     "text": "Dashboards & Insights\n\n1) Overview Dashboard\n\n\n\nAt a Glance\n\nTotal Trips: 537,045 (both months)\n\nAvg Duration: ~15 minutes\n\nNetwork Size: 7,028 bikes across 815 stations (about 8.6 bikes per station)\n\nAnnual Members: ~21.5% share\n\n\n\nUsage Patterns\n\nPeaks at 8–9 AM and 5–7 PM fit office commutes\n\nMidday and weekend rides are steady\n\nTuesday to Thursday is slightly higher, matching hybrid schedules\n\n\n\nBusiness Interpretation\n\nPeaks support dock rebalancing and staffing\n\nShort average duration fits a first/last-mile role\n\nA ~1-in-5 membership share suggests room to convert frequent casuals\n\n\n\n\n2) Comparison Dashboard\n\n\n\nKey Observations\n\nTrip Volume: +39% (224k → 312k)\n\nAverage Duration: +12.8% (14.4 → 16.2 min)\n\nAssets: +9% bikes and +20% stations\n\nMember Share: −2.1 pp (22.7% → 20.6%), casuals grew faster\n\nSaturday Spread: wider range of use, likely leisure and tourism\n\n\n\nInterpretation\n\nSupply scaled with demand, not an overcapacity story\n\nLonger trips likely reflect leisure or extended routes\n\nCommute peaks remain; lighter Mondays and Fridays show hybrid effects\n\nMore casuals in the funnel opens up retention and conversion plays\n\n\n\n\n3) Commuter Patterns Dashboard\n\n\nRoutes with a single location such as Tommy Thompson Park are round trips. Trips with Unmapped stations were excluded from route mapping.\n\n\n\nAt a Glance\n\n~97% of trips are point-to-point commuting\n\nTop corridors: Union Station, Front St, Bay St, Yonge St\n\nLoop routes: recreational trips like Tommy Thompson Park remain active\n\n2024 growth: most high-traffic routes increased further, showing consolidation rather than fragmentation\n\n\n\nInterpretation\n\nBike Share Toronto serves primarily urban commuters with consistent weekday use\n\nLoop trips reflect weekend leisure demand\n\nOperational priority: dock turnover and rebalancing in core corridors during peaks\n\nMarketing insight: weekend casuals are candidates for day-pass → subscription funnels\n\n\nBottom line: the commuter network is expanding efficiently, sustaining weekday reliability while attracting weekend explorers."
   },
   {
     "objectID": "projects/bikeshare/index.html#financial-extension-business-and-revenue-analysis",
     "href": "projects/bikeshare/index.html#financial-extension-business-and-revenue-analysis",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "Financial Extension — Business and Revenue Analysis",
     "text": "Financial Extension — Business and Revenue Analysis\n\nWhy a financial view?\nBike Share Toronto’s open data does not include pricing, membership fees, taxes, or cost information.\nTo connect ridership trends to business outcomes, I added a trip-level revenue model using only publicly available pricing rules from the City of Toronto (2023 and 2024).\nThis keeps the analysis fully transparent:\n\nRevenue is modeled purely at the trip level (duration × bike model × user type)\n\nMembership fees, taxes, discounts, and account-level billing are not included\n\nCosts and profit are not yet modeled, because system-wide operational cost data is not available in the open dataset\n\nAny cost/profit KPIs visible in the dashboard are temporary placeholders, included only to show what a complete financial dashboard layout could look like\n\nI have found official cost-per-trip figures provided by Bike Share Toronto, which will allow a more accurate cost model.\nThese will be integrated in a future update.\nThe financial portion of this project will remain trip-level only, meaning it will not include external costs such as:\n\nbike purchase and depreciation\n\nmaintenance and repairs\n\nstaff labour\n\nrebalancing/relocation costs\n\ncharging infrastructure\n\nadministration and overhead\n\nThose are outside the scope of the ridership dataset, but the trip-level approach provides a realistic and defensible baseline.\n\n\n\n\nRevenue Findings (Trip-Level Only)\n\nMarch 2023 Revenue: $628,748\n\nMarch 2024 Revenue: $711,804\n\nYoY Growth: +13.2%\n\nAdditional observations:\n\nMidweek (Wed/Thu) shows the strongest revenue, matching commuter behaviour\n\nClassic bikes contribute ~94 percent of total revenue due to their volume\n\nCasual riders generate the highest per-trip revenue and represent a strong conversion opportunity\n\n\n\nInterpretation\n\nRidership and revenue increased year-over-year across both commuter and leisure segments\n\nLonger trip durations in 2024 suggest stronger leisure/tourism momentum\n\nCasual riders remain the key source of per-trip dollars\n\nMidweek revenue stability demonstrates reliable commuter demand\n\n\nNote: Revenue is modeled accurately using official rate rules.\nCost and profit values shown in the dashboard are placeholders and will be replaced by a trip-level cost model using verified figures from Bike Share Toronto."
   },
   {
     "objectID": "projects/bikeshare/index.html#how-the-trip-level-revenue-model-works",
     "href": "projects/bikeshare/index.html#how-the-trip-level-revenue-model-works",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "How the Trip-Level Revenue Model Works",
     "text": "How the Trip-Level Revenue Model Works\n\nNew Excel Fields\n\n\n\n\n\n\n\n\nNew Field\nPurpose\nDescription\n\n\n\n\nEst. Trip Revenue ($)\nRevenue per trip\nApplies rate rules by year, duration, bike model, and user type\n\n\nPricing Basis\nTransparency\nLabels such as “2024 casual classic per-min rate”\n\n\n\n\n\n\nPricing Framework (Validated)\n\n2023 Pricing\n\n\n\n\n\n\n\n\n\nUser Type\nBike\nRule\nFormula\n\n\n\n\nCasual\nClassic\nBase 30 min\n$3.25 flat + $4 per extra 30-min block\n\n\nAnnual\nClassic\nIncluded\n$0 per trip (overage not identifiable)\n\n\n\n2024 Pricing\n\n\n\nUser Type\nBike\nRule\nFormula\n\n\n\n\nCasual\nClassic\nUnlock + per-min\n$1 + $0.12 × minutes\n\n\nCasual\nE-bike\nUnlock + per-min\n$1 + $0.20 × minutes\n\n\nAnnual\nClassic\nOverage only\nMAX(0, minutes − 30) × $0.12\n\n\nAnnual\nE-bike\nPer-min\n$0.10 × minutes\n\n\n\n\n\n\nAdditional Data Issue\n\n\n\n\n\n\n\n\n\n\nIssue\nYear\nCount\nLikely Cause\nAction\n\n\n\n\nAnnual member trips &gt; 30 minutes\n2023\n806\nBilling data not available\nExcluded from revenue (cannot be priced reliably)\n\n\n\n\n\n\nReferences, Sources, and Assumptions\n\n\n\n#\nSource\nWhat it provides\nHow it was used\n\n\n\n\n1\nCity of Toronto Background File (2023)\n2023 pricing structure\nUsed for 2023 casual/annual trip-level pricing rules\n\n\n2\nCity of Toronto Background File (2024)\n2024 updated pricing\nUsed for 2024 unlock fees and per-minute rate rules\n\n\n3\nBike Share Toronto Pricing\nPublic reference pricing\nValidated trip pricing logic for modeling\n\n\n4\nUpcoming: Bike Share Toronto trip-level cost metrics\nVerified system cost-per-trip values\nWill replace placeholder cost/profit KPIs in the next update\n\n\n\n\nAll financial figures reflect trip-level modeling only, based on publicly available pricing.\nMembership fees, overhead costs, rebalancing, repairs, depreciation, and other operational expenses are outside the scope of the dataset.\nA refined version with verified cost-per-trip values will be added once integrated."
   },
   {
     "objectID": "projects/bikeshare/index.html#project-note",
     "href": "projects/bikeshare/index.html#project-note",
-    "title": "Bike Share Toronto Analysis (March 2023 vs March 2024) + Financial Extension",
+    "title": "Bike Share Toronto Analysis",
     "section": "Project Note",
     "text": "Project Note\nThis financial extension is part of a personal data analytics project.\nIt is designed to demonstrate how trip-level modeling can be applied to an open mobility dataset.\nThe financial section is intentionally limited to fields available in the data.\nA refined version with verified cost-per-trip values will be published soon."
   },
