@@ -686,6 +686,85 @@ User Experience Design · User Interface Design · Wireframing · Prototyping ·
 })();
 
 /**
+ * Name Letter-by-Letter Animation
+ * 
+ * Wraps each letter of the name in a span for individual animation.
+ * Creates a smooth, professional letter-by-letter reveal effect.
+ * First word ("Zain") appears, then second word ("Ghias") follows.
+ */
+(function() {
+  'use strict';
+  
+  function animateNameLetters() {
+    const nameElement = document.querySelector('.about-entity .quarto-title h1.title');
+    
+    if (!nameElement) {
+      setTimeout(animateNameLetters, 100);
+      return;
+    }
+    
+    // Check if already animated
+    if (nameElement.querySelector('.name-letter')) {
+      return;
+    }
+    
+    const text = nameElement.textContent.trim();
+    const words = text.split(' ');
+    
+    // Clear existing content
+    nameElement.innerHTML = '';
+    
+    // Base delay for animation start
+    const baseDelay = 0.4;
+    const letterDuration = 0.4; // Duration for each letter animation
+    const letterDelay = 0.06; // Delay between each letter (smooth but not too slow)
+    
+    // Wrap each letter in a span with animation delay
+    words.forEach((word, wordIndex) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.style.display = 'inline-block';
+      wordSpan.style.marginRight = '0.3em';
+      
+      // Calculate when this word should start
+      // First word starts at baseDelay
+      // Second word starts when last letter of first word begins (for smooth continuous flow)
+      let wordStartDelay = baseDelay;
+      if (wordIndex === 1) {
+        // Second word starts when last letter of first word begins - creates smooth continuous flow
+        const firstWordLength = words[0].length;
+        // Last letter of first word starts at: baseDelay + ((firstWordLength - 1) * letterDelay)
+        // Start second word slightly before that for seamless transition
+        wordStartDelay = baseDelay + ((firstWordLength - 1) * letterDelay) + (letterDuration * 0.5);
+      }
+      
+      word.split('').forEach((letter, letterIndex) => {
+        const letterSpan = document.createElement('span');
+        letterSpan.className = 'name-letter';
+        letterSpan.textContent = letter === ' ' ? '\u00A0' : letter;
+        letterSpan.style.display = 'inline-block';
+        letterSpan.style.opacity = '0';
+        letterSpan.style.transform = 'translateY(10px)';
+        
+        // Calculate delay: word start delay + letter index * letter delay
+        const delay = wordStartDelay + (letterIndex * letterDelay);
+        letterSpan.style.animation = `letterFadeIn ${letterDuration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards`;
+        
+        wordSpan.appendChild(letterSpan);
+      });
+      
+      nameElement.appendChild(wordSpan);
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', animateNameLetters);
+  } else {
+    animateNameLetters();
+  }
+})();
+
+/**
  * Profile Image Lazy Loading
  * 
  * Implements lazy loading and fade-in animation for the profile image.

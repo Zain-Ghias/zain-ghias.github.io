@@ -449,6 +449,26 @@ html[data-theme='dark'] .navbar button[aria-label*="light"] i {
   text-align: center !important;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+}
+
+/* Letter-by-letter animation for name */
+.name-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Letter fade-in animation - smooth and elegant */
+@keyframes letterFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .quarto-title-meta {
@@ -524,7 +544,32 @@ html[data-theme='dark'] .navbar button[aria-label*="light"] i {
   white-space: nowrap;
   flex-wrap: nowrap;
   color: #6c757d; /* Medium gray - readable in both light and dark mode */
-  font-weight: 500; /* Medium weight for better readability */
+  /* Slide in from left animation */
+  opacity: 0;
+  transform: translateX(-18px);
+  animation: headlineSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered animation for subtitle lines - appear after name completes */
+/* Use nth-of-type to ignore the <br> element between lines */
+.headline-line:nth-of-type(1) {
+  animation-delay: 1.4s;
+}
+
+.headline-line:nth-of-type(2) {
+  animation-delay: 1.55s;
+}
+
+/* Headline slide-in animation - smooth and elegant */
+@keyframes headlineSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .headline-icon {
@@ -705,9 +750,42 @@ html[data-theme='dark'] .headline-line {
   -webkit-backdrop-filter: blur(8px) saturate(180%);
   border: 1.5px solid transparent;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   position: relative;
   z-index: 2; /* Ensure buttons are above background */
+  /* Initial state for cool entrance animation */
+  opacity: 0;
+  transform: translateY(15px) scale(0.8);
+  animation: iconCoolEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered animation for social icons - appear after subtitles complete */
+.about-link:nth-child(1) {
+  animation-delay: 1.9s;
+}
+
+.about-link:nth-child(2) {
+  animation-delay: 2.0s;
+}
+
+.about-link:nth-child(3) {
+  animation-delay: 2.1s;
+}
+
+/* Icon cool entrance animation - slide up with scale and fade */
+@keyframes iconCoolEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.8);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateY(-3px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Dark mode - transparent glassmorphism (lines look good in dark mode) */
@@ -726,9 +804,9 @@ body.quarto-dark .about-link {
   color: #0A66C2 !important;
 }
 
-/* LinkedIn: enhanced hover effect with glow */
+/* LinkedIn: enhanced hover effect with glow - smooth transitions */
 .about-link[href*="linkedin"]:hover, .about-link[href*="linkedin"]:focus {
-  border-color: rgba(10, 102, 194, 0.8) !important;
+  border-color: rgba(10, 102, 194, 0.8);
   background: rgba(10, 102, 194, 0.1);
   transform: scale(1.08) translateY(-2px);
   box-shadow: 0 8px 24px rgba(10, 102, 194, 0.25), 0 2px 8px rgba(10, 102, 194, 0.15);
@@ -745,9 +823,9 @@ body.quarto-dark .about-link {
   color: #ff9800 !important;
 }
 
-/* GitHub: enhanced hover effect with glow */
+/* GitHub: enhanced hover effect with glow - smooth transitions */
 .about-link[href*="github"]:hover, .about-link[href*="github"]:focus {
-  border-color: rgba(255, 152, 0, 0.8) !important;
+  border-color: rgba(255, 152, 0, 0.8);
   background: rgba(255, 152, 0, 0.1);
   transform: scale(1.08) translateY(-2px);
   box-shadow: 0 8px 24px rgba(255, 152, 0, 0.25), 0 2px 8px rgba(255, 152, 0, 0.15);
@@ -764,9 +842,9 @@ body.quarto-dark .about-link {
   color: #2ecc40 !important;
 }
 
-/* Email: enhanced hover effect with glow */
+/* Email: enhanced hover effect with glow - smooth transitions */
 .about-link[href^="mailto"]:hover, .about-link[href^="mailto"]:focus {
-  border-color: rgba(46, 204, 64, 0.8) !important;
+  border-color: rgba(46, 204, 64, 0.8);
   background: rgba(46, 204, 64, 0.1);
   transform: scale(1.08) translateY(-2px);
   box-shadow: 0 8px 24px rgba(46, 204, 64, 0.25), 0 2px 8px rgba(46, 204, 64, 0.15);
@@ -789,13 +867,27 @@ body.quarto-dark .about-link {
   will-change: transform;
   object-fit: cover;
   object-position: center 75%;
-  /* Add loading state - image starts slightly transparent until loaded */
-  opacity: 0.9;
+  /* Initial state for animation */
+  opacity: 0;
+  transform: scale(0.95);
+  animation: profileImageFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
 }
 
 /* Once image is loaded, make it fully opaque */
 .about-image.loaded {
   opacity: 1;
+}
+
+/* Profile image fade-in animation - smooth and elegant */
+@keyframes profileImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .about-image:hover {
@@ -819,6 +911,15 @@ body.quarto-dark .about-link {
     justify-content: center !important;
     gap: 1.5rem !important;
     flex-direction: row !important;
+  }
+  
+  /* Ensure name letters animate smoothly on mobile */
+  .name-letter {
+    display: inline-block;
+  }
+  
+  .quarto-title h1.title {
+    font-size: 1.8rem !important;
   }
 }
 
@@ -3178,7 +3279,7 @@ html[data-theme='dark'] .tools-section {
   color: #495057;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
@@ -3231,6 +3332,7 @@ html[data-theme='dark'] .tools-section {
   box-shadow: 0 8px 24px rgba(0, 123, 255, 0.25);
   border-color: #007bff;
   background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
 .tool-item:hover::before {
@@ -3242,7 +3344,7 @@ html[data-theme='dark'] .tools-section {
   height: 28px;
   display: inline-block;
   vertical-align: middle;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s ease;
   flex-shrink: 0;
   /* Initial hidden state for pop-up animation */
   opacity: 0;
@@ -3281,8 +3383,9 @@ html[data-theme='dark'] .tools-section {
   height: 32px;
 }
 
+/* Tool icon hover - smooth twist independent of pop-in animation */
 .tool-item:hover .tool-icon {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.2) rotate(8deg);
 }
 
 html[data-theme='dark'] .tool-item {
